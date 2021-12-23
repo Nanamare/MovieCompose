@@ -28,7 +28,7 @@ class MainActivityViewModelImpl @Inject constructor(
     private val searchMoviePagingSource: SearchMoviePagingSource,
     private val trendingMoviePagingSource: TrendingMoviePagingSource,
     private val getGenreListUseCase: GetGenreListUseCase
-) : MainActivityViewModel, NavigationViewModelImpl() {
+) : NavigationViewModelImpl(), MainActivityViewModel {
 
     private val searchStartTrigger = MutableSharedFlow<Unit>()
 

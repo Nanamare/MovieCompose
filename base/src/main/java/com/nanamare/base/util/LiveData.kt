@@ -1,4 +1,4 @@
-package com.nanamare.base.ui.compose
+package com.nanamare.base.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

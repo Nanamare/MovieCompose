@@ -9,7 +9,13 @@ import com.nanamare.domain.model.ResultModel
 
 
 fun MovieDto.toDomainModel() =
-    MovieModel(dates?.toDomainModel(), page, results.map(ResultDto::toDomainModel), totalPages, totalResults)
+    MovieModel(
+        dates?.toDomainModel(),
+        page,
+        results.map(ResultDto::toDomainModel),
+        totalPages,
+        totalResults
+    )
 
 fun DatesDto.toDomainModel() = DatesModel(maximum, minimum)
 

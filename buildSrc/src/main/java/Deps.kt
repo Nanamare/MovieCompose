@@ -1,6 +1,5 @@
 object Deps {
 
-
     const val gradle = "com.android.tools.build:gradle:${Versions.gradle_version}"
     const val kotlin_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_version}"
     const val hilt_plugin =

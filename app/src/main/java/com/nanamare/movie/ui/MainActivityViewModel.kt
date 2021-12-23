@@ -26,12 +26,16 @@ interface MainActivityViewModel : NavigationViewModel {
 
 }
 
-private val LoginViewModelFactory = compositionLocalOf<@Composable () -> MainActivityViewModel> {
-    { error("Not viewModel provided") }
+private val MainActivityViewModelProvider = compositionLocalOf<MainActivityViewModel> {
+    noLocalProvidedFor("MainActivityViewModel")
 }
 
-fun provideLoginViewModelFactory(viewModelFactory: @Composable () -> MainActivityViewModel) =
-    LoginViewModelFactory provides viewModelFactory
+fun noLocalProvidedFor(name: String): Nothing {
+    error("CompositionLocal $name not present")
+}
+
+fun provideMainActivityViewModel(mainActivityViewModel: MainActivityViewModel) =
+    MainActivityViewModelProvider provides mainActivityViewModel
 
 @Composable
-fun mainActivityViewModel() = LoginViewModelFactory.current()
+fun currentViewModel() = MainActivityViewModelProvider.current

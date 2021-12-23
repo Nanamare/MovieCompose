@@ -43,14 +43,13 @@ import com.nanamare.movie.R
 import com.nanamare.movie.model.Result
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.NavigationViewModelImpl
-import com.nanamare.movie.ui.mainActivityViewModel
+import com.nanamare.movie.ui.currentViewModel
 import com.nanamare.movie.ui.screen.Mode.*
 
 @Composable
 fun UpcomingScreen(
     modifier: Modifier,
-    viewModel: MainActivityViewModel = mainActivityViewModel()
+    viewModel: MainActivityViewModel = currentViewModel()
 ) {
     val currentType by viewModel.currentMode.collectAsState()
 

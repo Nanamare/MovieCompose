@@ -25,14 +25,13 @@ import coil.compose.rememberImagePainter
 import com.nanamare.movie.BuildConfig
 import com.nanamare.movie.model.Result
 import com.nanamare.movie.ui.MainActivityViewModel
-import com.nanamare.movie.ui.MainActivityViewModelImpl
 import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.mainActivityViewModel
+import com.nanamare.movie.ui.currentViewModel
 
 @Composable
 fun TrendingScreen(
     modifier: Modifier,
-    viewModel: MainActivityViewModel = mainActivityViewModel()
+    viewModel: MainActivityViewModel = currentViewModel()
 ) {
     val trendingMovie = viewModel.trendingMovie.collectAsLazyPagingItems()
     TrendingList(modifier, trendingMovie, block = viewModel::navigate)
