@@ -3,8 +3,6 @@ package com.nanamare.movie.ui
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.nanamare.base.ui.compose.setThemeContent
 import com.nanamare.movie.ui.paging.GenreMoviePagingSource
 import com.nanamare.movie.ui.screen.GenreDetailScreen

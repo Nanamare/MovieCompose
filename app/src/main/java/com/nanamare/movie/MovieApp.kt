@@ -1,12 +1,11 @@
 package com.nanamare.movie
 
 import android.app.Application
-import android.util.Log
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class MovieApp: Application() {
+class MovieApp : Application() {
     override fun onCreate() {
         super.onCreate()
 

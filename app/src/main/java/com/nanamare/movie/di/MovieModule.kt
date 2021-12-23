@@ -1,7 +1,7 @@
 package com.nanamare.movie.di
 
-import com.nanamare.data.remote.impl.MovieRepositoryImpl
 import com.nanamare.data.remote.MovieApi
+import com.nanamare.data.remote.impl.MovieRepositoryImpl
 import com.nanamare.domain.repository.MovieRepository
 import dagger.Module
 import dagger.Provides

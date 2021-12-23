@@ -13,7 +13,7 @@ class GetGenreMovieUseCase @Inject constructor(
 ) : UseCase<DiscoverQuery, MovieModel>(dispatcher) {
 
     override suspend fun execute(param: DiscoverQuery) = movieRepository.getGenreMovies(param)
-    
+
 }
 
 @JvmInline
