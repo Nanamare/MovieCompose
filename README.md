@@ -4,7 +4,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/Nanamare/)
 
 ### About
-The application is a simple movie searching app using Jetpack Compose. Purpose is to **acquire enough knowledge** that can be used in the company. 
+The application is a simple movie searching app using Jetpack Compose. Purpose is to **acquire enough knowledge** that can be used in the company. Android Gradle plugin requires Java 11 to run.
 <br><br>
 
 ### Architecture
@@ -27,6 +27,7 @@ The application is a simple movie searching app using Jetpack Compose. Purpose i
 - Accompanist
  - SwipeRefresh
  - System-ui-controller
+- Coil
  <br><br>
  
  ### Modularization
