@@ -31,9 +31,9 @@ The application is a simple movie searching app using Jetpack Compose. Purpose i
  <br><br>
  
  ### Modularization
-  - App (UI Layer)
-  - Data (Data Layer)
-  - Domain (Domain Layer)
+  - App (UI Layer) android dependencies
+  - Data (Data Layer) network, datasource dependencies
+  - Domain (Domain Layer) Pure kotlin, java
   - base (Collection of utility functions used in UI Layer)
   - buildSrc (Managing dependencies)
 <img width="310" alt="스크린샷 2021-12-23 오후 8 19 59" src="https://user-images.githubusercontent.com/17498974/147242594-74726b66-8471-486c-b3ce-caef7f60bbf1.png">
