@@ -1,17 +1,18 @@
 package com.nanamare.movie.ui.screen
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.nanamare.base.ui.compose.SimpleTopBar
@@ -40,14 +41,33 @@ fun GenreList(
 ) {
     LazyColumn(modifier.padding(horizontal = 12.dp)) {
         items(genreList, key = { genre -> genre.id }) { genre ->
-            Box(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    modifier = Modifier
-                        .clickable { block(NavigationViewModel.Screen.GenreDetail(genre)) }
-                        .fillMaxWidth()
-                        .padding(20.dp),
-                    text = genre.name
-                )
+            MovieOutlineButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+                onClick = { block(NavigationViewModel.Screen.GenreDetail(genre)) }
+            ) {
+                Text(text = genre.name)
+            }
+        }
+    }
+}
+
+@Composable
+private fun MovieOutlineButton(
+    modifier: Modifier,
+    onClick: () -> Unit,
+    content: (@Composable () -> Unit)? = null,
+) {
+    OutlinedButton(
+        modifier = modifier.height(45.dp),
+        onClick = onClick,
+        border = ButtonDefaults.outlinedBorder.copy(brush = SolidColor(Color.LightGray))
+    ) {
+        content?.let {
+            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.high) {
+                val textStyle = MaterialTheme.typography.subtitle1.copy(color = Color.LightGray)
+                ProvideTextStyle(textStyle, content)
             }
         }
     }
