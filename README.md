@@ -52,6 +52,7 @@ The application is a simple movie searching app using Jetpack Compose. Purpose i
 <br>
 
  ### TODO
+- [ ] Local Database (Room)
 - [ ] MovieDetailScreen
-- [ ] Theme (Current support System using Dark Theme)
+- [X] Support System Theme (Dark, Light)
 - [ ] Animation
