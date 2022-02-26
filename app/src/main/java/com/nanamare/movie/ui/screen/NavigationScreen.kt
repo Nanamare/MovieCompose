@@ -29,7 +29,7 @@ import kotlinx.coroutines.flow.collect
 @Composable
 fun NavigationScreen(
     navController: NavHostController,
-    viewModel: MainActivityViewModel = getViewModel()
+    viewModel: MainActivityViewModel = getActivityViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
     Scaffold(
