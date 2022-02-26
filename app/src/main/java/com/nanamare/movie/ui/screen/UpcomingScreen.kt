@@ -3,6 +3,7 @@ package com.nanamare.movie.ui.screen
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -69,7 +70,9 @@ fun UpcomingScreen(
             SearchAppBar(
                 title = stringResource(R.string.toolbar_title_search),
                 currentType = currentType,
-                onBackPressed = { /* if you need define... */ },
+                onSymbolClick = {
+                    // TODO Change Theme
+                },
                 onChangeType = viewModel::changeMode
             ) { query ->
                 viewModel.setQuery(query)
@@ -205,7 +208,7 @@ private fun MovieCard(movie: Result, block: (NavigationViewModel.Screen) -> Unit
 private fun SearchAppBar(
     title: String,
     currentType: Mode,
-    onBackPressed: () -> Unit,
+    onSymbolClick: () -> Unit,
     onChangeType: (Mode) -> Unit,
     block: (searchQuery: String) -> Unit
 ) {
@@ -219,7 +222,7 @@ private fun SearchAppBar(
     val focusRequester = remember { FocusRequester() }
 
     // when restore searchText, move cursor to text.length
-    searchText = if (currentType == Mode.NORMAL) {
+    searchText = if (currentType == NORMAL) {
         TextFieldValue()
     } else {
         block(searchText.text)
@@ -228,12 +231,12 @@ private fun SearchAppBar(
 
     SimpleTopBar(
         navigationIcon = {
-            IconButton(onClick = onBackPressed) {
+            IconButton(onClick = onSymbolClick) {
                 Icon(painter = painterResource(id = R.drawable.ic_sketch_symbol), null)
             }
         },
         actions = {
-            if (currentType == Mode.SEARCH) {
+            if (currentType == SEARCH) {
                 IconButton(
                     onClick = { onChangeType(NORMAL) },
                     modifier = Modifier
@@ -263,20 +266,25 @@ private fun SearchAppBar(
             }
         }
     ) {
-        if (currentType == Mode.SEARCH) {
-            Surface {
+        if (currentType == SEARCH) {
+            Surface() {
                 TextField(
                     textStyle = MaterialTheme.typography.subtitle1,
                     modifier = Modifier
                         .focusRequester(focusRequester)
-                        .fillMaxWidth()
-                        .fillMaxHeight(),
+                        .fillMaxSize()
+                        .background(MaterialTheme.colors.primary),
                     value = searchText,
                     onValueChange = {
                         searchText = it
                         block(searchText.text)
                     },
-                    placeholder = { Text(text = stringResource(R.string.search)) },
+                    placeholder = {
+                        Text(
+                            text = stringResource(R.string.search),
+                            color = Color.White
+                        )
+                    },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text,
                         imeAction = ImeAction.Search,

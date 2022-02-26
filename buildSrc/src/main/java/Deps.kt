@@ -53,8 +53,6 @@ object Deps {
     object Compose {
         private const val compose_activity_compose =
             "androidx.activity:activity-compose:${Versions.Compose.compose_version}}"
-        private const val compose_theme_adapter =
-            "com.google.android.material:compose-theme-adapter:${Versions.Compose.compose_version}"
         private const val compose_runtime =
             "androidx.compose.runtime:runtime:${Versions.Compose.compose_version}"
         private const val compose_runtime_livedata =
@@ -84,7 +82,6 @@ object Deps {
             "androidx.navigation:navigation-compose:${Versions.Compose.compose_navigation_version}"
 
         val compose_dependencies = listOf(
-            compose_theme_adapter,
             compose_runtime,
             compose_runtime_livedata,
             compose_ui,

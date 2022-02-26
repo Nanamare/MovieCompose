@@ -11,7 +11,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -62,11 +61,11 @@ private fun MovieOutlineButton(
     OutlinedButton(
         modifier = modifier.height(45.dp),
         onClick = onClick,
-        border = ButtonDefaults.outlinedBorder.copy(brush = SolidColor(Color.LightGray))
+        border = ButtonDefaults.outlinedBorder.copy(brush = SolidColor(MaterialTheme.colors.primary))
     ) {
         content?.let {
             CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.high) {
-                val textStyle = MaterialTheme.typography.subtitle1.copy(color = Color.LightGray)
+                val textStyle = MaterialTheme.typography.subtitle1
                 ProvideTextStyle(textStyle, content)
             }
         }

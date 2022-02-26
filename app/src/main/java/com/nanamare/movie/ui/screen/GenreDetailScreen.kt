@@ -117,7 +117,7 @@ fun GenreCard(
             )
             Text(
                 text = movie.title,
-                color = MaterialTheme.colors.onPrimary,
+                color = MaterialTheme.colors.primary,
                 style = MaterialTheme.typography.subtitle2,
                 modifier = Modifier
                     .padding(12.dp)
@@ -129,7 +129,7 @@ fun GenreCard(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Star,
-                    tint = MaterialTheme.colors.onPrimary,
+                    tint = MaterialTheme.colors.primary,
                     contentDescription = null,
                     modifier = Modifier
                         .size(12.dp)
@@ -137,12 +137,12 @@ fun GenreCard(
                 )
                 Text(
                     text = "Summary",
-                    color = MaterialTheme.colors.onPrimary,
+                    color = MaterialTheme.colors.primary,
                     style = MaterialTheme.typography.overline.copy(fontSize = 12.sp)
                 )
                 Icon(
                     imageVector = Icons.Rounded.Star,
-                    tint = MaterialTheme.colors.onPrimary,
+                    tint = MaterialTheme.colors.primary,
                     contentDescription = null,
                     modifier = Modifier
                         .size(12.dp)
@@ -151,7 +151,7 @@ fun GenreCard(
             }
             Text(
                 text = movie.overview,
-                color = MaterialTheme.colors.onPrimary,
+                color = MaterialTheme.colors.primary,
                 style = MaterialTheme.typography.caption,
                 modifier = Modifier
                     .padding(
