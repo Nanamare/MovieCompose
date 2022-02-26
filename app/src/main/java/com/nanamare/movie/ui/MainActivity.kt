@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setThemeContent {
             CompositionLocalProvider(
-                provideViewModelFactory { hiltViewModel<MainActivityViewModelImpl>() }
+                provideViewModelFactory(hiltViewModel<MainActivityViewModelImpl>())
             ) {
                 NavigationScreen(navController = rememberNavController())
             }
