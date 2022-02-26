@@ -24,14 +24,17 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberImagePainter
 import com.nanamare.base.ui.compose.SimpleTopBar
-import com.nanamare.base.ui.compose.toPx
 import com.nanamare.base.util.rememberFlowWithLifecycle
 import com.nanamare.movie.BuildConfig
 import com.nanamare.movie.model.Result
 import com.nanamare.movie.model.mapper.toVo
-import com.nanamare.movie.ui.*
+import com.nanamare.movie.ui.DetailMovieActivity
+import com.nanamare.movie.ui.GenreDetailActivity
+import com.nanamare.movie.ui.GenreDetailViewModel
+import com.nanamare.movie.ui.NavigationViewModel
 import kotlinx.coroutines.flow.collect
 import kotlin.math.ceil
+import kotlin.math.roundToInt
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -174,8 +177,8 @@ fun StaggeredVerticalGrid(
     ) { measure, constraints ->
         check(constraints.hasBoundedWidth) { "Unbounded width not supported" }
         val columns = ceil(constraints.maxWidth / maxColumnWidth.toPx()).toInt()
-        val columnWidth = constraints.maxWidth / columns
-        val itemConstraints = constraints.copy(maxWidth = columnWidth, minWidth = 200.toPx)
+        val columnWidth = (constraints.maxWidth.toFloat() / columns.toFloat()).roundToInt()
+        val itemConstraints = constraints.copy(maxWidth = columnWidth, minWidth = columnWidth)
         val colHeights = IntArray(columns) { 0 } // track each column's height
         val placeables = measure.map { measurable ->
             val column = shortestColumn(colHeights)

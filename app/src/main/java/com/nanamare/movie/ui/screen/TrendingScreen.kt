@@ -26,12 +26,12 @@ import com.nanamare.movie.BuildConfig
 import com.nanamare.movie.model.Result
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.currentViewModel
+import com.nanamare.movie.ui.getViewModel
 
 @Composable
 fun TrendingScreen(
     modifier: Modifier,
-    viewModel: MainActivityViewModel = currentViewModel()
+    viewModel: MainActivityViewModel = getViewModel()
 ) {
     val trendingMovie = viewModel.trendingMovie.collectAsLazyPagingItems()
     TrendingList(modifier, trendingMovie, block = viewModel::navigate)
