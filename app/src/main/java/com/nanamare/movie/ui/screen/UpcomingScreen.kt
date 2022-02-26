@@ -1,10 +1,14 @@
 package com.nanamare.movie.ui.screen
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.*
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -43,13 +47,14 @@ import com.nanamare.movie.R
 import com.nanamare.movie.model.Result
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.currentViewModel
-import com.nanamare.movie.ui.screen.Mode.*
+import com.nanamare.movie.ui.getViewModel
+import com.nanamare.movie.ui.screen.Mode.NORMAL
+import com.nanamare.movie.ui.screen.Mode.SEARCH
 
 @Composable
 fun UpcomingScreen(
     modifier: Modifier,
-    viewModel: MainActivityViewModel = currentViewModel()
+    viewModel: MainActivityViewModel = getViewModel()
 ) {
     val currentType by viewModel.currentMode.collectAsState()
 

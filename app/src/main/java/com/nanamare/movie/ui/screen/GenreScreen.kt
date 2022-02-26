@@ -20,12 +20,12 @@ import com.nanamare.domain.model.GenreModel
 import com.nanamare.movie.R
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.currentViewModel
+import com.nanamare.movie.ui.getViewModel
 
 @Composable
 fun GenreScreen(
     modifier: Modifier,
-    viewModel: MainActivityViewModel = currentViewModel()
+    viewModel: MainActivityViewModel = getViewModel()
 ) {
     Scaffold(topBar = { SimpleTopBar { Text(text = stringResource(R.string.genre)) } }) { innerPadding ->
         val genreList by viewModel.genreList.collectAsState()

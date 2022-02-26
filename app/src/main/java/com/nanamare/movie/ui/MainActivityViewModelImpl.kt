@@ -6,7 +6,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.nanamare.domain.model.GenreModel
 import com.nanamare.domain.usecase.GetGenreListUseCase
+import com.nanamare.movie.model.Result
 import com.nanamare.movie.ui.paging.SearchMoviePagingSource
 import com.nanamare.movie.ui.paging.TrendingMoviePagingSource
 import com.nanamare.movie.ui.paging.UpcomingMoviePagingSource
@@ -20,6 +22,20 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+
+interface MainActivityViewModel : NavigationViewModel {
+    fun setQuery(query: String)
+    val currentMode: StateFlow<Mode>
+    fun changeMode(mode: Mode)
+    val upcomingMovie: Flow<PagingData<Result>>
+    val trendingMovie: Flow<PagingData<Result>>
+    val searchMovie: StateFlow<PagingData<Result>>
+    val genreList: StateFlow<List<GenreModel>>
+    fun refreshMovie()
+    val isRefresh: StateFlow<Boolean>
+    val keyboardTrigger: SharedFlow<Long>
+    var searchQuery: String
+}
 
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 @HiltViewModel
