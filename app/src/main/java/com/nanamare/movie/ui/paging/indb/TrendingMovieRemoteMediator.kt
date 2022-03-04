@@ -97,9 +97,7 @@ class TrendingMovieRemoteMediator @Inject constructor(
         state: PagingState<Int, MovieDto>,
     ): MovieRemoteKeyDto? = state.anchorPosition?.let { position ->
         state.closestItemToPosition(position)?.id?.let { id ->
-            movieDatabase.withTransaction {
-                movieRemoteKeyDao.getRemoteKey(id)
-            }
+            movieRemoteKeyDao.getRemoteKey(id)
         }
     }
 
@@ -107,18 +105,14 @@ class TrendingMovieRemoteMediator @Inject constructor(
         state: PagingState<Int, MovieDto>,
     ): MovieRemoteKeyDto? =
         state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.id?.let { id ->
-            movieDatabase.withTransaction {
-                movieRemoteKeyDao.getRemoteKey(id)
-            }
+            movieRemoteKeyDao.getRemoteKey(id)
         }
 
     private suspend fun getRemoteKeyForLastItem(
         state: PagingState<Int, MovieDto>,
     ): MovieRemoteKeyDto? =
         state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.id?.let { id ->
-            movieDatabase.withTransaction {
-                movieRemoteKeyDao.getRemoteKey(id)
-            }
+            movieRemoteKeyDao.getRemoteKey(id)
         }
 
 }
