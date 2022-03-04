@@ -1,8 +1,8 @@
 package com.nanamare.movie.di
 
 import com.nanamare.data.remote.MovieApi
-import com.nanamare.data.remote.impl.MovieRepositoryImpl
-import com.nanamare.domain.repository.MovieRepository
+import com.nanamare.data.remote.impl.MovieRemoteRepositoryImpl
+import com.nanamare.domain.repository.MovieRemoteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +22,7 @@ class MovieModule {
 
     @Singleton
     @Provides
-    fun provideUpcomingMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository =
-        movieRepositoryImpl
+    fun provideUpcomingMovieRepository(movieRemoteRepositoryImpl: MovieRemoteRepositoryImpl): MovieRemoteRepository =
+        movieRemoteRepositoryImpl
 
 }

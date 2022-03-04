@@ -12,7 +12,7 @@ data class GenreListDto(
 @Serializable
 data class GenreDto(
     @SerialName("id")
-    val id: Int,
+    val id: Long,
     @SerialName("name")
     val name: String
 )

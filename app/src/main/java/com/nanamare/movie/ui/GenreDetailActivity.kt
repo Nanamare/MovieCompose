@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.nanamare.base.ui.compose.setThemeContent
-import com.nanamare.movie.ui.paging.GenreMoviePagingSource
+import com.nanamare.movie.ui.paging.inmemory.GenreMoviePagingSource
 import com.nanamare.movie.ui.screen.GenreDetailScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

@@ -121,4 +121,14 @@ object Deps {
         "com.google.accompanist:accompanist-swiperefresh:${Versions.swipe_refresh_version}"
 
     const val lifecycle_runtime_ktx = "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha01"
+
+    object Room {
+        private const val room = "androidx.room:room-ktx:${Versions.room_version}"
+        private const val room_runtime = "androidx.room:room-runtime:${Versions.room_version}"
+        private const val room_paging = "androidx.room:room-paging:${Versions.room_version}"
+
+        const val room_compiler = "androidx.room:room-compiler:${Versions.room_version}"
+
+        val room_dependencies = listOf(room, room_runtime, room_paging)
+    }
 }

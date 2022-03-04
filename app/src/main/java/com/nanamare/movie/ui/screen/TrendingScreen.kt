@@ -23,7 +23,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.compose.rememberImagePainter
 import com.nanamare.movie.BuildConfig
-import com.nanamare.movie.model.Result
+import com.nanamare.movie.model.Movie
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.NavigationViewModel
 import com.nanamare.movie.ui.getActivityViewModel
@@ -40,12 +40,11 @@ fun TrendingScreen(
 @Composable
 fun TrendingList(
     modifier: Modifier,
-    movies: LazyPagingItems<Result>,
+    movies: LazyPagingItems<Movie>,
     block: (NavigationViewModel.Screen) -> Unit
 ) {
     LazyColumn(modifier) {
-        // Result' id is not stable
-        items(movies /*, key = ResultModel::id */) { movie ->
+        items(movies, key = Movie::primaryKey) { movie ->
             if (movie == null) return@items
             TrendingCard(movie, block)
         }
@@ -53,7 +52,7 @@ fun TrendingList(
 }
 
 @Composable
-fun TrendingCard(movie: Result, block: (NavigationViewModel.Screen) -> Unit) {
+fun TrendingCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit) {
     Row(
         modifier = Modifier
             .clickable { block(NavigationViewModel.Screen.DetailMovie(movie)) }
@@ -124,7 +123,7 @@ private fun MovieThumbnail(posterPath: String, popularity: Double, adult: Boolea
 }
 
 @Composable
-private fun MovieInfo(movie: Result) {
+private fun MovieInfo(movie: Movie) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

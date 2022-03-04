@@ -12,7 +12,7 @@ import androidx.paging.cachedIn
 import androidx.savedstate.SavedStateRegistryOwner
 import com.nanamare.movie.model.Genre
 import com.nanamare.movie.ui.GenreDetailActivity.Companion.EXTRA_GENRE_KEY
-import com.nanamare.movie.ui.paging.GenreMoviePagingSource
+import com.nanamare.movie.ui.paging.inmemory.GenreMoviePagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.catch

@@ -83,4 +83,6 @@ dependencies {
     implementation(Deps.lottie_compose)
     implementation(Deps.swipe_refresh_compose)
 
+    Deps.Room.room_dependencies.forEach(::implementation)
+    kapt(Deps.Room.room_compiler)
 }
