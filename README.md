@@ -52,7 +52,7 @@ The application is a simple movie searching app using Jetpack Compose. Purpose i
 <br>
 
  ### TODO
-- [ ] Local Database (Room)
+- [X] [Local Database (Room-Paging)](https://developer.android.com/topic/libraries/architecture/paging/v3-network-db)
 - [ ] MovieDetailScreen
 - [X] Support System Theme (Dark, Light)
 - [ ] Animation
