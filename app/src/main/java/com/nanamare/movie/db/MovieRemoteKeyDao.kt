@@ -16,7 +16,7 @@ interface MovieRemoteKeyDao {
     suspend fun getLatestMovieRemoteKey(): MovieRemoteKeyDto?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addRemoteKey(movieRemoteKeys: List<MovieRemoteKeyDto>)
+    suspend fun replace(movieRemoteKeys: List<MovieRemoteKeyDto>)
 
     @Query("DELETE FROM movie_remote_key")
     suspend fun deleteAll()

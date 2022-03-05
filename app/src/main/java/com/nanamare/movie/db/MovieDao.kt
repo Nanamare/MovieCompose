@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addMovies(movies: List<MovieDto>)
+    suspend fun replace(movies: List<MovieDto>)
 
     @Query("SELECT * FROM movie")
     fun getAllMovies(): PagingSource<Int, MovieDto>
