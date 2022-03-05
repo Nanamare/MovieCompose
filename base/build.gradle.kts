@@ -54,5 +54,6 @@ dependencies {
 
     Deps.Compose.compose_dependencies.forEach(::implementation)
     implementation(Deps.lifecycle_runtime_ktx)
+    Deps.Accompanist.accompanist_dependencies.forEach(::implementation)
 
 }

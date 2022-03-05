@@ -76,8 +76,6 @@ dependencies {
 
     Deps.Compose.compose_dependencies.forEach(::implementation)
 
-    Deps.Accompanist.accompanist_dependencies.forEach(::implementation)
-
     implementation(Deps.timber)
     implementation(Deps.coil_compose)
     implementation(Deps.lottie_compose)

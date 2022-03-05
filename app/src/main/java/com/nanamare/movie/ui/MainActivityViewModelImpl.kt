@@ -118,8 +118,8 @@ class MainActivityViewModelImpl @Inject constructor(
         emit(getGenreListUseCase.invoke().getOrDefault(emptyList()))
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
-    // Don't need cachedIn
     override val trendingMovie = trendingPagingUseCase()
+        .cachedIn(viewModelScope)
         .catch { Timber.e(it) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PagingData.empty())
 }
