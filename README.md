@@ -40,10 +40,17 @@ The application is a simple movie searching app using Jetpack Compose. Purpose i
 <br><br>
 
  ### ScreenShot
- <p align="center">
+* Dark
+<p align="center">
 <img src="https://user-images.githubusercontent.com/17498974/147248400-df98cefe-a3b9-4c73-92f1-ca31e7af1064.jpeg" width="31%"  />
 <img src="https://user-images.githubusercontent.com/17498974/147248379-a5b410bd-822d-418d-8b79-2d1e35ed6762.jpeg"  width="31%" />
 <img src="https://user-images.githubusercontent.com/17498974/147248396-aa4220d0-30d1-4351-8788-39b0e661c08f.jpeg" width="31%" />
+</p>
+* Light
+<p align="center">
+<img src="https://user-images.githubusercontent.com/17498974/156873101-06b49797-86bf-417a-868b-15e06f4a2018.jpg" width="31%"  />
+<img src="https://user-images.githubusercontent.com/17498974/156873110-ea50b7a4-c71e-4a07-b09e-753df5a47bdc.jpg"  width="31%" />
+<img src="https://user-images.githubusercontent.com/17498974/156873105-8cb4b47e-03e2-49d8-a39b-0c0d0e12055d.jpg" width="31%" />
 </p>
 <br>
 
