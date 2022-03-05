@@ -45,7 +45,7 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nanamare.base.ui.compose.*
 import com.nanamare.movie.BuildConfig
 import com.nanamare.movie.R
-import com.nanamare.movie.model.Result
+import com.nanamare.movie.model.Movie
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.NavigationViewModel
 import com.nanamare.movie.ui.getActivityViewModel
@@ -113,7 +113,7 @@ fun UpcomingScreen(
 @Composable
 private fun UpcomingMovieList(
     modifier: Modifier,
-    movies: LazyPagingItems<Result>,
+    movies: LazyPagingItems<Movie>,
     block: (NavigationViewModel.Screen) -> Unit
 ) {
     LazyVerticalGrid(cells = GridCells.Fixed(2), modifier = modifier) {
@@ -139,7 +139,7 @@ private fun UpcomingMovieList(
 @Composable
 private fun SearchMovieList(
     modifier: Modifier,
-    movies: LazyPagingItems<Result>,
+    movies: LazyPagingItems<Movie>,
     isNotEmptyQuery: () -> Boolean,
     keyboardTrigger: Long,
     block: (NavigationViewModel.Screen) -> Unit
@@ -177,7 +177,7 @@ private fun SearchMovieList(
 }
 
 @Composable
-private fun MovieCard(movie: Result, block: (NavigationViewModel.Screen) -> Unit) {
+private fun MovieCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit) {
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp.dp
     val screenWidth = configuration.screenWidthDp.dp
@@ -318,7 +318,7 @@ private fun SearchAppBar(
 
 @Composable
 private fun MovieThumbnail(
-    movie: Result,
+    movie: Movie,
     index: Int,
     block: (NavigationViewModel.Screen) -> Unit
 ) {

@@ -1,17 +1,25 @@
 package com.nanamare.data.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 @Serializable
-data class MovieDto(
+data class MovieResponseDto(
     @SerialName("dates")
     val dates: DatesDto? = null,
     @SerialName("page")
     val page: Int,
     @SerialName("results")
-    val results: List<ResultDto>,
+    val results: List<MovieDto>,
     @SerialName("total_pages")
     val totalPages: Int,
     @SerialName("total_results")
@@ -26,8 +34,13 @@ data class DatesDto(
     val minimum: String?
 )
 
+@Entity(tableName = "movie")
+@TypeConverters(ListConverter::class)
 @Serializable
-data class ResultDto(
+data class MovieDto(
+    @PrimaryKey(autoGenerate = true)
+    @Transient
+    val primaryKey: Long = 0,
     @SerialName("adult")
     val adult: Boolean,
     @SerialName("backdrop_path")
@@ -45,9 +58,9 @@ data class ResultDto(
     @SerialName("popularity")
     val popularity: Double,
     @SerialName("poster_path")
-    val posterPath: String? = null,
+    val posterPath: String?,
     @SerialName("release_date")
-    val releaseDate: String? = null,
+    val releaseDate: String?,
     @SerialName("title")
     val title: String,
     @SerialName("video")
@@ -57,3 +70,11 @@ data class ResultDto(
     @SerialName("vote_count")
     val voteCount: Int
 )
+
+class ListConverter {
+    @TypeConverter
+    fun encode(value: List<Int>) = Json.encodeToString(value)
+
+    @TypeConverter
+    fun decode(value: String) = Json.decodeFromString<List<Int>>(value)
+}

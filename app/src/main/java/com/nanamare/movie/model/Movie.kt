@@ -3,15 +3,15 @@ package com.nanamare.movie.model
 import android.os.Parcelable
 import androidx.compose.runtime.Stable
 import kotlinx.parcelize.Parcelize
-import kotlin.random.Random
 
 @Stable
 @Parcelize
-data class Result(
+data class Movie(
+    val primaryKey: Long,
     val adult: Boolean,
     val backdropPath: String,
     val genreIds: List<Int>,
-    val id: Long = Random.nextLong(Long.MAX_VALUE),
+    val id: Long,
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,

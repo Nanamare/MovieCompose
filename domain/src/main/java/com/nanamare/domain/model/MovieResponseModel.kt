@@ -1,11 +1,9 @@
 package com.nanamare.domain.model
 
-import kotlin.random.Random
-
-data class MovieModel(
+data class MovieResponseModel(
     val dates: DatesModel?,
     val page: Int,
-    val results: List<ResultModel>,
+    val movies: List<MovieModel>,
     val totalPages: Int,
     val totalResults: Int
 )
@@ -15,11 +13,12 @@ data class DatesModel(
     val minimum: String?
 )
 
-data class ResultModel(
+data class MovieModel(
+    val primaryKey: Long,
     val adult: Boolean,
     val backdropPath: String,
     val genreIds: List<Int>,
-    val id: Long = Random.nextLong(Long.MAX_VALUE),
+    val id: Long,
     val originalLanguage: String,
     val originalTitle: String,
     val overview: String,

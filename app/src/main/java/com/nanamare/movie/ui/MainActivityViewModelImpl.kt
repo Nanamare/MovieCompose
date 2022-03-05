@@ -2,16 +2,13 @@ package com.nanamare.movie.ui
 
 import androidx.core.util.Supplier
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
+import androidx.paging.*
 import com.nanamare.domain.model.GenreModel
 import com.nanamare.domain.usecase.GetGenreListUseCase
-import com.nanamare.movie.model.Result
-import com.nanamare.movie.ui.paging.SearchMoviePagingSource
-import com.nanamare.movie.ui.paging.TrendingMoviePagingSource
-import com.nanamare.movie.ui.paging.UpcomingMoviePagingSource
+import com.nanamare.movie.model.Movie
+import com.nanamare.movie.ui.paging.indb.TrendingPagingUseCase
+import com.nanamare.movie.ui.paging.inmemory.SearchMoviePagingSource
+import com.nanamare.movie.ui.paging.inmemory.UpcomingMoviePagingSource
 import com.nanamare.movie.ui.screen.Mode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,9 +24,9 @@ interface MainActivityViewModel : NavigationViewModel {
     fun setQuery(query: String)
     val currentMode: StateFlow<Mode>
     fun changeMode(mode: Mode)
-    val upcomingMovie: Flow<PagingData<Result>>
-    val trendingMovie: Flow<PagingData<Result>>
-    val searchMovie: StateFlow<PagingData<Result>>
+    val upcomingMovie: Flow<PagingData<Movie>>
+    val trendingMovie: Flow<PagingData<Movie>>
+    val searchMovie: StateFlow<PagingData<Movie>>
     val genreList: StateFlow<List<GenreModel>>
     fun refreshMovie()
     val isRefresh: StateFlow<Boolean>
@@ -37,13 +34,13 @@ interface MainActivityViewModel : NavigationViewModel {
     var searchQuery: String
 }
 
-@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
+@OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class, ExperimentalPagingApi::class)
 @HiltViewModel
 class MainActivityViewModelImpl @Inject constructor(
-    private val upcomingMoviePagingSource: UpcomingMoviePagingSource,
     private val searchMoviePagingSource: SearchMoviePagingSource,
-    private val trendingMoviePagingSource: TrendingMoviePagingSource,
-    private val getGenreListUseCase: GetGenreListUseCase
+    trendingPagingUseCase: TrendingPagingUseCase,
+    private val getGenreListUseCase: GetGenreListUseCase,
+    private val upcomingMoviePagingSource: UpcomingMoviePagingSource
 ) : NavigationViewModelImpl(), MainActivityViewModel {
 
     private val searchStartTrigger = MutableSharedFlow<Unit>()
@@ -121,10 +118,8 @@ class MainActivityViewModelImpl @Inject constructor(
         emit(getGenreListUseCase.invoke().getOrDefault(emptyList()))
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
-    override val trendingMovie =
-        Pager(PagingConfig(pageSize = 10), pagingSourceFactory = ::trendingMoviePagingSource)
-            .flow
-            .cachedIn(viewModelScope)
-            .catch { Timber.e(it) }
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PagingData.empty())
+    // Don't need cachedIn
+    override val trendingMovie = trendingPagingUseCase()
+        .catch { Timber.e(it) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PagingData.empty())
 }

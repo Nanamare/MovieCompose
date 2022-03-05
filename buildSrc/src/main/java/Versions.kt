@@ -18,7 +18,7 @@ object Versions {
     object Compose {
         const val compose_version = "1.0.5"
         const val compose_constraint_version = "1.0.0-rc01"
-        const val compose_paging_version = "1.0.0-alpha12"
+        const val compose_paging_version = "1.0.0-alpha14"
         const val compose_viewmodel_version = "1.0.0-alpha07"
         const val compose_navigation_version = "2.4.0-beta02"
     }
@@ -32,4 +32,6 @@ object Versions {
     const val lottie_version = "4.2.2"
 
     const val swipe_refresh_version = "0.20.3"
+
+    const val room_version = "2.4.2"
 }

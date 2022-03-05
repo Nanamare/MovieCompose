@@ -26,7 +26,7 @@ import coil.compose.rememberImagePainter
 import com.nanamare.base.ui.compose.SimpleTopBar
 import com.nanamare.base.util.rememberFlowWithLifecycle
 import com.nanamare.movie.BuildConfig
-import com.nanamare.movie.model.Result
+import com.nanamare.movie.model.Movie
 import com.nanamare.movie.model.mapper.toVo
 import com.nanamare.movie.ui.DetailMovieActivity
 import com.nanamare.movie.ui.GenreDetailActivity
@@ -86,7 +86,7 @@ fun GenreDetailScreen(viewModel: GenreDetailViewModel) {
 
 @Composable
 fun GenreCard(
-    movie: Result,
+    movie: Movie,
     modifier: Modifier = Modifier,
     block: (NavigationViewModel.Screen) -> Unit
 ) {

@@ -1,4 +1,7 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
+    id("kotlin-kapt")
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlinx-serialization")
@@ -44,10 +47,8 @@ dependencies {
     implementation(Deps.dagger)
     implementation(Deps.kotlin_coroutines)
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.android.material:material:1.4.0")
+    Deps.Room.room_dependencies.forEach(::implementation)
+    kapt(Deps.Room.room_compiler)
+
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }
