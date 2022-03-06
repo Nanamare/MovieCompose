@@ -7,6 +7,22 @@
 The application is a simple movie searching app using Jetpack Compose. Purpose is to **acquire enough knowledge** that can be used in the company. Android Gradle plugin requires Java 11 to run.
 <br><br>
 
+ ### ScreenShot
+* Dark
+<p align="center">
+<img src="https://user-images.githubusercontent.com/17498974/147248400-df98cefe-a3b9-4c73-92f1-ca31e7af1064.jpeg" width="31%"  />
+<img src="https://user-images.githubusercontent.com/17498974/147248379-a5b410bd-822d-418d-8b79-2d1e35ed6762.jpeg"  width="31%" />
+<img src="https://user-images.githubusercontent.com/17498974/147248396-aa4220d0-30d1-4351-8788-39b0e661c08f.jpeg" width="31%" />
+</p>
+
+* Light
+<p align="center">
+<img src="https://user-images.githubusercontent.com/17498974/156873101-06b49797-86bf-417a-868b-15e06f4a2018.jpg" width="31%"  />
+<img src="https://user-images.githubusercontent.com/17498974/156873110-ea50b7a4-c71e-4a07-b09e-753df5a47bdc.jpg"  width="31%" />
+<img src="https://user-images.githubusercontent.com/17498974/156873105-8cb4b47e-03e2-49d8-a39b-0c0d0e12055d.jpg" width="31%" />
+</p>
+<br>
+
 ### Architecture
  - Base on [Google Recommended Architecture](https://developer.android.com/jetpack/guide#recommended-app-arch) (UI Layer - Domain Layer - Data Layer) similar to Clean Architecture
  - Using Mvvm with repository pattern (Model-View-ViewModel)
@@ -38,21 +54,6 @@ The application is a simple movie searching app using Jetpack Compose. Purpose i
   - buildSrc (Managing dependencies)
 <img width="310" alt="스크린샷 2021-12-23 오후 8 19 59" src="https://user-images.githubusercontent.com/17498974/147242594-74726b66-8471-486c-b3ce-caef7f60bbf1.png">
 <br><br>
-
- ### ScreenShot
-* Dark
-<p align="center">
-<img src="https://user-images.githubusercontent.com/17498974/147248400-df98cefe-a3b9-4c73-92f1-ca31e7af1064.jpeg" width="31%"  />
-<img src="https://user-images.githubusercontent.com/17498974/147248379-a5b410bd-822d-418d-8b79-2d1e35ed6762.jpeg"  width="31%" />
-<img src="https://user-images.githubusercontent.com/17498974/147248396-aa4220d0-30d1-4351-8788-39b0e661c08f.jpeg" width="31%" />
-</p>
-* Light
-<p align="center">
-<img src="https://user-images.githubusercontent.com/17498974/156873101-06b49797-86bf-417a-868b-15e06f4a2018.jpg" width="31%"  />
-<img src="https://user-images.githubusercontent.com/17498974/156873110-ea50b7a4-c71e-4a07-b09e-753df5a47bdc.jpg"  width="31%" />
-<img src="https://user-images.githubusercontent.com/17498974/156873105-8cb4b47e-03e2-49d8-a39b-0c0d0e12055d.jpg" width="31%" />
-</p>
-<br>
 
  ### Open API
   - [TheMovieDB API](https://api.themoviedb.org)
