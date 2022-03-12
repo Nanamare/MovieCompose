@@ -25,6 +25,8 @@ The application is a simple movie searching app using Jetpack Compose. Purpose i
 
 ### Architecture
  - Base on [Google Recommended Architecture](https://developer.android.com/jetpack/guide#recommended-app-arch) (UI Layer - Domain Layer - Data Layer) similar to Clean Architecture
+ - We tried to removed the Android dependency(LiveData, AAC viewModel etc...) from the ViewModel. To expand to kotlin-multi-platform(KMM) in the future.
+ - <img width="684" alt="스크린샷 2022-03-12 오후 4 49 21" src="https://user-images.githubusercontent.com/17498974/158009293-f42c78d1-aefe-4363-b713-a2c58ff90b48.png">
  - Using Mvvm with repository pattern (Model-View-ViewModel)
 
 <img width="302" alt="스크린샷 2021-12-23 오후 10 55 10" src="https://user-images.githubusercontent.com/17498974/147250233-2f022a65-3cc2-4546-89d9-0d9037b2db59.png"> [ImageLink](https://github.com/rmoustafa/Kotlin-Coroutines-Clean-Architecture)
