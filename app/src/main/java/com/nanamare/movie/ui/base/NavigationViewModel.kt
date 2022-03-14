@@ -1,10 +1,10 @@
-package com.nanamare.movie.ui
+package com.nanamare.movie.ui.base
 
 import com.nanamare.domain.model.GenreModel
 import com.nanamare.movie.model.Movie
 import kotlinx.coroutines.flow.Flow
 
-interface NavigationViewModel: BaseViewModel {
+interface NavigationViewModel : BaseViewModel {
     fun navigate(screen: Screen)
     val navigation: Flow<Screen>
 

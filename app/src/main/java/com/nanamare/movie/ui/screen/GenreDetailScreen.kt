@@ -28,10 +28,10 @@ import com.nanamare.base.util.rememberFlowWithLifecycle
 import com.nanamare.movie.BuildConfig
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.model.mapper.toVo
-import com.nanamare.movie.ui.DetailMovieActivity
-import com.nanamare.movie.ui.GenreDetailActivity
-import com.nanamare.movie.ui.GenreDetailViewModel
-import com.nanamare.movie.ui.NavigationViewModel
+import com.nanamare.movie.ui.detail.DetailMovieActivity
+import com.nanamare.movie.ui.genre.GenreDetailActivity
+import com.nanamare.movie.ui.genre.GenreDetailViewModel
+import com.nanamare.movie.ui.base.NavigationViewModel
 import kotlinx.coroutines.flow.collect
 import kotlin.math.ceil
 import kotlin.math.roundToInt

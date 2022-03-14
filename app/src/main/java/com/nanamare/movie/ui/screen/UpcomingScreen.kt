@@ -27,6 +27,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -43,20 +44,32 @@ import coil.compose.rememberImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nanamare.base.ui.compose.*
+import com.nanamare.base.util.rememberFlowWithLifecycle
+import com.nanamare.base.util.toast
 import com.nanamare.movie.BuildConfig
 import com.nanamare.movie.R
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.ui.MainActivityViewModel
-import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.getActivityViewModel
+import com.nanamare.movie.ui.base.NavigationViewModel
+import com.nanamare.movie.ui.base.getActivityViewModel
 import com.nanamare.movie.ui.screen.Mode.NORMAL
 import com.nanamare.movie.ui.screen.Mode.SEARCH
+import kotlinx.coroutines.flow.collect
 
 @Composable
 fun UpcomingScreen(
     modifier: Modifier,
     viewModel: MainActivityViewModel = getActivityViewModel()
 ) {
+    val context = LocalContext.current
+
+    val error = rememberFlowWithLifecycle(viewModel.error)
+    LaunchedEffect(error) {
+        error.collect {
+            context.toast("network is lost")
+        }
+    }
+
     val currentType by viewModel.currentMode.collectAsState()
 
     if (currentType == SEARCH) {

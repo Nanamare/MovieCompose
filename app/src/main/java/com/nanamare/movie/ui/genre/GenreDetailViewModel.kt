@@ -1,4 +1,4 @@
-package com.nanamare.movie.ui
+package com.nanamare.movie.ui.genre
 
 import android.os.Bundle
 import androidx.lifecycle.AbstractSavedStateViewModelFactory
@@ -11,7 +11,8 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.savedstate.SavedStateRegistryOwner
 import com.nanamare.movie.model.Genre
-import com.nanamare.movie.ui.GenreDetailActivity.Companion.EXTRA_GENRE_KEY
+import com.nanamare.movie.ui.base.NavigationViewModelImpl
+import com.nanamare.movie.ui.genre.GenreDetailActivity.Companion.EXTRA_GENRE_KEY
 import com.nanamare.movie.ui.paging.inmemory.GenreMoviePagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted

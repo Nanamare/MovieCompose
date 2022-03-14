@@ -25,10 +25,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.DetailMovieActivity"
+            android:name=".ui.detail.DetailMovieActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.GenreDetailActivity"
+            android:name=".ui.genre.GenreDetailActivity"
             android:exported="false" />
     </application>
 

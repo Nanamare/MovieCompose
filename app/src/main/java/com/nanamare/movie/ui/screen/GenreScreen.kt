@@ -18,8 +18,8 @@ import com.nanamare.base.ui.compose.SimpleTopBar
 import com.nanamare.domain.model.GenreModel
 import com.nanamare.movie.R
 import com.nanamare.movie.ui.MainActivityViewModel
-import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.getActivityViewModel
+import com.nanamare.movie.ui.base.NavigationViewModel
+import com.nanamare.movie.ui.base.getActivityViewModel
 
 @Composable
 fun GenreScreen(

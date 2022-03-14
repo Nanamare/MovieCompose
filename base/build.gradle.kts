@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -55,5 +56,8 @@ dependencies {
     Deps.Compose.compose_dependencies.forEach(::implementation)
     implementation(Deps.lifecycle_runtime_ktx)
     Deps.Accompanist.accompanist_dependencies.forEach(::implementation)
+
+    Deps.Hilt.hilt_dependencies.forEach(::implementation)
+    kapt(Deps.Hilt.dagger_hilt_compiler)
 
 }

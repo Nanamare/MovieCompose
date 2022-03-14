@@ -6,6 +6,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.nanamare.base.ui.compose.setThemeContent
+import com.nanamare.movie.ui.base.provideViewModelFactory
 import com.nanamare.movie.ui.screen.NavigationScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
