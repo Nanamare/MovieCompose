@@ -1,4 +1,4 @@
-package com.nanamare.movie.ui
+package com.nanamare.movie.ui.genre
 
 import android.os.Bundle
 import androidx.activity.viewModels

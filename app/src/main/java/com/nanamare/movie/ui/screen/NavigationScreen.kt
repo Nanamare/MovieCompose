@@ -20,8 +20,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.nanamare.base.util.rememberFlowWithLifecycle
 import com.nanamare.movie.model.mapper.toVo
-import com.nanamare.movie.ui.*
-import com.nanamare.movie.ui.GenreDetailActivity.Companion.EXTRA_GENRE_KEY
+import com.nanamare.movie.ui.MainActivityViewModel
+import com.nanamare.movie.ui.base.NavigationViewModel
+import com.nanamare.movie.ui.base.getActivityViewModel
+import com.nanamare.movie.ui.detail.DetailMovieActivity
+import com.nanamare.movie.ui.genre.GenreDetailActivity
+import com.nanamare.movie.ui.genre.GenreDetailActivity.Companion.EXTRA_GENRE_KEY
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 

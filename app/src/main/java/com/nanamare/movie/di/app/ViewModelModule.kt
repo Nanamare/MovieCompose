@@ -1,7 +1,7 @@
 package com.nanamare.movie.di.app
 
-import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.NavigationViewModelImpl
+import com.nanamare.movie.ui.base.NavigationViewModel
+import com.nanamare.movie.ui.base.NavigationViewModelImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

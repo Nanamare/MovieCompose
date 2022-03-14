@@ -1,7 +1,8 @@
-package com.nanamare.movie.ui
+package com.nanamare.movie.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nanamare.movie.ui.base.NavigationViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch

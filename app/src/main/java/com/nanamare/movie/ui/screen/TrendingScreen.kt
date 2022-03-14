@@ -25,8 +25,8 @@ import coil.compose.rememberImagePainter
 import com.nanamare.movie.BuildConfig
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.ui.MainActivityViewModel
-import com.nanamare.movie.ui.NavigationViewModel
-import com.nanamare.movie.ui.getActivityViewModel
+import com.nanamare.movie.ui.base.NavigationViewModel
+import com.nanamare.movie.ui.base.getActivityViewModel
 
 @Composable
 fun TrendingScreen(

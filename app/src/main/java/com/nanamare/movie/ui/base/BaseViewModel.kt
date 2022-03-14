@@ -1,4 +1,4 @@
-package com.nanamare.movie.ui
+package com.nanamare.movie.ui.base
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable

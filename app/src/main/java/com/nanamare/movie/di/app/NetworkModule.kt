@@ -1,11 +1,15 @@
 package com.nanamare.movie.di.app
 
+import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.nanamare.base.util.NetworkConnection
+import com.nanamare.base.util.NetworkConnectionImpl
 import com.nanamare.data.remote.interceptor.AuthenticationInterceptor
 import com.nanamare.movie.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -56,6 +60,11 @@ class NetworkModule {
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideNetworkConnection(@ApplicationContext context: Context): NetworkConnection =
+        NetworkConnectionImpl(context)
 
     companion object {
         private const val TIME_OUT = 30L

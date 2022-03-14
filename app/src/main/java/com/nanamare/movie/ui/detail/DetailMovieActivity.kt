@@ -1,4 +1,4 @@
-package com.nanamare.movie.ui
+package com.nanamare.movie.ui.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
