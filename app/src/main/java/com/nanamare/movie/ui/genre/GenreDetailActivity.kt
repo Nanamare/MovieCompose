@@ -15,7 +15,7 @@ class GenreDetailActivity : AppCompatActivity() {
     @Inject
     lateinit var genreMoviePagingSource: GenreMoviePagingSource
 
-    private val viewModel by viewModels<GenreDetailViewModel> {
+    private val viewModel: GenreDetailViewModel by viewModels<GenreDetailViewModelImpl> {
         GenreDetailViewModelFactory(this, genreMoviePagingSource, intent?.extras)
     }
 
