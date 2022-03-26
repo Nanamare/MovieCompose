@@ -1,9 +1,12 @@
 package com.nanamare.movie.ui.screen
 
 import android.content.Intent
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Star
@@ -28,15 +31,14 @@ import com.nanamare.base.util.rememberFlowWithLifecycle
 import com.nanamare.movie.BuildConfig
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.model.mapper.toVo
+import com.nanamare.movie.ui.base.NavigationViewModel
 import com.nanamare.movie.ui.detail.DetailMovieActivity
 import com.nanamare.movie.ui.genre.GenreDetailActivity
 import com.nanamare.movie.ui.genre.GenreDetailViewModel
-import com.nanamare.movie.ui.base.NavigationViewModel
 import kotlinx.coroutines.flow.collect
 import kotlin.math.ceil
 import kotlin.math.roundToInt
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun GenreDetailScreen(viewModel: GenreDetailViewModel) {
     val configuration = LocalConfiguration.current
@@ -180,7 +182,7 @@ fun StaggeredVerticalGrid(
         val columnWidth = (constraints.maxWidth.toFloat() / columns.toFloat()).roundToInt()
         val itemConstraints = constraints.copy(maxWidth = columnWidth, minWidth = columnWidth)
         val colHeights = IntArray(columns) { 0 } // track each column's height
-        val placeables = measure.map { measurable ->
+        val placeable = measure.map { measurable ->
             val column = shortestColumn(colHeights)
             val placeable = measurable.measure(itemConstraints)
             colHeights[column] += placeable.height
@@ -194,7 +196,7 @@ fun StaggeredVerticalGrid(
             height = height
         ) {
             val colY = IntArray(columns) { 0 }
-            placeables.forEach { placeable ->
+            placeable.forEach { placeable ->
                 val column = shortestColumn(colY)
                 placeable.place(
                     x = columnWidth * column,
