@@ -2,10 +2,12 @@ package com.nanamare.data.remote
 
 import com.nanamare.data.model.GenreListDto
 import com.nanamare.data.model.MovieResponseDto
+import com.nanamare.data.utils.Cacheable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.concurrent.TimeUnit
 
 interface MovieApi {
 
@@ -16,6 +18,7 @@ interface MovieApi {
     fun searchMovie(@Query("page") page: Int, @Query("query") query: String): Call<MovieResponseDto>
 
     @GET("3/genre/movie/list")
+    @Cacheable(1, TimeUnit.HOURS)
     fun getGenreList(): Call<GenreListDto>
 
     @GET("3/discover/movie")
