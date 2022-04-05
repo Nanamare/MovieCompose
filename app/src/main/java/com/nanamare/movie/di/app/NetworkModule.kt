@@ -5,6 +5,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.nanamare.base.util.NetworkConnection
 import com.nanamare.base.util.NetworkConnectionImpl
 import com.nanamare.data.remote.interceptor.AuthenticationInterceptor
+import com.nanamare.data.remote.interceptor.CacheInterceptor
 import com.nanamare.movie.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import okhttp3.Cache
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -26,10 +28,18 @@ import javax.inject.Singleton
 class NetworkModule {
 
     @Provides
-    fun httpClientBuilder() = OkHttpClient.Builder()
+    fun provideHttpClientBuilder() = OkHttpClient.Builder()
         .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
         .readTimeout(TIME_OUT, TimeUnit.SECONDS)
         .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
+
+    @Provides
+    @Named("kotlinx")
+    fun provideKotlinxSerializationJson() = Json {
+        isLenient = false
+        ignoreUnknownKeys = true
+        coerceInputValues = true
+    }
 
     @OptIn(ExperimentalSerializationApi::class)
     @Singleton
@@ -38,21 +48,21 @@ class NetworkModule {
     fun provideTMDBRetrofit(
         httpClient: OkHttpClient.Builder,
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        authenticationInterceptor: AuthenticationInterceptor
+        authenticationInterceptor: AuthenticationInterceptor,
+        cacheInterceptor: CacheInterceptor,
+        @Named("kotlinx") json: Json,
+        @ApplicationContext context: Context
     ): Retrofit {
-        val builder = httpClient.addInterceptor(authenticationInterceptor)
+        val builder =
+            httpClient.addInterceptor(authenticationInterceptor).addInterceptor(cacheInterceptor)
 
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(httpLoggingInterceptor)
         }
 
-        val client = builder.build()
+        val cache = Cache(context.cacheDir, (5 * 1024 * 1024).toLong()) // 5MB
 
-        val json = Json {
-            isLenient = false
-            ignoreUnknownKeys = true
-            coerceInputValues = true
-        }
+        val client = builder.cache(cache).build()
 
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
