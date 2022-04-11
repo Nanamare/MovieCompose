@@ -78,6 +78,11 @@ class CustomAnnotationTest {
         moveApi.getGenreList().execute()
     }
 
+    @Test
+    fun `업로드 테스트`() {
+
+    }
+
     companion object {
         private const val GENRE_URL = "3/genre/movie/list"
     }
