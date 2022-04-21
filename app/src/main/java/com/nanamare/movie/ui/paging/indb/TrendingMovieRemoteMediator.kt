@@ -1,24 +1,25 @@
 package com.nanamare.movie.ui.paging.indb
 
-import androidx.paging.*
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.LoadType
+import androidx.paging.PagingState
+import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.nanamare.data.model.MovieDto
-import com.nanamare.data.model.MovieRemoteKeyDto
-import com.nanamare.data.model.mapper.toDto
+import com.nanamare.data.local.db.MovieDatabase
 import com.nanamare.domain.model.MovieModel
+import com.nanamare.domain.model.MovieRemoteKeyModel
+import com.nanamare.domain.repository.MovieLocalRepository
 import com.nanamare.domain.usecase.GetTrendingMovieUseCase
-import com.nanamare.movie.db.MovieDatabase
-import com.nanamare.movie.db.MovieLocalRepository
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
 class TrendingMovieRemoteMediator @Inject constructor(
-    private val getTrendingMovieUseCase: GetTrendingMovieUseCase,
     private val movieDatabase: MovieDatabase,
+    private val getTrendingMovieUseCase: GetTrendingMovieUseCase, // MovieRemoteRepository
     private val repository: MovieLocalRepository,
-) : RemoteMediator<Int, MovieDto>() {
+) : RemoteMediator<Int, MovieModel>() {
 
     private val cacheTimeOut by lazy { TimeUnit.MILLISECONDS.convert(7, TimeUnit.DAYS) }
 
@@ -31,7 +32,7 @@ class TrendingMovieRemoteMediator @Inject constructor(
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, MovieDto>
+        state: PagingState<Int, MovieModel>
     ): MediatorResult {
         try {
             val localPage = when (loadType) {
@@ -66,7 +67,7 @@ class TrendingMovieRemoteMediator @Inject constructor(
                 val nextPage = if (remotePage > response.totalPages) null else remotePage.plus(1)
 
                 val remoteKey = response.movies.map { movie ->
-                    MovieRemoteKeyDto(
+                    MovieRemoteKeyModel(
                         id = movie.id,
                         prevPage = prevPage,
                         nextPage = nextPage,
@@ -75,7 +76,7 @@ class TrendingMovieRemoteMediator @Inject constructor(
                 }
 
                 repository.replaceRemoteKey(remoteKey)
-                repository.replaceMovies(response.movies.map(MovieModel::toDto))
+                repository.replaceMovies(response.movies)
             }
 
             return MediatorResult.Success(endOfPaginationReached = response.movies.isEmpty())
@@ -86,27 +87,25 @@ class TrendingMovieRemoteMediator @Inject constructor(
     }
 
     private suspend fun getRemoteKeyClosestToCurrentPosition(
-        state: PagingState<Int, MovieDto>,
-    ): MovieRemoteKeyDto? = state.anchorPosition?.let { position ->
+        state: PagingState<Int, MovieModel>,
+    ): MovieRemoteKeyModel? = state.anchorPosition?.let { position ->
         state.closestItemToPosition(position)?.id?.let { id ->
             repository.getRemoteKey(id)
         }
     }
 
     private suspend fun getRemoteKeyForFirstItem(
-        state: PagingState<Int, MovieDto>,
-    ): MovieRemoteKeyDto? =
+        state: PagingState<Int, MovieModel>,
+    ): MovieRemoteKeyModel? =
         state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.id?.let { id ->
             repository.getRemoteKey(id)
         }
 
     private suspend fun getRemoteKeyForLastItem(
-        state: PagingState<Int, MovieDto>,
-    ): MovieRemoteKeyDto? =
+        state: PagingState<Int, MovieModel>,
+    ): MovieRemoteKeyModel? =
         state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.id?.let { id ->
             repository.getRemoteKey(id)
         }
-
-    fun getAllMovies(): PagingSource<Int, MovieDto> = repository.getAllMovies()
 
 }

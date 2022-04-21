@@ -5,7 +5,6 @@ import com.nanamare.domain.model.MovieModel
 import com.nanamare.movie.model.Movie
 
 fun MovieModel.toVo() = Movie(
-    primaryKey,
     adult,
     backdropPath,
     genreIds,
@@ -23,7 +22,6 @@ fun MovieModel.toVo() = Movie(
 )
 
 fun MovieDto.toVo() = Movie(
-    primaryKey,
     adult,
     backdropPath,
     genreIds,

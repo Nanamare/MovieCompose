@@ -44,7 +44,7 @@ fun TrendingList(
     block: (NavigationViewModel.Screen) -> Unit
 ) {
     LazyColumn(modifier) {
-        items(movies, key = Movie::primaryKey) { movie ->
+        items(movies, key = Movie::id) { movie ->
             if (movie == null) return@items
             TrendingCard(movie, block)
         }

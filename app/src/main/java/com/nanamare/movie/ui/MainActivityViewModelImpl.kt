@@ -12,7 +12,7 @@ import com.nanamare.domain.usecase.GetGenreListUseCase
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.ui.base.NavigationViewModel
 import com.nanamare.movie.ui.base.NavigationViewModelImpl
-import com.nanamare.movie.ui.paging.indb.TrendingPagingUseCase
+import com.nanamare.movie.ui.paging.indb.TrendingPagingManager
 import com.nanamare.movie.ui.paging.inmemory.SearchMoviePagingSource
 import com.nanamare.movie.ui.paging.inmemory.UpcomingMoviePagingSource
 import com.nanamare.movie.ui.screen.Mode
@@ -45,7 +45,7 @@ interface MainActivityViewModel : NavigationViewModel {
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class MainActivityViewModelImpl @Inject constructor(
-    trendingPagingUseCase: TrendingPagingUseCase,
+    trendingPagingManager: TrendingPagingManager,
     private val searchMoviePagingSource: SearchMoviePagingSource,
     private val getGenreListUseCase: GetGenreListUseCase,
     private val upcomingMoviePagingSource: UpcomingMoviePagingSource,
@@ -136,7 +136,7 @@ class MainActivityViewModelImpl @Inject constructor(
         emit(getGenreListUseCase.invoke().getOrDefault(emptyList()))
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
-    override val trendingMovie = trendingPagingUseCase()
+    override val trendingMovie = trendingPagingManager()
         .cachedIn(viewModelScope)
         .catch { Timber.e(it) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PagingData.empty())
