@@ -7,7 +7,6 @@ import kotlinx.parcelize.Parcelize
 @Stable
 @Parcelize
 data class Movie(
-    val primaryKey: Long,
     val adult: Boolean,
     val backdropPath: String,
     val genreIds: List<Int>,

@@ -1,16 +1,9 @@
 package com.nanamare.data.model
 
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 
 @Serializable
 data class MovieResponseDto(
@@ -34,11 +27,8 @@ data class DatesDto(
     val minimum: String?
 )
 
-@Entity(tableName = "movie")
-@TypeConverters(ListConverter::class)
 @Serializable
 data class MovieDto(
-    @PrimaryKey(autoGenerate = true)
     @Transient
     val primaryKey: Long = 0,
     @SerialName("adult")
@@ -70,11 +60,3 @@ data class MovieDto(
     @SerialName("vote_count")
     val voteCount: Int
 )
-
-class ListConverter {
-    @TypeConverter
-    fun encode(value: List<Int>) = Json.encodeToString(value)
-
-    @TypeConverter
-    fun decode(value: String) = Json.decodeFromString<List<Int>>(value)
-}

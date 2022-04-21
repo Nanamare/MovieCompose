@@ -1,12 +1,10 @@
-package com.nanamare.movie.db
+package com.nanamare.data.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.nanamare.data.model.MovieRemoteKeyDto
-import com.nanamare.data.model.MovieDto
 
 @Database(
-    entities = [MovieDto::class, MovieRemoteKeyDto::class],
+    entities = [MovieEntity::class, MovieRemoteKeyEntity::class],
     version = 1,
     exportSchema = false
 )

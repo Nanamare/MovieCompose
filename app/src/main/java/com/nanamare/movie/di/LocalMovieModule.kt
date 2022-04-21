@@ -1,7 +1,7 @@
 package com.nanamare.movie.di
 
-import com.nanamare.movie.db.MovieLocalRepository
-import com.nanamare.movie.db.MovieLocalRepositoryImpl
+import com.nanamare.data.local.db.MovieLocalRepositoryImpl
+import com.nanamare.domain.repository.MovieLocalRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
