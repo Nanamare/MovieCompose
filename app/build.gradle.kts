@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = Versions.compile_version
 
     defaultConfig {
         applicationId = "com.nanamare.movie"
@@ -15,7 +15,7 @@ android {
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.nanamare.test_shared.MovieTestRunner"
 
         buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org\"")
         buildConfigField("String", "TMDB_IMAGE_URL", "\"https://image.tmdb.org/t/p/w300\"")
@@ -64,11 +64,6 @@ dependencies {
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
 
-    testImplementation("junit:junit:4.13.2")
-
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-
     Deps.Retrofit.retrofit_dependencies.forEach(::implementation)
 
     Deps.Hilt.hilt_dependencies.forEach(::implementation)
@@ -83,4 +78,7 @@ dependencies {
 
     Deps.Room.room_dependencies.forEach(::implementation)
     kapt(Deps.Room.room_compiler)
+
+    // Android Testing
+    kaptAndroidTest(Deps.Hilt.dagger_hilt_compiler)
 }

@@ -1,4 +1,7 @@
 object Versions {
+
+    const val compile_version = 32
+
     const val gradle_version = "7.0.2"
     const val kotlin_version = "1.5.31"
 
@@ -34,4 +37,16 @@ object Versions {
     const val swipe_refresh_version = "0.20.3"
 
     const val room_version = "2.4.2"
+
+    object UnitTest {
+        const val junit_version = "4.13.2"
+        const val truth_version = "1.1.3"
+        const val okhttp_mock_server_version = "4.9.3"
+    }
+
+    object AndroidTest {
+        const val androidx_test_version = "1.4.0"
+        const val androidx_test_espresso_version = "3.4.0"
+    }
+
 }

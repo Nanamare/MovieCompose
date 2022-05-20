@@ -131,4 +131,54 @@ object Deps {
 
         val room_dependencies = listOf(room, room_runtime, room_paging)
     }
+
+    object UnitTest {
+        private const val junit = "junit:junit:${Versions.UnitTest.junit_version}"
+
+        private const val kotlinx_coroutines_test =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinx_coroutines_version}"
+        private const val truth = "com.google.truth:truth:${Versions.UnitTest.truth_version}"
+        private const val okhttp_mock_web_server =
+            "com.squareup.okhttp3:mockwebserver:${Versions.UnitTest.okhttp_mock_server_version}"
+        private const val androidx_core_testing = "androidx.arch.core:core-testing:2.1.0"
+
+        private const val mockito_core = "org.mockito:mockito-core:4.0.0"
+        private const val mockito_inline = "org.mockito:mockito-inline:3.2.4"
+
+        val unit_test_dependencies = listOf(
+            junit,
+            kotlinx_coroutines_test,
+            truth,
+            okhttp_mock_web_server,
+            androidx_core_testing,
+            mockito_core,
+            mockito_inline
+        )
+    }
+
+    object AndroidTest {
+        private const val androidx_test_core =
+            "androidx.test:core:${Versions.AndroidTest.androidx_test_version}"
+        private const val androidx_test_runner =
+            "androidx.test:runner:${Versions.AndroidTest.androidx_test_version}"
+        private const val androidx_test_espresso =
+            "androidx.test.espresso:espresso-core:${Versions.AndroidTest.androidx_test_espresso_version}"
+
+        private const val dagger_test =
+            "com.google.dagger:hilt-android-testing:${Versions.Hilt.dagger_hilt_version}"
+
+        private const val compose_ui_test =
+            "androidx.compose.ui:ui-test-junit4:${Versions.Compose.compose_version}"
+        private const val compose_ui_test_manifest =
+            "androidx.compose.ui:ui-test-manifest:${Versions.Compose.compose_version}"
+
+        val android_test_dependencies = listOf(
+            androidx_test_core,
+            androidx_test_runner,
+            androidx_test_espresso,
+            dagger_test,
+            compose_ui_test,
+            compose_ui_test_manifest
+        )
+    }
 }
