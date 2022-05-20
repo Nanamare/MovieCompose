@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -21,8 +22,10 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.nanamare.data.BuildConfig
+import com.nanamare.movie.R
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.base.NavigationViewModel
@@ -44,7 +47,7 @@ fun TrendingList(
     block: (NavigationViewModel.Screen) -> Unit
 ) {
     LazyColumn(modifier) {
-        items(movies, key = Movie::id) { movie ->
+        items(movies /* key = Movie::id */) { movie ->
             if (movie == null) return@items
             TrendingCard(movie, block)
         }
@@ -68,10 +71,19 @@ fun TrendingCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit) {
 @Composable
 private fun MovieThumbnail(posterPath: String, popularity: Double, adult: Boolean) {
     Box {
-        Image(
+        AsyncImage(
             contentScale = ContentScale.FillHeight,
             modifier = Modifier.fillMaxHeight(),
-            painter = rememberAsyncImagePainter("${BuildConfig.TMDB_IMAGE_URL}${posterPath}"),
+            model = "${BuildConfig.TMDB_IMAGE_URL}${posterPath}",
+            placeholder = rememberAsyncImagePainter(
+                model = Image(
+                    painter = painterResource(id = R.drawable.outline_movie_24),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(75.dp)
+                        .align(Alignment.Center)
+                )
+            ),
             contentDescription = "MovieThumbnail"
         )
         Box(

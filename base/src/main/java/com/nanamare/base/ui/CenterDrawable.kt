@@ -8,7 +8,7 @@ import kotlin.math.roundToInt
 
 class CenterDrawable(
     private val drawable: Drawable,
-    private val size: Int,
+    private val size: Int = drawable.intrinsicWidth,
 ) : Drawable() {
 
     override fun draw(canvas: Canvas) {

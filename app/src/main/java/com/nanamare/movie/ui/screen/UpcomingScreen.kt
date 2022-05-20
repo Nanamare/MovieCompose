@@ -42,6 +42,7 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -229,7 +230,8 @@ private fun MovieCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit)
     val screenHeight = configuration.screenHeightDp.dp
     val screenWidth = configuration.screenWidthDp.dp
     val imageRatio = screenWidth / screenHeight
-    Image(
+
+    AsyncImage(
         contentScale = ContentScale.FillHeight,
         modifier = Modifier
             .aspectRatio(imageRatio)
@@ -239,7 +241,14 @@ private fun MovieCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit)
                 indication = rememberRipple(bounded = false),
                 onClick = { block(NavigationViewModel.Screen.DetailMovie(movie)) }
             ),
-        painter = rememberAsyncImagePainter("${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}"),
+        model = "${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}",
+        placeholder = rememberAsyncImagePainter(
+            model = Image(
+                painter = painterResource(id = R.drawable.outline_movie_24),
+                contentDescription = null,
+                modifier = Modifier.size(50.dp)
+            )
+        ),
         contentDescription = "MovieThumbnail",
         alignment = Alignment.Center
     )
@@ -366,15 +375,15 @@ private fun MovieThumbnail(
     block: (NavigationViewModel.Screen) -> Unit
 ) {
     val bottomPadding = if (index % 2 == 1) 8.dp else 0.dp
-
     val moviePosterRatio = 1f / 1.3f
+    
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = bottomPadding),
         contentAlignment = Alignment.Center
     ) {
-        Image(
+        AsyncImage(
             contentScale = ContentScale.FillHeight,
             modifier = Modifier
                 .aspectRatio(moviePosterRatio)
@@ -385,7 +394,14 @@ private fun MovieThumbnail(
                     indication = rememberRipple(bounded = false),
                     onClick = { block(NavigationViewModel.Screen.DetailMovie(movie)) }
                 ),
-            painter = rememberAsyncImagePainter("${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}"),
+            model = "${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}",
+            placeholder = rememberAsyncImagePainter(
+                model = Image(
+                    painter = painterResource(id = R.drawable.outline_movie_24),
+                    contentDescription = null,
+                    modifier = Modifier.size(50.dp)
+                )
+            ),
             contentDescription = "MovieThumbnail",
             alignment = Alignment.Center
         )
