@@ -1,9 +1,9 @@
 plugins {
-    id("kotlin-kapt")
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {
@@ -16,9 +16,6 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "com.nanamare.test_shared.MovieTestRunner"
-
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org\"")
-        buildConfigField("String", "TMDB_IMAGE_URL", "\"https://image.tmdb.org/t/p/w300\"")
     }
 
     buildTypes {
@@ -37,6 +34,15 @@ android {
     }
 
     kotlinOptions {
+        freeCompilerArgs = freeCompilerArgs + listOf(
+            "-Xopt-in=kotlin.RequiresOptIn",
+            // Enable experimental coroutines APIs, including Flow
+            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-Xopt-in=kotlinx.coroutines.FlowPreview",
+            "-Xopt-in=kotlin.Experimental",
+            // Enable experimental kotlinx serialization APIs
+            "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
+        )
         jvmTarget = "1.8"
     }
 

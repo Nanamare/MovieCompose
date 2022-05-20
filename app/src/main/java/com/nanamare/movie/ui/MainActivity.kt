@@ -11,11 +11,10 @@ import com.nanamare.movie.ui.screen.NavigationScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @InternalCoroutinesApi
+    @OptIn(InternalCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setThemeContent {

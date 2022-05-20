@@ -7,9 +7,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.GridCells.Fixed
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -37,16 +38,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nanamare.base.ui.compose.*
 import com.nanamare.base.util.rememberFlowWithLifecycle
 import com.nanamare.base.util.toast
-import com.nanamare.movie.BuildConfig
+import com.nanamare.data.BuildConfig
 import com.nanamare.movie.R
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.ui.MainActivityViewModel
@@ -54,7 +56,6 @@ import com.nanamare.movie.ui.base.NavigationViewModel
 import com.nanamare.movie.ui.base.getActivityViewModel
 import com.nanamare.movie.ui.screen.Mode.NORMAL
 import com.nanamare.movie.ui.screen.Mode.SEARCH
-import kotlinx.coroutines.flow.collect
 
 @Composable
 fun UpcomingScreen(
@@ -94,15 +95,18 @@ fun UpcomingScreen(
         when (currentType) {
             NORMAL -> {
                 val movies = viewModel.upcomingMovie.collectAsLazyPagingItems()
-                val isRefreshing by viewModel.isRefresh.collectAsState()
+                val refresh by viewModel.isRefresh.collectAsState()
 
                 SwipeRefresh(
-                    state = rememberSwipeRefreshState(isRefreshing),
-                    onRefresh = { viewModel.refreshMovie() }
+                    state = rememberSwipeRefreshState(refresh),
+                    onRefresh = viewModel::pullToRefresh
                 ) {
                     UpcomingMovieList(
-                        modifier = modifier.padding(innerPadding),
+                        modifier = modifier
+                            .padding(innerPadding)
+                            .fillMaxSize(),
                         movies = movies,
+                        isRefresh = refresh,
                         block = viewModel::navigate
                     )
                 }
@@ -127,23 +131,54 @@ fun UpcomingScreen(
 private fun UpcomingMovieList(
     modifier: Modifier,
     movies: LazyPagingItems<Movie>,
+    isRefresh: Boolean,
     block: (NavigationViewModel.Screen) -> Unit
 ) {
-    LazyVerticalGrid(cells = GridCells.Fixed(2), modifier = modifier) {
+    LazyVerticalGrid(
+        columns = Fixed(2),
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalArrangement = Arrangement.Center
+    ) {
         itemsIndexed(movies) { movie, position ->
             MovieThumbnail(movie, position, block)
         }
-        setPagingStateListener(
-            movies,
-            refresh = {
-                item { LoadingView(Modifier.fillParentMaxSize()) }
-                item { LoadingView(Modifier.fillParentMaxSize()) }
-            },
-            append = {
-                item { LoadingItem() }
-                item { LoadingItem() }
+
+        movies.apply {
+            when {
+                isRefresh -> {
+                    refresh()
+                }
+                loadState.refresh is LoadState.Loading -> {
+                    item(span = { GridItemSpan(2) }) {
+                        LoadingView(Modifier.fillMaxSize())
+                    }
+                }
+                loadState.append is LoadState.Loading -> {
+                    item { LoadingItem() }
+                    item { LoadingItem() }
+                }
+                loadState.refresh is LoadState.Error -> {
+                    val error = movies.loadState.refresh as LoadState.Error
+                    item {
+                        ErrorItem(
+                            message = error.error.localizedMessage.orEmpty(),
+                            modifier = Modifier.fillMaxSize(),
+                            onClickRetry = { retry() }
+                        )
+                    }
+                }
+                loadState.append is LoadState.Error -> {
+                    val error = movies.loadState.append as LoadState.Error
+                    item {
+                        ErrorItem(
+                            message = error.error.localizedMessage.orEmpty(),
+                            onClickRetry = { retry() }
+                        )
+                    }
+                }
             }
-        )
+        }
     }
 }
 
@@ -160,8 +195,7 @@ private fun SearchMovieList(
     val scaffoldState = LocalScaffoldState.current
 
     LazyColumn(modifier = modifier) {
-        // Result' id is not stable
-        items(movies /*, key = ResultModel::id */) { movie ->
+        items(movies, Movie::id) { movie ->
             if (movie == null) return@items
             MovieCard(movie, block)
         }
@@ -205,11 +239,7 @@ private fun MovieCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit)
                 indication = rememberRipple(bounded = false),
                 onClick = { block(NavigationViewModel.Screen.DetailMovie(movie)) }
             ),
-        painter = rememberImagePainter("${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}") {
-            // if you want..
-            // placeholder()
-            // error()
-        },
+        painter = rememberAsyncImagePainter("${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}"),
         contentDescription = "MovieThumbnail",
         alignment = Alignment.Center
     )
@@ -355,11 +385,7 @@ private fun MovieThumbnail(
                     indication = rememberRipple(bounded = false),
                     onClick = { block(NavigationViewModel.Screen.DetailMovie(movie)) }
                 ),
-            painter = rememberImagePainter("${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}") {
-                // if you want..
-                // placeholder()
-                // error()
-            },
+            painter = rememberAsyncImagePainter("${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}"),
             contentDescription = "MovieThumbnail",
             alignment = Alignment.Center
         )

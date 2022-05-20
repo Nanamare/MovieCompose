@@ -21,8 +21,8 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import coil.compose.rememberImagePainter
-import com.nanamare.movie.BuildConfig
+import coil.compose.rememberAsyncImagePainter
+import com.nanamare.data.BuildConfig
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.base.NavigationViewModel
@@ -71,8 +71,7 @@ private fun MovieThumbnail(posterPath: String, popularity: Double, adult: Boolea
         Image(
             contentScale = ContentScale.FillHeight,
             modifier = Modifier.fillMaxHeight(),
-            painter = rememberImagePainter("${BuildConfig.TMDB_IMAGE_URL}${posterPath}") {
-            },
+            painter = rememberAsyncImagePainter("${BuildConfig.TMDB_IMAGE_URL}${posterPath}"),
             contentDescription = "MovieThumbnail"
         )
         Box(

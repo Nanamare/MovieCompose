@@ -2,9 +2,9 @@ package com.nanamare.base.ui.compose
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyGridScope
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.grid.LazyGridItemScope
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -21,15 +21,17 @@ import com.nanamare.base.R
 @ExperimentalFoundationApi
 fun <T : Any> LazyGridScope.items(
     lazyPagingItems: LazyPagingItems<T>,
-    itemContent: @Composable LazyItemScope.(value: T?) -> Unit
+    itemContent: @Composable LazyGridItemScope.(value: T?) -> Unit
 ) {
-    items(lazyPagingItems.itemCount) { index -> itemContent(lazyPagingItems[index]) }
+    items(lazyPagingItems.itemCount) { index ->
+        itemContent(lazyPagingItems[index])
+    }
 }
 
 @ExperimentalFoundationApi
 fun <T : Any> LazyGridScope.itemsIndexed(
     lazyPagingItems: LazyPagingItems<T>,
-    itemContent: @Composable LazyItemScope.(value: T, position: Int) -> Unit
+    itemContent: @Composable LazyGridItemScope.(value: T, position: Int) -> Unit
 ) {
     items(lazyPagingItems.itemCount) { index ->
         lazyPagingItems[index]?.let {
@@ -114,39 +116,6 @@ fun <T : Any> LazyListScope.setPagingStateListener(
             loadState.append is LoadState.NotLoading
                     && loadState.append.endOfPaginationReached
                     && itemCount == 0 && isNotEmptyQuery() -> empty(this)
-            loadState.refresh is LoadState.Loading -> refresh(this)
-            loadState.append is LoadState.Loading -> append(this)
-            loadState.refresh is LoadState.Error -> {
-                val error = items.loadState.refresh as LoadState.Error
-                item {
-                    ErrorItem(
-                        message = error.error.localizedMessage.orEmpty(),
-                        modifier = Modifier.fillParentMaxSize(),
-                        onClickRetry = { retry() }
-                    )
-                }
-            }
-            loadState.append is LoadState.Error -> {
-                val error = items.loadState.append as LoadState.Error
-                item {
-                    ErrorItem(
-                        message = error.error.localizedMessage.orEmpty(),
-                        onClickRetry = { retry() }
-                    )
-                }
-            }
-        }
-    }
-}
-
-@OptIn(ExperimentalFoundationApi::class)
-fun <T : Any> LazyGridScope.setPagingStateListener(
-    items: LazyPagingItems<T>,
-    refresh: (LazyPagingItems<T>).() -> Unit,
-    append: (LazyPagingItems<T>).() -> Unit
-) {
-    items.apply {
-        when {
             loadState.refresh is LoadState.Loading -> refresh(this)
             loadState.append is LoadState.Loading -> append(this)
             loadState.refresh is LoadState.Error -> {

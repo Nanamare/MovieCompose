@@ -3,7 +3,7 @@ object Versions {
     const val compile_version = 32
 
     const val gradle_version = "7.0.2"
-    const val kotlin_version = "1.5.31"
+    const val kotlin_version = "1.6.20"
 
     const val kotlinx_coroutines_version = "1.6.0-RC"
 
@@ -19,7 +19,7 @@ object Versions {
     }
 
     object Compose {
-        const val compose_version = "1.0.5"
+        const val compose_version = "1.2.0-alpha08"
         const val compose_constraint_version = "1.0.0-rc01"
         const val compose_paging_version = "1.0.0-alpha14"
         const val compose_viewmodel_version = "1.0.0-alpha07"
@@ -30,7 +30,7 @@ object Versions {
         const val systemuicontroller_version = "0.20.3"
     }
 
-    const val coil_version = "1.4.0"
+    const val coil_version = "2.1.0"
 
     const val lottie_version = "4.2.2"
 

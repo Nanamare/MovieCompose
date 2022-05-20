@@ -39,7 +39,7 @@ class NavigationTest {
 
     @Before
     fun setup() {
-        
+
     }
 
     @Test

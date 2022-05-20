@@ -26,20 +26,22 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import javax.inject.Provider
 
 interface MainActivityViewModel : NavigationViewModel {
-    fun setQuery(query: String)
     val currentMode: StateFlow<Mode>
-    fun changeMode(mode: Mode)
     val upcomingMovie: Flow<PagingData<Movie>>
     val trendingMovie: Flow<PagingData<Movie>>
     val searchMovie: StateFlow<PagingData<Movie>>
     val genreList: StateFlow<List<GenreModel>>
-    fun refreshMovie()
     val isRefresh: StateFlow<Boolean>
     val keyboardTrigger: SharedFlow<Long>
     var searchQuery: String
     val error: SharedFlow<Unit>
+
+    fun setQuery(query: String)
+    fun pullToRefresh()
+    fun changeMode(mode: Mode)
 }
 
 @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
@@ -48,7 +50,7 @@ class MainActivityViewModelImpl @Inject constructor(
     trendingPagingManager: TrendingPagingManager,
     private val searchMoviePagingSource: SearchMoviePagingSource,
     private val getGenreListUseCase: GetGenreListUseCase,
-    private val upcomingMoviePagingSource: UpcomingMoviePagingSource,
+    private val upcomingMoviePagingSource: Provider<UpcomingMoviePagingSource>,
     private val networkConnection: NetworkConnection
 ) : NavigationViewModelImpl(), MainActivityViewModel, NetworkConnection by networkConnection {
 
@@ -58,7 +60,10 @@ class MainActivityViewModelImpl @Inject constructor(
     )
     override val error = _error.asSharedFlow()
 
-    private val searchStartTrigger = MutableSharedFlow<Unit>()
+    private val searchStartTrigger = MutableSharedFlow<Unit>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
 
     override var searchQuery = ""
 
@@ -74,9 +79,7 @@ class MainActivityViewModelImpl @Inject constructor(
             return
         }
         this.searchQuery = query
-        viewModelScope.launch {
-            searchStartTrigger.emit(Unit)
-        }
+        searchStartTrigger.tryEmit(Unit)
     }
 
     override val searchMovie = searchStartTrigger
@@ -91,46 +94,29 @@ class MainActivityViewModelImpl @Inject constructor(
             }.flow
                 .cachedIn(viewModelScope)
                 .catch { Timber.e(it) }
-        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PagingData.empty())
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PagingData.empty())
 
     override fun changeMode(mode: Mode) {
         _currentMode.tryEmit(mode)
     }
 
-    private val upComingTrigger = flow {
-        emit(Unit)
-        emitAll(refreshFlow)
-    }
-
-    private val refreshFlow = MutableSharedFlow<Unit>()
-
-    override fun refreshMovie() {
+    override fun pullToRefresh() {
         viewModelScope.launch {
-            refreshFlow.emit(Unit)
             _isRefresh.emit(true)
+            delay(300)
+            _isRefresh.emit(false)
         }
     }
 
     private val _isRefresh = MutableStateFlow(false)
     override val isRefresh: StateFlow<Boolean> = _isRefresh
 
-    override val upcomingMovie = upComingTrigger.flatMapLatest {
-        val elapsedTime = System.currentTimeMillis()
-        Pager(PagingConfig(pageSize = 10), pagingSourceFactory = ::upcomingMoviePagingSource)
+    override val upcomingMovie =
+        Pager(PagingConfig(pageSize = 10), pagingSourceFactory = upcomingMoviePagingSource::get)
             .flow
             .cachedIn(viewModelScope)
             .catch { Timber.e(it) }
-            .map {
-                viewModelScope.launch {
-                    val fetchTime = System.currentTimeMillis() - elapsedTime
-                    if (fetchTime - elapsedTime < 300) {
-                        delay(300 - fetchTime)
-                        _isRefresh.emit(false)
-                    }
-                }
-                it
-            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PagingData.empty())
-    }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PagingData.empty())
 
     override val genreList = flow {
         emit(getGenreListUseCase.invoke().getOrDefault(emptyList()))
@@ -139,5 +125,5 @@ class MainActivityViewModelImpl @Inject constructor(
     override val trendingMovie = trendingPagingManager()
         .cachedIn(viewModelScope)
         .catch { Timber.e(it) }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), PagingData.empty())
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PagingData.empty())
 }

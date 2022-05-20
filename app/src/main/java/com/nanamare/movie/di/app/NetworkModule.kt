@@ -4,9 +4,9 @@ import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.nanamare.base.util.NetworkConnection
 import com.nanamare.base.util.NetworkConnectionImpl
+import com.nanamare.data.BuildConfig
 import com.nanamare.data.remote.interceptor.AuthenticationInterceptor
 import com.nanamare.data.remote.interceptor.CacheInterceptor
-import com.nanamare.movie.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

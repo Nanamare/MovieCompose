@@ -25,17 +25,16 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.paging.compose.collectAsLazyPagingItems
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
 import com.nanamare.base.ui.compose.SimpleTopBar
 import com.nanamare.base.util.rememberFlowWithLifecycle
-import com.nanamare.movie.BuildConfig
+import com.nanamare.data.BuildConfig
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.model.mapper.toVo
 import com.nanamare.movie.ui.base.NavigationViewModel
 import com.nanamare.movie.ui.detail.DetailMovieActivity
 import com.nanamare.movie.ui.genre.GenreDetailActivity
 import com.nanamare.movie.ui.genre.GenreDetailViewModel
-import kotlinx.coroutines.flow.collect
 import kotlin.math.ceil
 import kotlin.math.roundToInt
 
@@ -114,7 +113,7 @@ fun GenreCard(
                 modifier = Modifier
                     .fillMaxSize()
                     .aspectRatio(4f / 3f),
-                painter = rememberImagePainter(data = "${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}"),
+                painter = rememberAsyncImagePainter(model = "${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}"),
                 contentDescription = "GenreDetailImage"
             )
             Text(
