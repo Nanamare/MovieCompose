@@ -27,6 +27,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    implementation(project(":test-shared"))
 
     Deps.Retrofit.retrofit_dependencies.forEach(::implementation)
 
