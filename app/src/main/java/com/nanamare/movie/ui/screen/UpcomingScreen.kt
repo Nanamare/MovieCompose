@@ -319,7 +319,7 @@ private fun SearchAppBar(
         }
     ) {
         if (currentType == SEARCH) {
-            Surface() {
+            Surface {
                 TextField(
                     textStyle = MaterialTheme.typography.subtitle1,
                     modifier = Modifier
@@ -376,7 +376,7 @@ private fun MovieThumbnail(
 ) {
     val bottomPadding = if (index % 2 == 1) 8.dp else 0.dp
     val moviePosterRatio = 1f / 1.3f
-    
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
