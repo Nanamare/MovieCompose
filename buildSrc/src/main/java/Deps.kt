@@ -9,11 +9,11 @@ object Deps {
         private const val retrofit =
             "com.squareup.retrofit2:retrofit:${Versions.Retrofit.retrofit_version}"
         private const val kotlinx_serialization_json =
-            "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2"
+            "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinx_serialization_version}"
         private const val kotlinx_serialization_retrofit_converter =
             "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
         private const val kotlinx_serialization_core =
-            "org.jetbrains.kotlinx:kotlinx-serialization-core:1.3.0"
+            "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinx_serialization_version}"
         private const val okhttp =
             "com.squareup.okhttp3:okhttp:${Versions.Retrofit.ok_http_version}"
         private const val okhttp_logging_interceptor =

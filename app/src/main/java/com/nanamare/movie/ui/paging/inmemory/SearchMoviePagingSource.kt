@@ -24,12 +24,12 @@ class SearchMoviePagingSource @Inject constructor(
         return try {
             val nextPage = params.key ?: 1
             val response =
-                searchMovieUseCase.invoke(SearchQuery(querySupplier.get(), nextPage)).getOrThrow()
+                searchMovieUseCase(SearchQuery(querySupplier.get(), nextPage)).getOrThrow()
             LoadResult.Page(
                 data = response.movies
                     .filter { !it.posterPath.isNullOrEmpty() }
                     .map(MovieModel::toVo),
-                prevKey = if (nextPage == 1) null else nextPage - 1,
+                prevKey = if (response.page == 1) null else nextPage - 1,
                 nextKey = if (nextPage > response.totalPages) null else response.page.plus(1)
             )
         } catch (e: Exception) {

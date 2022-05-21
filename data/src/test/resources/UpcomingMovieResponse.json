@@ -1,0 +1,406 @@
+{
+  "dates": {
+    "maximum": "2022-06-14",
+    "minimum": "2022-05-26"
+  },
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/jIdZmqElYgNwlCsUtCwmN1rDu7I.jpg",
+      "genre_ids": [
+        80,
+        18,
+        53
+      ],
+      "id": 799876,
+      "original_language": "en",
+      "original_title": "The Outfit",
+      "overview": "Leonard is an English tailor who used to craft suits on London’s world-famous Savile Row. After a personal tragedy, he’s ended up in Chicago, operating a small tailor shop in a rough part of town where he makes beautiful clothes for the only people around who can afford them: a family of vicious gangsters.",
+      "popularity": 1433.895,
+      "poster_path": "/lZa5EB6PVJBT5mxhgZS5ftqdAm6.jpg",
+      "release_date": "2022-02-25",
+      "title": "The Outfit",
+      "video": false,
+      "vote_average": 7,
+      "vote_count": 212
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/tH1afdfqqrYTP3l2oqsHEsNN5ul.jpg",
+      "genre_ids": [
+        16,
+        10751,
+        35
+      ],
+      "id": 678287,
+      "original_language": "en",
+      "original_title": "Marmaduke",
+      "overview": "Great Dane Marmaduke epitomizes the overgrown lapdog, with an irascible streak and a penchant for mischief that is tempered with a deep sense of love and responsibility for his human family, the Winslows. The new animation is set in the world of elite dog shows, rife divas, rivalries and slapstick comedy.",
+      "popularity": 617.401,
+      "poster_path": "/tvhX4QQnMyMjlFeShLCXovvbf0c.jpg",
+      "release_date": "2022-04-28",
+      "title": "Marmaduke",
+      "video": false,
+      "vote_average": 4.9,
+      "vote_count": 7
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/odJ4hx6g6vBt4lBWKFD1tI8WS4x.jpg",
+      "genre_ids": [
+        28,
+        18
+      ],
+      "id": 361743,
+      "original_language": "en",
+      "original_title": "Top Gun: Maverick",
+      "overview": "After more than thirty years of service as one of the Navy's top aviators, Pete Mitchell is where he belongs, pushing the envelope as a courageous test pilot and dodging the advancement in rank that would ground him.",
+      "popularity": 344.264,
+      "poster_path": "/wxP2Mzv9CdjOK6t4dNnFGqIQl0V.jpg",
+      "release_date": "2022-05-24",
+      "title": "Top Gun: Maverick",
+      "video": false,
+      "vote_average": 7.7,
+      "vote_count": 8
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9Fv41b6nEBGrSprFDVpO6GA94Wi.jpg",
+      "genre_ids": [
+        12,
+        28,
+        878,
+        53
+      ],
+      "id": 507086,
+      "original_language": "en",
+      "original_title": "Jurassic World Dominion",
+      "overview": "Four years after Isla Nublar was destroyed, dinosaurs now live—and hunt—alongside humans all over the world. This fragile balance will reshape the future and determine, once and for all, whether human beings are to remain the apex predators on a planet they now share with history’s most fearsome creatures.",
+      "popularity": 287.135,
+      "poster_path": "/98kYjbpa4MNAeW6qw8Kb1o2ylLj.jpg",
+      "release_date": "2022-06-01",
+      "title": "Jurassic World Dominion",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/geYUecpFI2AonDLhjyK9zoVFcMv.jpg",
+      "genre_ids": [
+        16,
+        28,
+        12,
+        9648
+      ],
+      "id": 810693,
+      "original_language": "ja",
+      "original_title": "劇場版 呪術廻戦 0",
+      "overview": "Yuta Okkotsu is a nervous high school student who is suffering from a serious problem—his childhood friend Rika has turned into a curse and won't leave him alone. Since Rika is no ordinary curse, his plight is noticed by Satoru Gojo, a teacher at Jujutsu High, a school where fledgling exorcists learn how to combat curses. Gojo convinces Yuta to enroll, but can he learn enough in time to confront the curse that haunts him?",
+      "popularity": 255.762,
+      "poster_path": "/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg",
+      "release_date": "2021-12-24",
+      "title": "Jujutsu Kaisen 0",
+      "video": false,
+      "vote_average": 7.8,
+      "vote_count": 139
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9bbxqz1iPEfZN9Xi2ZjJhkp5JRo.jpg",
+      "genre_ids": [
+        16,
+        878,
+        28
+      ],
+      "id": 610150,
+      "original_language": "ja",
+      "original_title": "ドラゴンボール超：スーパーヒーロー",
+      "overview": "The Red Ribbon Army, an evil organization that was once destroyed by Goku in the past, has been reformed by a group of people who have created new and mightier Androids, Gamma 1 and Gamma 2, and seek vengeance against Goku and his family.",
+      "popularity": 223.948,
+      "poster_path": "/yBXy2vBwU2ashl7nJYNvGBPYf5C.jpg",
+      "release_date": "2022-06-09",
+      "title": "Dragon Ball Super: Super Hero",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bIFrsAcqkLUUxaaiqqpFexYPeCh.jpg",
+      "genre_ids": [
+        53,
+        14,
+        27
+      ],
+      "id": 532710,
+      "original_language": "en",
+      "original_title": "Firestarter",
+      "overview": "For more than a decade, parents Andy and Vicky have been on the run, desperate to hide their daughter Charlie from a shadowy federal agency that wants to harness her unprecedented gift for creating fire into a weapon of mass destruction. Andy has taught Charlie how to defuse her power, which is triggered by anger or pain. But as Charlie turns 11, the fire becomes harder and harder to control. After an incident reveals the family's location, a mysterious operative is deployed to hunt down the family and seize Charlie once and for all. Charlie has other plans.",
+      "popularity": 192.61,
+      "poster_path": "/2MTGip0nfahQ1jPQCZSfCsPBZes.jpg",
+      "release_date": "2022-05-12",
+      "title": "Firestarter",
+      "video": false,
+      "vote_average": 6.5,
+      "vote_count": 135
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6MItQWBs0Q40zwSQMoz3a4ejYuG.jpg",
+      "genre_ids": [
+        14,
+        27
+      ],
+      "id": 517302,
+      "original_language": "fi",
+      "original_title": "Pahanhautoja",
+      "overview": "12-year-old Tinja is desperate to please her mother, a woman obsessed with presenting the image of a perfect family. One night, Tinja finds a strange egg. What hatches is beyond belief.",
+      "popularity": 91.69,
+      "poster_path": "/jJbxft0A2iQtH7ZWsGtgCfOq05b.jpg",
+      "release_date": "2022-03-04",
+      "title": "Hatching",
+      "video": false,
+      "vote_average": 6.8,
+      "vote_count": 18
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kiH3KPWi7BaRMvdAigcwrUFViHl.jpg",
+      "genre_ids": [
+        9648,
+        53,
+        28,
+        80
+      ],
+      "id": 818397,
+      "original_language": "en",
+      "original_title": "Memory",
+      "overview": "Alex, an assassin-for-hire, finds that he's become a target after he refuses to complete a job for a dangerous criminal organization. With the crime syndicate and FBI in hot pursuit, Alex has the skills to stay ahead, except for one thing: he is struggling with severe memory loss, affecting his every move. Alex must question his every action and whom he can ultimately trust.",
+      "popularity": 84.287,
+      "poster_path": "/tXpLmtnArbGcE75iPJVYibW7BBf.jpg",
+      "release_date": "2022-04-28",
+      "title": "Memory",
+      "video": false,
+      "vote_average": 7.1,
+      "vote_count": 20
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/t5dcjL0ZvHjpcVVXhcMG9I5N0D2.jpg",
+      "genre_ids": [
+        10402,
+        16
+      ],
+      "id": 554594,
+      "original_language": "en",
+      "original_title": "Koati",
+      "overview": "Three unlikely heroes - Nachi, a free-spirited coati; Xochi, a fearless monarch butterfly and Pako, a hyperactive glass frog - embark on an adventure to stop wicked coral snake Zaina from destroying their rain forest homeland.",
+      "popularity": 82.806,
+      "poster_path": "/uTHtqB6fqchXVWQO8kKZ2F7ScXy.jpg",
+      "release_date": "2021-10-22",
+      "title": "Koati",
+      "video": false,
+      "vote_average": 7.4,
+      "vote_count": 58
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/h8iwu3U5OJRwUyj0q5VaRZsdMvG.jpg",
+      "genre_ids": [
+        28,
+        80,
+        53
+      ],
+      "id": 894169,
+      "original_language": "en",
+      "original_title": "Vendetta",
+      "overview": "When his daughter is murdered, William Duncan takes the law into his own hands, setting out on a quest for retribution. After killing the street thug responsible for her death, he finds himself in the middle of a war with the thug's brother, father, and their gang, who are equally hell-bent on getting even. What ensues is a tense back-and-forth game of vengeance. By the end, William comes to find that the quest for revenge never has a winner.",
+      "popularity": 80.618,
+      "poster_path": "/7InGE2Sux0o9WGbbn0bl7nZzqEc.jpg",
+      "release_date": "2022-05-17",
+      "title": "Vendetta",
+      "video": false,
+      "vote_average": 6.5,
+      "vote_count": 6
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ggEKIzP5An3vnSfj271ApaJYtQw.jpg",
+      "genre_ids": [
+        10751,
+        16,
+        28,
+        12,
+        35
+      ],
+      "id": 438148,
+      "original_language": "en",
+      "original_title": "Minions: The Rise of Gru",
+      "overview": "A fanboy of a supervillain supergroup known as the Vicious 6, Gru hatches a plan to become evil enough to join them, with the backup of his followers, the Minions.",
+      "popularity": 75.167,
+      "poster_path": "/wKiOkZTN9lUUUNZLmtnwubZYONg.jpg",
+      "release_date": "2022-05-30",
+      "title": "Minions: The Rise of Gru",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4N2FuCTuqH3h4dw9XPFtsnDPSz7.jpg",
+      "genre_ids": [
+        27,
+        18,
+        9648
+      ],
+      "id": 780609,
+      "original_language": "en",
+      "original_title": "Men",
+      "overview": "In the aftermath of a personal tragedy, Harper retreats alone to the beautiful English countryside, hoping to find a place to heal. But someone — or something — from the surrounding woods appears to be stalking her, and what begins as simmering dread becomes a fully-formed nightmare, inhabited by her darkest memories and fears.",
+      "popularity": 62.735,
+      "poster_path": "/jo1Kv3P3UgDVk7JnUFr2Cl8WWUM.jpg",
+      "release_date": "2022-05-20",
+      "title": "Men",
+      "video": false,
+      "vote_average": 2,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/GLLgrghu7wSPaSjl2Rw4kjASOJ.jpg",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 756999,
+      "original_language": "en",
+      "original_title": "The Black Phone",
+      "overview": "Finney Shaw, a shy but clever 13-year-old boy, is abducted by a sadistic killer and trapped in a soundproof basement where screaming is of little use. When a disconnected phone on the wall begins to ring, Finney discovers that he can hear the voices of the killer’s previous victims. And they are dead set on making sure that what happened to them doesn’t happen to Finney.",
+      "popularity": 53.33,
+      "poster_path": "/bxHZpV02OOu9vq3sb3MsOudEnYc.jpg",
+      "release_date": "2022-05-29",
+      "title": "The Black Phone",
+      "video": false,
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/VxMs7PvSG38fhkYli9o2mLsllD.jpg",
+      "genre_ids": [
+        35,
+        10749
+      ],
+      "id": 892835,
+      "original_language": "en",
+      "original_title": "Book of Love",
+      "overview": "Henry, an english writer who has written a new book that has become a failure in the U.K, gets notified that the dull book has been highly trending over in Mexico. Little does he know that Maria, a spanish translator, turned the book into an erotic novel. Henry and Maria then swerve around Mexico to do a book tour and go through a wind of events.",
+      "popularity": 52.628,
+      "poster_path": "/aU4cUkmn8CqnBYlYgE2sHlZ2AGy.jpg",
+      "release_date": "2022-01-06",
+      "title": "Book of Love",
+      "video": false,
+      "vote_average": 5.2,
+      "vote_count": 30
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/b8cduNIEf75tBSFXDwBJfNAQMFP.jpg",
+      "genre_ids": [
+        53,
+        80
+      ],
+      "id": 659940,
+      "original_language": "da",
+      "original_title": "Marco effekten",
+      "overview": "When 14-year-old Marco, a homeless Romani boy, is arrested at the Danish border for possession of a missing public servant's passport, police inspector Carl Mørck and his Department Q team are tasked with finding the connection. The old case contains several suspicious elements: The public servant was accused of pedophilia shortly before he disappeared, and his case was closed unusually quickly. But the silent, traumatized Marco refuses to talk to them and it's not long before he's on the run from those who intend to kill him because of what he knows.",
+      "popularity": 49,
+      "poster_path": "/fZNugFFV3xCNVR2Br4xGgfJil0Q.jpg",
+      "release_date": "2021-05-27",
+      "title": "The Marco Effect",
+      "video": false,
+      "vote_average": 6.2,
+      "vote_count": 29
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qp8qKiP7Q7zK4z3LItwWMHfV9kJ.jpg",
+      "genre_ids": [
+        53
+      ],
+      "id": 764835,
+      "original_language": "en",
+      "original_title": "The Desperate Hour",
+      "overview": "A woman desperately races to save her child after police place her hometown on lockdown due to an active shooter incident.",
+      "popularity": 46.252,
+      "poster_path": "/u6Pg9eTklhg6Aa7kXaxrfdE1Chi.jpg",
+      "release_date": "2021-09-12",
+      "title": "The Desperate Hour",
+      "video": false,
+      "vote_average": 5.9,
+      "vote_count": 73
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/z5nnUVC69zOhAnZhTLn1m9keQSj.jpg",
+      "genre_ids": [
+        18,
+        53
+      ],
+      "id": 807196,
+      "original_language": "en",
+      "original_title": "Boiling Point",
+      "overview": "A head chef balances multiple personal and professional crises at a popular restaurant in London.",
+      "popularity": 36.292,
+      "poster_path": "/kdkk7OBnIL1peW2zwcAAp6O54Jo.jpg",
+      "release_date": "2021-07-05",
+      "title": "Boiling Point",
+      "video": false,
+      "vote_average": 7.4,
+      "vote_count": 141
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3pBrmaHS4NDrAnXLALnoSK74Zdp.jpg",
+      "genre_ids": [
+        35
+      ],
+      "id": 894686,
+      "original_language": "en",
+      "original_title": "How to Please,a Woman",
+      "overview": "When her all-male house-cleaning business gets out of control, a mature woman must embrace her own sexuality, if she is to make a new life for herself.",
+      "popularity": 28.002,
+      "poster_path": "/uyvNqhAdGITs6GfyrsJhYbKdwby.jpg",
+      "release_date": "2022-05-19",
+      "title": "How to Please a Woman",
+      "video": false,
+      "vote_average": 2,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vzJkN2vpIiCXzQ6AgwMmNhRPag2.jpg",
+      "genre_ids": [
+        16,
+        18,
+        878,
+        10402
+      ],
+      "id": 776305,
+      "original_language": "ja",
+      "original_title": "竜とそばかすの姫",
+      "overview": "Suzu is a 17-year-old high-school student living in a rural town with her father. Wounded by the loss of her mother at a young age, Suzu one day discovers the massive online world \"U\" and dives into this alternate reality as her avatar, Belle. Before long, all of U's eyes are fixed on Belle, when, suddenly, a mysterious, dragon-like figure appears before her.",
+      "popularity": 26.059,
+      "poster_path": "/e143CxHsD7oVxqrxk29I5SJrjrl.jpg",
+      "release_date": "2021-07-16",
+      "title": "Belle",
+      "video": false,
+      "vote_average": 8.1,
+      "vote_count": 318
+    }
+  ],
+  "total_pages": 14,
+  "total_results": 274
+}

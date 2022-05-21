@@ -1,5 +1,6 @@
 package com.nanamare.data.remote
 
+import android.annotation.SuppressLint
 import com.nanamare.data.model.GenreListDto
 import com.nanamare.data.model.MovieResponseDto
 import com.nanamare.data.utils.Cacheable
@@ -17,6 +18,7 @@ interface MovieApi {
     @GET("3/search/movie")
     fun searchMovie(@Query("page") page: Int, @Query("query") query: String): Call<MovieResponseDto>
 
+    @SuppressLint("NewApi")
     @GET("3/genre/movie/list")
     @Cacheable(1, TimeUnit.HOURS)
     fun getGenreList(): Call<GenreListDto>

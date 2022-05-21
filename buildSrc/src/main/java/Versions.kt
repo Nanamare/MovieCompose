@@ -38,6 +38,8 @@ object Versions {
 
     const val room_version = "2.4.2"
 
+    const val kotlinx_serialization_version = "1.3.3"
+
     object UnitTest {
         const val junit_version = "4.13.2"
         const val truth_version = "1.1.3"

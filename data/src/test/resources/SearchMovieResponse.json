@@ -1,0 +1,133 @@
+{
+  "page": 2,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 882312,
+      "original_language": "de",
+      "original_title": "20 Jahre Harry Potter - Exklusive Einblicke",
+      "overview": "",
+      "popularity": 1.323,
+      "poster_path": null,
+      "release_date": "2021-10-07",
+      "title": "20 Jahre Harry Potter - Exklusive Einblicke",
+      "video": false,
+      "vote_average": 9,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [],
+      "id": 549566,
+      "original_language": "en",
+      "original_title": "The Harry Potter Saga Analyzed",
+      "overview": "A complete deconstruction of the cultural impact and themes of the Harry Potter series in its 20 years of existence.",
+      "popularity": 0.981,
+      "poster_path": null,
+      "release_date": "",
+      "title": "The Harry Potter Saga Analyzed",
+      "video": false,
+      "vote_average": 8.2,
+      "vote_count": 3
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9Lz64Rh09zEhJmpgAh37bMiuDyW.jpg",
+      "genre_ids": [
+        99,
+        10770
+      ],
+      "id": 500008,
+      "original_language": "en",
+      "original_title": "Harry Potter: The Making of Diagon Alley",
+      "overview": "An inside look into the creation of Universal Studio's Diagon Alley attraction.",
+      "popularity": 1.244,
+      "poster_path": null,
+      "release_date": "2014-06-30",
+      "title": "Harry Potter: The Making of Diagon Alley",
+      "video": false,
+      "vote_average": 4.3,
+      "vote_count": 3
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 256050,
+      "original_language": "en",
+      "original_title": "The Magical World of Harry Potter: The Unauthorized Story of J.K. Rowling",
+      "overview": "The unauthorized story of J.K. Rowling--creator of Harry Potter.",
+      "popularity": 2.143,
+      "poster_path": null,
+      "release_date": "2000-08-08",
+      "title": "The Magical World of Harry Potter: The Unauthorized Story of J.K. Rowling",
+      "video": false,
+      "vote_average": 6.5,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 441668,
+      "original_language": "fr",
+      "original_title": "À la découverte du vrai monde de Harry Potter",
+      "overview": "French documentary seeking Harry Potter connections in the real world.",
+      "popularity": 0.745,
+      "poster_path": null,
+      "release_date": "2004-12-01",
+      "title": "À la découverte du vrai monde de Harry Potter",
+      "video": false,
+      "vote_average": 8.5,
+      "vote_count": 2
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/hGJ4Aeis3I9twyaCw1ZDLdhskZi.jpg",
+      "genre_ids": [
+        10402,
+        35
+      ],
+      "id": 54507,
+      "original_language": "en",
+      "original_title": "A Very Potter Musical",
+      "overview": "In April 2009, a group of University of Michigan students (Team StarKid) performed what was renamed \"A Very Potter Musical\", a two act musical parody that featured major elements from all seven Harry Potter books and an original score.",
+      "popularity": 10.023,
+      "poster_path": "/qVDVx2nEeVsGxzWuS6f4p4xzkdM.jpg",
+      "release_date": "2009-04-09",
+      "title": "A Very Potter Musical",
+      "video": true,
+      "vote_average": 8.4,
+      "vote_count": 47
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        99
+      ],
+      "id": 36619,
+      "original_language": "en",
+      "original_title": "J.K. Rowling: A Year in the Life",
+      "overview": "A look into the life of J.K. Rowling in the year leading to her finishing her final harry potter book.",
+      "popularity": 3.324,
+      "poster_path": "/noeheyUWBemWXoAbVSXLI34Vcz2.jpg",
+      "release_date": "2007-01-01",
+      "title": "J.K. Rowling: A Year in the Life",
+      "video": false,
+      "vote_average": 7.6,
+      "vote_count": 17
+    }
+  ],
+  "total_pages": 2,
+  "total_results": 27
+}
