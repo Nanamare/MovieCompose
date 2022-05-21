@@ -1,8 +1,6 @@
 package com.nanamare.data
 
-import com.nanamare.data.model.DatesDto
-import com.nanamare.data.model.MovieDto
-import com.nanamare.data.model.MovieResponseDto
+import com.nanamare.data.model.*
 
 object TestData {
 
@@ -34,6 +32,13 @@ object TestData {
             totalPages = 1,
             totalResults = 2
         )
+    }
+
+    object Genre {
+        val actionGenreDto = GenreDto(id = 0, name = "Action")
+        val comedyGenreDto = GenreDto(id = 1, name = "Comedy")
+
+        val genreListDto = GenreListDto(listOf(actionGenreDto, comedyGenreDto))
     }
 
 }

@@ -45,10 +45,8 @@ class MovieTest {
         assertThat(movieResponseModel.page).isEqualTo(1)
         assertThat(movieResponseModel.totalPages).isEqualTo(1)
         assertThat(movieResponseModel.totalResults).isEqualTo(2)
-        assertThat(movieResponseModel.dates?.maximum).isEqualTo("2022-05-21")
-        assertThat(movieResponseModel.dates?.minimum).isEqualTo("2022-04-21")
-        assertThat(movieResponseModel.movies[0].id).isEqualTo(50)
-        assertThat(movieResponseModel.movies[0].title).isEqualTo("Matrix")
+        assertThat(movieResponseModel.dates).isEqualTo(TestData.Movie.datesDto.toDomainModel())
+        assertThat(movieResponseModel.movies[0]).isEqualTo(TestData.Movie.movieDto.toDomainModel())
     }
 
 }
