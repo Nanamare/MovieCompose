@@ -94,7 +94,11 @@ class MainActivityViewModelImpl @Inject constructor(
             }.flow
                 .cachedIn(viewModelScope)
                 .catch { Timber.e(it) }
-        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PagingData.empty())
+        }.stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(STOP_TIME_OUT_MILLS),
+            PagingData.empty()
+        )
 
     override fun changeMode(mode: Mode) {
         _currentMode.tryEmit(mode)
@@ -103,7 +107,7 @@ class MainActivityViewModelImpl @Inject constructor(
     override fun pullToRefresh() {
         viewModelScope.launch {
             _isRefresh.emit(true)
-            delay(300)
+            delay(500)
             _isRefresh.emit(false)
         }
     }
@@ -116,7 +120,11 @@ class MainActivityViewModelImpl @Inject constructor(
             .flow
             .cachedIn(viewModelScope)
             .catch { Timber.e(it) }
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PagingData.empty())
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(STOP_TIME_OUT_MILLS),
+                PagingData.empty()
+            )
 
     override val genreList = flow {
         emit(getGenreListUseCase.invoke().getOrDefault(emptyList()))
@@ -125,5 +133,13 @@ class MainActivityViewModelImpl @Inject constructor(
     override val trendingMovie = trendingPagingManager()
         .cachedIn(viewModelScope)
         .catch { Timber.e(it) }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), PagingData.empty())
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(STOP_TIME_OUT_MILLS),
+            PagingData.empty()
+        )
+
+    companion object {
+        private const val STOP_TIME_OUT_MILLS = 5000L
+    }
 }
