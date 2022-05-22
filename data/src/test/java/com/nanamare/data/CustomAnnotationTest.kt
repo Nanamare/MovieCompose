@@ -1,4 +1,4 @@
-package com.nanamare.movie
+package com.nanamare.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.nanamare.data.BuildConfig.BASE_URL
@@ -16,16 +16,14 @@ import org.junit.Test
 import retrofit2.Invocation
 import retrofit2.Retrofit
 import retrofit2.http.GET
-import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 class CustomAnnotationTest {
 
     @Test(expected = Exception::class)
     @Throws(Exception::class)
-    fun `Cacheable 어노테이션 동작 테스트`() {
-        val httpLoggingInterceptor =
-            HttpLoggingInterceptor { message: String? -> Timber.i(message) }
+    fun cacheable_annotation_test() {
+        val httpLoggingInterceptor = HttpLoggingInterceptor { message: String? -> }
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val client: OkHttpClient = OkHttpClient.Builder()
