@@ -147,9 +147,7 @@ private fun UpcomingMovieList(
 
         movies.apply {
             when {
-                isRefresh -> {
-                    refresh()
-                }
+                isRefresh -> refresh()
                 loadState.refresh is LoadState.Loading -> {
                     item(span = { GridItemSpan(2) }) {
                         LoadingView(Modifier.fillMaxSize())

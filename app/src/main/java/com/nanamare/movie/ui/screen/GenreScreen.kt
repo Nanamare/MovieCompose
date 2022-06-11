@@ -1,5 +1,6 @@
 package com.nanamare.movie.ui.screen
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,7 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.nanamare.base.ui.compose.ErrorItem
+import com.nanamare.base.ui.compose.LoadingView
 import com.nanamare.base.ui.compose.SimpleTopBar
+import com.nanamare.base.util.UiState
 import com.nanamare.domain.model.GenreModel
 import com.nanamare.movie.R
 import com.nanamare.movie.ui.MainActivityViewModel
@@ -27,8 +31,24 @@ fun GenreScreen(
     viewModel: MainActivityViewModel = getActivityViewModel()
 ) {
     Scaffold(topBar = { SimpleTopBar { Text(text = stringResource(R.string.genre)) } }) { innerPadding ->
-        val genreList by viewModel.genreList.collectAsState()
-        GenreList(modifier = modifier.padding(innerPadding), genreList, block = viewModel::navigate)
+        val uiState by viewModel.genreListUiState.collectAsState()
+        when (val genre = uiState) {
+            UiState.Loading -> LoadingView(Modifier.fillMaxSize())
+            is UiState.Error -> {
+                ErrorItem(
+                    message = "Error :(",
+                    modifier = Modifier.fillMaxSize(),
+                    onClickRetry = { /* Handling retry */ }
+                )
+            }
+            is UiState.Success -> {
+                GenreList(
+                    modifier = modifier.padding(innerPadding),
+                    genreList = genre.data,
+                    block = viewModel::navigate
+                )
+            }
+        }
     }
 }
 

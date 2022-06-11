@@ -7,6 +7,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.nanamare.base.util.NetworkConnection
+import com.nanamare.base.util.UiState
+import com.nanamare.base.util.toUiState
 import com.nanamare.domain.model.GenreModel
 import com.nanamare.domain.usecase.GetGenreListUseCase
 import com.nanamare.movie.model.Movie
@@ -33,7 +35,7 @@ interface MainActivityViewModel : NavigationViewModel {
     val upcomingMovie: Flow<PagingData<Movie>>
     val trendingMovie: Flow<PagingData<Movie>>
     val searchMovie: StateFlow<PagingData<Movie>>
-    val genreList: StateFlow<List<GenreModel>>
+    val genreListUiState: StateFlow<UiState<List<GenreModel>>>
     val isRefresh: StateFlow<Boolean>
     val keyboardTrigger: SharedFlow<Long>
     var searchQuery: String
@@ -126,9 +128,13 @@ class MainActivityViewModelImpl @Inject constructor(
                 PagingData.empty()
             )
 
-    override val genreList = flow {
-        emit(getGenreListUseCase.invoke().getOrDefault(emptyList()))
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
+    override val genreListUiState = flow {
+        emit(getGenreListUseCase().toUiState())
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(STOP_TIME_OUT_MILLS),
+        UiState.Loading
+    )
 
     override val trendingMovie = trendingPagingManager()
         .cachedIn(viewModelScope)

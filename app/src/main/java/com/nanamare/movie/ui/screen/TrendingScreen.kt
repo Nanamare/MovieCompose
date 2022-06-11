@@ -19,11 +19,15 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
+import com.nanamare.base.ui.compose.ErrorItem
+import com.nanamare.base.ui.compose.LoadingItem
+import com.nanamare.base.ui.compose.LoadingView
 import com.nanamare.data.BuildConfig
 import com.nanamare.movie.R
 import com.nanamare.movie.model.Movie
@@ -36,13 +40,13 @@ fun TrendingScreen(
     modifier: Modifier,
     viewModel: MainActivityViewModel = getActivityViewModel()
 ) {
-    val trendingMovie = viewModel.trendingMovie.collectAsLazyPagingItems()
-    TrendingList(modifier, trendingMovie, block = viewModel::navigate)
+    val movie = viewModel.trendingMovie.collectAsLazyPagingItems()
+    TrendingList(modifier, movie, block = viewModel::navigate)
 }
 
 @Composable
 fun TrendingList(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     movies: LazyPagingItems<Movie>,
     block: (NavigationViewModel.Screen) -> Unit
 ) {
@@ -50,6 +54,33 @@ fun TrendingList(
         items(movies /* key = Movie::id */) { movie ->
             if (movie == null) return@items
             TrendingCard(movie, block)
+        }
+        movies.apply {
+            when {
+                // using remote mediator
+                loadState.mediator?.refresh is LoadState.Loading -> item { LoadingView(Modifier.fillParentMaxSize()) }
+                loadState.refresh is LoadState.Loading -> item { LoadingView(Modifier.fillParentMaxSize()) }
+                loadState.append is LoadState.Loading -> item { LoadingItem() }
+                loadState.refresh is LoadState.Error -> {
+                    val error = movies.loadState.refresh as LoadState.Error
+                    item {
+                        ErrorItem(
+                            message = error.error.localizedMessage.orEmpty(),
+                            modifier = Modifier.fillMaxSize(),
+                            onClickRetry = { retry() }
+                        )
+                    }
+                }
+                loadState.append is LoadState.Error -> {
+                    val error = movies.loadState.append as LoadState.Error
+                    item {
+                        ErrorItem(
+                            message = error.error.localizedMessage.orEmpty(),
+                            onClickRetry = { retry() }
+                        )
+                    }
+                }
+            }
         }
     }
 }
