@@ -22,8 +22,20 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -42,7 +54,7 @@ interface MainActivityViewModel : NavigationViewModel {
     val error: SharedFlow<Unit>
 
     fun setQuery(query: String)
-    fun pullToRefresh()
+    fun refresh(refresh: Boolean)
     fun changeMode(mode: Mode)
 }
 
@@ -106,11 +118,9 @@ class MainActivityViewModelImpl @Inject constructor(
         _currentMode.tryEmit(mode)
     }
 
-    override fun pullToRefresh() {
+    override fun refresh(refresh: Boolean) {
         viewModelScope.launch {
-            _isRefresh.emit(true)
-            delay(500)
-            _isRefresh.emit(false)
+            _isRefresh.emit(refresh)
         }
     }
 

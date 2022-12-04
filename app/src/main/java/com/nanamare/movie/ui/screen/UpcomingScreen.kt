@@ -67,9 +67,7 @@ fun UpcomingScreen(
 
     val error = rememberFlowWithLifecycle(viewModel.error)
     LaunchedEffect(error) {
-        error.collect {
-            context.toast("network is lost")
-        }
+        error.collect { context.toast("network is lost") }
     }
 
     val currentType by viewModel.currentMode.collectAsState()
@@ -100,7 +98,7 @@ fun UpcomingScreen(
 
                 SwipeRefresh(
                     state = rememberSwipeRefreshState(refresh),
-                    onRefresh = viewModel::pullToRefresh
+                    onRefresh = { viewModel.refresh(true) }
                 ) {
                     UpcomingMovieList(
                         modifier = modifier
@@ -108,10 +106,12 @@ fun UpcomingScreen(
                             .fillMaxSize(),
                         movies = movies,
                         isRefresh = refresh,
+                        loadingFinish = { viewModel.refresh(false) },
                         block = viewModel::navigate
                     )
                 }
             }
+
             SEARCH -> {
                 val searchMovie = viewModel.searchMovie.collectAsLazyPagingItems()
                 val keyboardTrigger by viewModel.keyboardTrigger.collectAsState(0L)
@@ -133,30 +133,42 @@ private fun UpcomingMovieList(
     modifier: Modifier,
     movies: LazyPagingItems<Movie>,
     isRefresh: Boolean,
+    loadingFinish: () -> Unit,
     block: (NavigationViewModel.Screen) -> Unit
 ) {
-    LazyVerticalGrid(
-        columns = Fixed(2),
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        itemsIndexed(movies) { movie, position ->
-            MovieThumbnail(movie, position, block)
+
+    movies.apply {
+
+        if (isRefresh) {
+            refresh()
         }
 
-        movies.apply {
+        LazyVerticalGrid(
+            columns = Fixed(2),
+            modifier = modifier,
+            verticalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            itemsIndexed(movies) { movie, position ->
+                MovieThumbnail(movie, position, block)
+            }
+
             when {
-                isRefresh -> refresh()
-                loadState.refresh is LoadState.Loading -> {
+                loadState.refresh is LoadState.NotLoading && loadState.prepend.endOfPaginationReached -> {
+                    loadingFinish()
+                }
+
+                loadState.refresh is LoadState.Loading || isRefresh -> {
                     item(span = { GridItemSpan(2) }) {
                         LoadingView(Modifier.fillMaxSize())
                     }
                 }
+
                 loadState.append is LoadState.Loading -> {
                     item { LoadingItem() }
                     item { LoadingItem() }
                 }
+
                 loadState.refresh is LoadState.Error -> {
                     val error = movies.loadState.refresh as LoadState.Error
                     item {
@@ -167,6 +179,7 @@ private fun UpcomingMovieList(
                         )
                     }
                 }
+
                 loadState.append is LoadState.Error -> {
                     val error = movies.loadState.append as LoadState.Error
                     item {
