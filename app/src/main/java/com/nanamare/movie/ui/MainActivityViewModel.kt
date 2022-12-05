@@ -21,7 +21,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -54,7 +53,7 @@ interface MainActivityViewModel : NavigationViewModel {
     val queryFlow: StateFlow<String>
 
     fun setQuery(query: String)
-    fun pullToRefresh()
+    fun refresh(refresh: Boolean)
     fun changeMode(mode: Mode)
 }
 
@@ -111,11 +110,9 @@ class MainActivityViewModelImpl @Inject constructor(
         _currentMode.tryEmit(mode)
     }
 
-    override fun pullToRefresh() {
+    override fun refresh(refresh: Boolean) {
         viewModelScope.launch {
-            _isRefresh.emit(true)
-            delay(500)
-            _isRefresh.emit(false)
+            _isRefresh.emit(refresh)
         }
     }
 
