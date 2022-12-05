@@ -1,6 +1,5 @@
 package com.nanamare.movie.ui.paging.inmemory
 
-import androidx.core.util.Supplier
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.nanamare.domain.model.MovieModel
@@ -15,7 +14,12 @@ class SearchMoviePagingSource @Inject constructor(
     private val searchMovieUseCase: SearchMovieUseCase,
 ) : PagingSource<Int, Movie>() {
 
-    var querySupplier = Supplier { "" }
+    private var searchQuery = ""
+
+    fun setQuery(query: String): SearchMoviePagingSource {
+        searchQuery = query
+        return this
+    }
 
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? =
         state.anchorPosition?.minus(1)
@@ -24,7 +28,7 @@ class SearchMoviePagingSource @Inject constructor(
         return try {
             val nextPage = params.key ?: 1
             val response =
-                searchMovieUseCase(SearchQuery(querySupplier.get(), nextPage)).getOrThrow()
+                searchMovieUseCase(SearchQuery(searchQuery, nextPage)).getOrThrow()
             LoadResult.Page(
                 data = response.movies
                     .filter { !it.posterPath.isNullOrEmpty() }

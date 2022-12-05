@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.nanamare.movie"
         minSdk = 21
-        targetSdk = 31
+        targetSdk = 32
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "com.nanamare.test_shared.MovieTestRunner"
@@ -66,10 +66,10 @@ dependencies {
     implementation(project(":base"))
     implementation(project(":test-shared"))
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.2")
+    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("com.google.android.material:material:1.7.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     Deps.Retrofit.retrofit_dependencies.forEach(::implementation)
 

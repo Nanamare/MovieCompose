@@ -1,6 +1,5 @@
 package com.nanamare.movie.ui
 
-import androidx.core.util.Supplier
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -23,7 +22,20 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -38,8 +50,8 @@ interface MainActivityViewModel : NavigationViewModel {
     val genreListUiState: StateFlow<UiState<List<GenreModel>>>
     val isRefresh: StateFlow<Boolean>
     val keyboardTrigger: SharedFlow<Long>
-    var searchQuery: String
     val error: SharedFlow<Unit>
+    val queryFlow: StateFlow<String>
 
     fun setQuery(query: String)
     fun pullToRefresh()
@@ -62,12 +74,8 @@ class MainActivityViewModelImpl @Inject constructor(
     )
     override val error = _error.asSharedFlow()
 
-    private val searchStartTrigger = MutableSharedFlow<Unit>(
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-
-    override var searchQuery = ""
+    private val _queryFlow = MutableStateFlow("")
+    override val queryFlow = _queryFlow.asStateFlow()
 
     private val _currentMode = MutableStateFlow(Mode.NORMAL)
     override val currentMode: StateFlow<Mode> = _currentMode
@@ -80,19 +88,16 @@ class MainActivityViewModelImpl @Inject constructor(
             _error.tryEmit(Unit)
             return
         }
-        this.searchQuery = query
-        searchStartTrigger.tryEmit(Unit)
+        _queryFlow.tryEmit(query)
     }
 
-    override val searchMovie = searchStartTrigger
+    override val searchMovie = _queryFlow
+        .filter(String::isNotEmpty)
         .debounce(TimeUnit.MILLISECONDS.toMillis(750))
-        .filter { searchQuery.isNotEmpty() }
-        .map { _keyboardTrigger.emit(System.currentTimeMillis()) }
-        .flatMapLatest {
+        .flatMapLatest { query ->
+            _keyboardTrigger.emit(System.currentTimeMillis())
             Pager(PagingConfig(pageSize = 10)) {
-                searchMoviePagingSource.apply {
-                    querySupplier = Supplier { searchQuery }
-                }
+                searchMoviePagingSource.setQuery(query)
             }.flow
                 .cachedIn(viewModelScope)
                 .catch { Timber.e(it) }

@@ -1,11 +1,21 @@
 package com.nanamare.base.ui.compose
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.LazyGridItemScope
 import androidx.compose.foundation.lazy.grid.LazyGridScope
-import androidx.compose.material.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedButton
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
@@ -103,7 +113,6 @@ fun ErrorItem(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 fun <T : Any> LazyListScope.setPagingStateListener(
     items: LazyPagingItems<T>,
     isNotEmptyQuery: () -> Boolean,
@@ -116,6 +125,7 @@ fun <T : Any> LazyListScope.setPagingStateListener(
             loadState.append is LoadState.NotLoading
                     && loadState.append.endOfPaginationReached
                     && itemCount == 0 && isNotEmptyQuery() -> empty(this)
+
             loadState.refresh is LoadState.Loading -> refresh(this)
             loadState.append is LoadState.Loading -> append(this)
             loadState.refresh is LoadState.Error -> {
@@ -128,6 +138,7 @@ fun <T : Any> LazyListScope.setPagingStateListener(
                     )
                 }
             }
+
             loadState.append is LoadState.Error -> {
                 val error = items.loadState.append as LoadState.Error
                 item {

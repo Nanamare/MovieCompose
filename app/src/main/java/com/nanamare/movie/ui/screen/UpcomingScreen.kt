@@ -43,6 +43,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -112,13 +113,14 @@ fun UpcomingScreen(
                     )
                 }
             }
+
             SEARCH -> {
                 val searchMovie = viewModel.searchMovie.collectAsLazyPagingItems()
                 val keyboardTrigger by viewModel.keyboardTrigger.collectAsState(0L)
                 SearchMovieList(
                     modifier = modifier.padding(innerPadding),
                     movies = searchMovie,
-                    isNotEmptyQuery = { viewModel.searchQuery.isNotEmpty() },
+                    isNotEmptyQuery = { viewModel.queryFlow.value.isNotEmpty() },
                     keyboardTrigger = keyboardTrigger,
                     block = viewModel::navigate
                 )
@@ -153,10 +155,12 @@ private fun UpcomingMovieList(
                         LoadingView(Modifier.fillMaxSize())
                     }
                 }
+
                 loadState.append is LoadState.Loading -> {
                     item { LoadingItem() }
                     item { LoadingItem() }
                 }
+
                 loadState.refresh is LoadState.Error -> {
                     val error = movies.loadState.refresh as LoadState.Error
                     item {
@@ -167,6 +171,7 @@ private fun UpcomingMovieList(
                         )
                     }
                 }
+
                 loadState.append is LoadState.Error -> {
                     val error = movies.loadState.append as LoadState.Error
                     item {
@@ -229,8 +234,7 @@ private fun MovieCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit)
     val screenWidth = configuration.screenWidthDp.dp
     val imageRatio = screenWidth / screenHeight
 
-    AsyncImage(
-        contentScale = ContentScale.FillHeight,
+    SubcomposeAsyncImage(
         modifier = Modifier
             .aspectRatio(imageRatio)
             .fillMaxWidth()
@@ -240,18 +244,16 @@ private fun MovieCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit)
                 onClick = { block(NavigationViewModel.Screen.DetailMovie(movie)) }
             ),
         model = "${BuildConfig.TMDB_IMAGE_URL}${movie.posterPath}",
-        placeholder = rememberAsyncImagePainter(
-            model = Image(
-                painter = painterResource(id = R.drawable.outline_movie_24),
-                contentDescription = null,
-                modifier = Modifier.size(50.dp)
-            )
-        ),
+        loading = {
+            Box(contentAlignment = Alignment.Center) {
+                CircularProgressIndicator(modifier = Modifier.size(52.dp))
+            }
+        },
         contentDescription = "MovieThumbnail",
+        contentScale = ContentScale.FillHeight,
         alignment = Alignment.Center
     )
 }
-
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

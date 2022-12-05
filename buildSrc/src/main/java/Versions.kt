@@ -1,9 +1,9 @@
 object Versions {
 
-    const val compile_version = 32
+    const val compile_version = 33
 
-    const val gradle_version = "7.0.2"
-    const val kotlin_version = "1.6.20"
+    const val gradle_version = "7.2.1"
+    const val kotlin_version = "1.7.10"
 
     const val kotlinx_coroutines_version = "1.6.0-RC"
 
@@ -13,30 +13,29 @@ object Versions {
     }
 
     object Hilt {
-        const val dagger_hilt_version = "2.40.2"
-        const val hilt_lifecycle_viewmodel_version = "1.0.0-alpha03"
-        const val hilt_navigation_compose = "1.0.0-beta01"
+        const val dagger_hilt_version = "2.42"
+        const val hilt_navigation_compose = "1.0.0"
     }
 
     object Compose {
-        const val compose_version = "1.2.0-alpha08"
-        const val compose_constraint_version = "1.0.0-rc01"
-        const val compose_paging_version = "1.0.0-alpha14"
-        const val compose_viewmodel_version = "1.0.0-alpha07"
-        const val compose_navigation_version = "2.4.0-beta02"
+        const val compose_version = "1.3.1"
+        const val compose_constraint_version = "1.0.1"
+        const val compose_paging_version = "1.0.0-alpha17"
+        const val compose_viewmodel_version = "2.5.1"
+        const val compose_navigation_version = "2.5.3"
     }
 
     object Accompanist {
         const val systemuicontroller_version = "0.20.3"
     }
 
-    const val coil_version = "2.1.0"
+    const val coil_version = "2.2.2"
 
     const val lottie_version = "4.2.2"
 
     const val swipe_refresh_version = "0.20.3"
 
-    const val room_version = "2.4.2"
+    const val room_version = "2.4.3"
 
     const val kotlinx_serialization_version = "1.3.3"
 

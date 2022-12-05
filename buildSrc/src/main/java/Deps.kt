@@ -32,20 +32,13 @@ object Deps {
     object Hilt {
         private const val dagger_hilt_android =
             "com.google.dagger:hilt-android:${Versions.Hilt.dagger_hilt_version}"
-        private const val dagger_hilt_lifecycle_viewmodel =
-            "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.Hilt.hilt_lifecycle_viewmodel_version}"
 
         const val dagger_hilt_compiler =
             "com.google.dagger:hilt-compiler:${Versions.Hilt.dagger_hilt_version}"
         private const val dagger_hilt_navigation_compose =
             "androidx.hilt:hilt-navigation-compose:${Versions.Hilt.hilt_navigation_compose}"
 
-        val hilt_dependencies =
-            listOf(
-                dagger_hilt_android,
-                dagger_hilt_lifecycle_viewmodel,
-                dagger_hilt_navigation_compose
-            )
+        val hilt_dependencies = listOf(dagger_hilt_android, dagger_hilt_navigation_compose)
     }
 
     const val timber = "com.jakewharton.timber:timber:5.0.1"
