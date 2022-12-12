@@ -71,7 +71,7 @@ dependencies {
     implementation("com.google.android.material:material:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    Deps.Retrofit.retrofit_dependencies.forEach(::implementation)
+    implementation(libs.bundles.retrofit.bundle)
 
     Deps.Hilt.hilt_dependencies.forEach(::implementation)
     kapt(Deps.Hilt.dagger_hilt_compiler)

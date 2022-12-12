@@ -2,13 +2,9 @@ object Versions {
 
     const val compile_version = 33
 
-    const val gradle_version = "7.2.1"
-    const val kotlin_version = "1.7.10"
-
     const val kotlinx_coroutines_version = "1.6.0-RC"
 
     object Retrofit {
-        const val retrofit_version = "2.9.0"
         const val ok_http_version = "4.9.1"
     }
 
@@ -36,8 +32,6 @@ object Versions {
     const val swipe_refresh_version = "0.20.3"
 
     const val room_version = "2.4.3"
-
-    const val kotlinx_serialization_version = "1.3.3"
 
     object UnitTest {
         const val junit_version = "4.13.2"

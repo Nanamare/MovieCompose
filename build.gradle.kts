@@ -3,7 +3,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven { url = uri("https://jitpack.io") }
     }
 }
@@ -17,11 +16,10 @@ buildscript {
     }
 
     dependencies {
-        classpath(Deps.gradle)
-        classpath(Deps.kotlin_plugin)
-        classpath(Deps.hilt_plugin)
-        classpath(kotlin("gradle-plugin", version = Versions.kotlin_version))
-        classpath(kotlin("serialization", version = Versions.kotlin_version))
+        classpath(libs.android.gradlePlugin)
+        classpath(libs.kotlin.gradlePlugin)
+        classpath(libs.kotlin.serialization)
+        classpath(libs.hilt.gradlePlugin)
     }
 }
 

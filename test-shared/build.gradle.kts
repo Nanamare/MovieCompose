@@ -28,7 +28,7 @@ android {
 dependencies {
     Deps.UnitTest.unit_test_dependencies.forEach(::api)
     Deps.AndroidTest.android_test_dependencies.forEach(::api)
-    Deps.Retrofit.retrofit_dependencies.forEach(::api)
+    api(libs.bundles.retrofit.bundle)
 }
 
 tasks.withType<Test> {

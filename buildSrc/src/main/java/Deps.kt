@@ -1,34 +1,5 @@
 object Deps {
 
-    const val gradle = "com.android.tools.build:gradle:${Versions.gradle_version}"
-    const val kotlin_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin_version}"
-    const val hilt_plugin =
-        "com.google.dagger:hilt-android-gradle-plugin:${Versions.Hilt.dagger_hilt_version}"
-
-    object Retrofit {
-        private const val retrofit =
-            "com.squareup.retrofit2:retrofit:${Versions.Retrofit.retrofit_version}"
-        private const val kotlinx_serialization_json =
-            "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinx_serialization_version}"
-        private const val kotlinx_serialization_retrofit_converter =
-            "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
-        private const val kotlinx_serialization_core =
-            "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinx_serialization_version}"
-        private const val okhttp =
-            "com.squareup.okhttp3:okhttp:${Versions.Retrofit.ok_http_version}"
-        private const val okhttp_logging_interceptor =
-            "com.squareup.okhttp3:logging-interceptor:${Versions.Retrofit.ok_http_version}"
-
-        val retrofit_dependencies = listOf(
-            retrofit,
-            kotlinx_serialization_retrofit_converter,
-            kotlinx_serialization_json,
-            kotlinx_serialization_core,
-            okhttp,
-            okhttp_logging_interceptor
-        )
-    }
-
     object Hilt {
         private const val dagger_hilt_android =
             "com.google.dagger:hilt-android:${Versions.Hilt.dagger_hilt_version}"
@@ -102,7 +73,6 @@ object Deps {
 
     const val dagger = "com.google.dagger:dagger:${Versions.Hilt.dagger_hilt_version}"
 
-    const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.gradle_version}"
     const val kotlin_coroutines =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinx_coroutines_version}"
 
