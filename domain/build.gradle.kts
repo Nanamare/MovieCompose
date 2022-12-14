@@ -4,11 +4,11 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
-    implementation(Deps.dagger)
-    implementation(Deps.kotlin_coroutines)
+    implementation(libs.dagger)
+    implementation(libs.coroutine)
 }
