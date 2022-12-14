@@ -9,6 +9,6 @@ java {
 }
 
 dependencies {
-    implementation(Deps.dagger)
-    implementation(Deps.kotlin_coroutines)
+    implementation(libs.dagger)
+    implementation(libs.coroutine)
 }

@@ -5,7 +5,8 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.compile_version
+    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    compileSdk = libs.findVersion("androidCompileSdkVersion").get().toString().toInt()
 
     defaultConfig {
         testInstrumentationRunner = "com.nanamare.test_shared.MovieTestRunner"
@@ -17,7 +18,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     android {
@@ -25,25 +26,28 @@ android {
             compose = true
         }
         composeOptions {
-            kotlinCompilerExtensionVersion = Versions.Compose.compose_version
+            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+            kotlinCompilerExtensionVersion = libs.findVersion("androidxCompose").get().toString()
         }
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.android.material)
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.4")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
 
-    Deps.Compose.compose_dependencies.forEach(::implementation)
-    implementation(Deps.lifecycle_runtime_ktx)
-    Deps.Accompanist.accompanist_dependencies.forEach(::implementation)
+    implementation(libs.bundles.compose)
+    implementation(libs.accompanist.systemuicontroller)
 
-    Deps.Hilt.hilt_dependencies.forEach(::implementation)
-    kapt(Deps.Hilt.dagger_hilt_compiler)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    implementation(libs.bundles.hilt)
+    kapt(libs.hilt.compiler)
 
 }

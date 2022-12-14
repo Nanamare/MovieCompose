@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-
-    compileSdk = Versions.compile_version
+    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    compileSdk = libs.findVersion("androidCompileSdkVersion").get().toString().toInt()
 
     defaultConfig {
         testInstrumentationRunner = "com.nanamare.test_shared.MovieTestRunner"
@@ -17,7 +17,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     testOptions {
@@ -26,9 +26,9 @@ android {
 }
 
 dependencies {
-    Deps.UnitTest.unit_test_dependencies.forEach(::api)
-    Deps.AndroidTest.android_test_dependencies.forEach(::api)
-    api(libs.bundles.retrofit.bundle)
+    api(libs.bundles.unittest)
+    api(libs.bundles.android.unittest)
+    api(libs.bundles.retrofit)
 }
 
 tasks.withType<Test> {

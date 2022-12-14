@@ -7,12 +7,13 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.compile_version
+    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    compileSdk = libs.findVersion("androidCompileSdkVersion").get().toString().toInt()
 
     defaultConfig {
         applicationId = "com.nanamare.movie"
-        minSdk = 21
-        targetSdk = 32
+        minSdk = libs.findVersion("androidMinSdkVersion").get().toString().toInt()
+        targetSdk = libs.findVersion("androidTargetSdkVersions").get().toString().toInt()
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "com.nanamare.test_shared.MovieTestRunner"
@@ -34,16 +35,20 @@ android {
     }
 
     kotlinOptions {
+        // Treat all Kotlin warnings as errors (disabled by default)
+        // Override by setting warningsAsErrors=true in your ~/.gradle/gradle.properties
+        val warningsAsErrors: String? by project
+        allWarningsAsErrors = warningsAsErrors.toBoolean()
+
         freeCompilerArgs = freeCompilerArgs + listOf(
-            "-Xopt-in=kotlin.RequiresOptIn",
+            "-opt-in=kotlin.RequiresOptIn",
             // Enable experimental coroutines APIs, including Flow
-            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xopt-in=kotlinx.coroutines.FlowPreview",
-            "-Xopt-in=kotlin.Experimental",
-            // Enable experimental kotlinx serialization APIs
-            "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlinx.coroutines.FlowPreview",
+            "-opt-in=kotlin.Experimental",
         )
-        jvmTarget = "1.8"
+
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     kapt {
@@ -55,7 +60,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Compose.compose_version
+        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+        kotlinCompilerExtensionVersion = libs.findVersion("androidxCompose").get().toString()
     }
 
 }
@@ -65,27 +71,20 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":base"))
     implementation(project(":test-shared"))
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.android.material)
+    implementation(libs.androidx.constraintLayout)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.hilt)
+    kapt(libs.hilt.compiler)
+    kaptAndroidTest(libs.hilt.compiler)
+    implementation(libs.bundles.compose)
+    implementation(libs.timber)
+    implementation(libs.coil)
+    implementation(libs.lottie.compose)
+    implementation(libs.accompanist.swiperefresh)
+    implementation(libs.bundles.room)
+    kapt(libs.room.compiler)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-
-    implementation(libs.bundles.retrofit.bundle)
-
-    Deps.Hilt.hilt_dependencies.forEach(::implementation)
-    kapt(Deps.Hilt.dagger_hilt_compiler)
-
-    Deps.Compose.compose_dependencies.forEach(::implementation)
-
-    implementation(Deps.timber)
-    implementation(Deps.coil_compose)
-    implementation(Deps.lottie_compose)
-    implementation(Deps.swipe_refresh_compose)
-
-    Deps.Room.room_dependencies.forEach(::implementation)
-    kapt(Deps.Room.room_compiler)
-
-    // Android Testing
-    kaptAndroidTest(Deps.Hilt.dagger_hilt_compiler)
 }

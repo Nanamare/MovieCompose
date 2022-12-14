@@ -6,7 +6,8 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.compile_version
+    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    compileSdk = libs.findVersion("androidCompileSdkVersion").get().toString().toInt()
 
     defaultConfig {
         buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org\"")
@@ -21,19 +22,15 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
 dependencies {
     implementation(project(":domain"))
     implementation(project(":test-shared"))
-
-    implementation(libs.bundles.retrofit.bundle)
-
-    implementation(Deps.dagger)
-    implementation(Deps.kotlin_coroutines)
-
-    Deps.Room.room_dependencies.forEach(::implementation)
-    kapt(Deps.Room.room_compiler)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.coroutine)
+    implementation(libs.bundles.room)
+    kapt(libs.room.compiler)
 }
