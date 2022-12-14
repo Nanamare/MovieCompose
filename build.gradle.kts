@@ -1,12 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-    }
-}
-
 buildscript {
     repositories {
         google()
@@ -21,6 +12,13 @@ buildscript {
         classpath(libs.kotlin.serialization)
         classpath(libs.hilt.gradlePlugin)
     }
+}
+
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.hilt) apply false
 }
 
 tasks.register("clean", Delete::class) {

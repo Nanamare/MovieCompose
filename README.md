@@ -64,7 +64,7 @@ The application is a simple movie searching app using Jetpack Compose. Purpose i
   - Data (Data Layer) network, datasource dependencies
   - Domain (Domain Layer) Pure kotlin, java
   - Base (Collection of utility functions used in UI Layer)
-  - BuildSrc (Managing dependencies)
+  - build-logic (Managing dependencies using toml)
   - Test-shared (Unit, Android test dependencies)
 <img width="310" alt="Modularization" src="https://user-images.githubusercontent.com/17498974/169700258-997b3dc5-570d-4d02-87c7-7833b8db40d3.png">
 
