@@ -1,7 +1,6 @@
 plugins {
     id("movie.android.library")
     id("kotlinx-serialization")
-    id("kotlin-kapt")
 }
 
 android {

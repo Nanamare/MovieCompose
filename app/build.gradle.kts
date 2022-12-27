@@ -1,33 +1,7 @@
 plugins {
     id("movie.android.application")
-    id("movie.android.hilt")
     id("movie.android.application.compose")
-    id("kotlin-parcelize")
-    id("kotlin-kapt")
-}
-
-android {
-    defaultConfig {
-        applicationId = "com.nanamare.movie"
-        versionCode = 1
-        versionName = "1.0"
-        testInstrumentationRunner = "com.nanamare.test_shared.MovieTestRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
-    kapt {
-        correctErrorTypes = true
-    }
-
+    id("movie.android.hilt")
 }
 
 dependencies {

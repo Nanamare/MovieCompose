@@ -1,7 +1,6 @@
 plugins {
     id("movie.android.library")
     id("movie.android.library.compose")
-    id("kotlin-kapt")
 }
 
 dependencies {
