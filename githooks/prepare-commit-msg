@@ -1,0 +1,35 @@
+#!/bin/sh
+
+if [ -z "$skip_branches" ]; then
+  skip_branches=(master develop)
+fi
+
+skip_branch_count=$(printf "%s\n" "${skip_branches[@]}" | grep -c -F "^$commit_msg_prefix$")
+if [[ $skip_branch_count -eq 1 ]]; then
+  echo "0-1. skip"
+  exit 0
+fi
+
+current_branch=$(git symbolic-ref --short HEAD)
+if [[ -z $current_branch ]]; then
+  echo "0-2. skip"
+  exit 0
+fi
+
+make_prefix() {
+  prefix="[${current_branch##*/}]"
+  echo "$prefix"
+}
+
+commit_msg_prefix=$(make_prefix)
+
+# check if commit_msg_prefix exists in commit message
+exists_branch_count=0
+if [ $# -gt 1 ]; then
+  exists_branch_count=$(egrep -c -F "$commit_msg_prefix" $1)
+fi
+
+if ! [[ $exists_branch_count -ge 1 ]]; then 
+  sed -i.bak -e "1s/^/$commit_msg_prefix /" $1
+fi
+
