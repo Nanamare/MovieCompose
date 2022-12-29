@@ -6,7 +6,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.nanamare.base.ui.compose.setThemeContent
-import com.nanamare.movie.ui.base.provideViewModelFactory
+import com.nanamare.movie.ui.base.provideActivityViewModelFactory
 import com.nanamare.movie.ui.screen.NavigationScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setThemeContent {
             CompositionLocalProvider(
-                provideViewModelFactory(hiltViewModel<MainActivityViewModelImpl>())
+                provideActivityViewModelFactory(hiltViewModel<MainActivityViewModelImpl>())
             ) {
                 NavigationScreen(navController = rememberNavController())
             }

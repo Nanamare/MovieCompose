@@ -2,6 +2,7 @@ package com.nanamare.data.remote
 
 import android.annotation.SuppressLint
 import com.nanamare.data.model.GenreListDto
+import com.nanamare.data.model.MovieImagesDto
 import com.nanamare.data.model.MovieResponseDto
 import com.nanamare.data.utils.Cacheable
 import retrofit2.Call
@@ -32,10 +33,14 @@ interface MovieApi {
     // GET /trending/{media_type}/{time_window}
     // media_type = movie
     // time_window = day, week
-    @GET("3//trending/{media_type}/{time_window}")
+    @GET("3/trending/{media_type}/{time_window}")
     fun getTrendingMovie(
         @Path("media_type") mediaType: String = "movie",
         @Path("time_window") timeWindow: String = "week",
         @Query("page") page: Int
     ): Call<MovieResponseDto>
+
+    @GET("3/movie/{movieId}/images")
+    fun getMovieImages(@Path("movieId") movieId: String): Call<MovieImagesDto>
+
 }

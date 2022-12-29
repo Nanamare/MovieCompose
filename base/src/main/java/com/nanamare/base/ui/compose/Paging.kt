@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.LazyGridItemScope
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.material.CircularProgressIndicator
@@ -24,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.nanamare.base.R
 
@@ -109,45 +107,6 @@ fun ErrorItem(
         )
         OutlinedButton(onClick = onClickRetry) {
             Text(text = stringResource(R.string.retry))
-        }
-    }
-}
-
-fun <T : Any> LazyListScope.setPagingStateListener(
-    items: LazyPagingItems<T>,
-    isNotEmptyQuery: () -> Boolean,
-    refresh: (LazyPagingItems<T>).() -> Unit,
-    append: (LazyPagingItems<T>).() -> Unit,
-    empty: (LazyPagingItems<T>).() -> Unit
-) {
-    items.apply {
-        when {
-            loadState.append is LoadState.NotLoading
-                    && loadState.append.endOfPaginationReached
-                    && itemCount == 0 && isNotEmptyQuery() -> empty(this)
-
-            loadState.refresh is LoadState.Loading -> refresh(this)
-            loadState.append is LoadState.Loading -> append(this)
-            loadState.refresh is LoadState.Error -> {
-                val error = items.loadState.refresh as LoadState.Error
-                item {
-                    ErrorItem(
-                        message = error.error.localizedMessage.orEmpty(),
-                        modifier = Modifier.fillParentMaxSize(),
-                        onClickRetry = { retry() }
-                    )
-                }
-            }
-
-            loadState.append is LoadState.Error -> {
-                val error = items.loadState.append as LoadState.Error
-                item {
-                    ErrorItem(
-                        message = error.error.localizedMessage.orEmpty(),
-                        onClickRetry = { retry() }
-                    )
-                }
-            }
         }
     }
 }

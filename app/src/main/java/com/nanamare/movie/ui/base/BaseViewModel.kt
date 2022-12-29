@@ -12,7 +12,7 @@ private val ActivityViewModelFactory = compositionLocalOf<BaseViewModel> {
     error("Not ViewModel Provided")
 }
 
-fun provideViewModelFactory(baseViewModel: BaseViewModel) =
+fun provideActivityViewModelFactory(baseViewModel: BaseViewModel) =
     ActivityViewModelFactory provides baseViewModel
 
 @Composable

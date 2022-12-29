@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.nanamare.base.ui.compose.setThemeContent
-import com.nanamare.movie.ui.paging.inmemory.GenreMoviePagingSource
 import com.nanamare.movie.ui.screen.GenreDetailScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -13,10 +12,10 @@ import javax.inject.Inject
 class GenreDetailActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var genreMoviePagingSource: GenreMoviePagingSource
+    lateinit var factory: GenreDetailViewModel.Factory
 
     private val viewModel: GenreDetailViewModel by viewModels<GenreDetailViewModelImpl> {
-        GenreDetailViewModelFactory(this, genreMoviePagingSource, intent?.extras)
+        GenreDetailViewModelFactory(factory, this, intent?.extras)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
