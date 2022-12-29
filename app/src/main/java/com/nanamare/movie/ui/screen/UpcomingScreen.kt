@@ -3,7 +3,6 @@ package com.nanamare.movie.ui.screen
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -208,22 +207,53 @@ private fun SearchMovieList(
     val scaffoldState = LocalScaffoldState.current
 
     LazyColumn(modifier = modifier) {
+
+        movies.apply {
+            when {
+                loadState.append is LoadState.NotLoading && loadState.append.endOfPaginationReached && itemCount == 0 && isNotEmptyQuery() -> {
+                    item {
+                        EmptySnackBar(scaffoldState)
+                        EmptyPlaceHolder(Modifier.fillParentMaxSize())
+                    }
+                }
+
+                loadState.refresh is LoadState.Loading && keyboardTrigger != 0L -> {
+                    item {
+                        LoadingView(Modifier.fillParentMaxSize())
+                    }
+                }
+
+                loadState.append is LoadState.Loading -> item { LoadingItem() }
+
+                loadState.refresh is LoadState.Error -> {
+                    val error = movies.loadState.refresh as LoadState.Error
+                    item {
+                        ErrorItem(
+                            message = error.error.localizedMessage.orEmpty(),
+                            modifier = Modifier.fillParentMaxSize(),
+                            onClickRetry = { retry() }
+                        )
+                    }
+                    return@LazyColumn
+                }
+
+                loadState.append is LoadState.Error -> {
+                    val error = movies.loadState.append as LoadState.Error
+                    item {
+                        ErrorItem(
+                            message = error.error.localizedMessage.orEmpty(),
+                            onClickRetry = { retry() }
+                        )
+                    }
+                    return@LazyColumn
+                }
+            }
+        }
+
         items(movies, Movie::id) { movie ->
             if (movie == null) return@items
             MovieCard(movie, block)
         }
-        setPagingStateListener(
-            movies,
-            isNotEmptyQuery = isNotEmptyQuery,
-            refresh = { item { LoadingView(Modifier.fillParentMaxSize()) } },
-            append = { item { LoadingItem() } },
-            empty = {
-                item {
-                    EmptySnackBar(scaffoldState)
-                    EmptyPlaceHolder(Modifier.fillParentMaxSize())
-                }
-            }
-        )
     }
 
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -333,8 +363,7 @@ private fun SearchAppBar(
                     textStyle = MaterialTheme.typography.subtitle1,
                     modifier = Modifier
                         .focusRequester(focusRequester)
-                        .fillMaxSize()
-                        .background(MaterialTheme.colors.primary),
+                        .fillMaxSize(),
                     value = searchText,
                     onValueChange = {
                         searchText = it
@@ -359,7 +388,7 @@ private fun SearchAppBar(
                     ),
                     colors = TextFieldDefaults.textFieldColors(
                         cursorColor = Color.White,
-                        backgroundColor = Color.Transparent,
+                        backgroundColor = MaterialTheme.colors.primary,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent
                     ),

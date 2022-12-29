@@ -4,10 +4,21 @@ import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material.ripple.rememberRipple
@@ -72,8 +83,12 @@ fun GenreDetailScreen(viewModel: GenreDetailViewModel) {
         navigationActions.collect { screen ->
             when (screen) {
                 is NavigationViewModel.Screen.DetailMovie -> {
-                    context.startActivity(Intent(context, DetailMovieActivity::class.java))
+                    context.startActivity(
+                        Intent(context, DetailMovieActivity::class.java)
+                            .putExtra(DetailMovieActivity.EXTRA_MOVIE, screen.movie)
+                    )
                 }
+
                 is NavigationViewModel.Screen.GenreDetail -> {
                     context.startActivity(
                         Intent(context, GenreDetailActivity::class.java)

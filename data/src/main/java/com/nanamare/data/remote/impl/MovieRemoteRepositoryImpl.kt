@@ -3,6 +3,7 @@ package com.nanamare.data.remote.impl
 import com.nanamare.data.model.mapper.toDomainModel
 import com.nanamare.data.remote.MovieApi
 import com.nanamare.domain.model.GenreListModel
+import com.nanamare.domain.model.MovieImagesModel
 import com.nanamare.domain.model.MovieResponseModel
 import com.nanamare.domain.repository.MovieRemoteRepository
 import com.nanamare.domain.usecase.DiscoverQuery
@@ -28,4 +29,7 @@ class MovieRemoteRepositoryImpl @Inject constructor(private val movieApi: MovieA
 
     override suspend fun getTrendingMovie(page: Int): MovieResponseModel =
         movieApi.getTrendingMovie(page = page).await().toDomainModel()
+
+    override suspend fun getMovieImages(movieId: String): MovieImagesModel =
+        movieApi.getMovieImages(movieId).await().toDomainModel()
 }

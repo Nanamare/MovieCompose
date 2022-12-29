@@ -6,7 +6,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedButton
+import androidx.compose.material.ProvideTextStyle
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
@@ -34,6 +41,7 @@ fun GenreScreen(
         val uiState by viewModel.genreListUiState.collectAsState()
         when (val genre = uiState) {
             UiState.Loading -> LoadingView(Modifier.fillMaxSize())
+
             is UiState.Error -> {
                 ErrorItem(
                     message = "Error :(",
@@ -41,6 +49,7 @@ fun GenreScreen(
                     onClickRetry = { /* Handling retry */ }
                 )
             }
+
             is UiState.Success -> {
                 GenreList(
                     modifier = modifier.padding(innerPadding),

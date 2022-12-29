@@ -2,12 +2,24 @@ package com.nanamare.movie.ui.screen
 
 import android.content.Intent
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.Snackbar
+import androidx.compose.material.SnackbarHost
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.ThumbUp
-import androidx.compose.runtime.*
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -78,8 +90,12 @@ fun NavigationScreen(
         navigationActions.collect { screen ->
             when (screen) {
                 is NavigationViewModel.Screen.DetailMovie -> {
-                    context.startActivity(Intent(context, DetailMovieActivity::class.java))
+                    context.startActivity(
+                        Intent(context, DetailMovieActivity::class.java)
+                            .putExtra(DetailMovieActivity.EXTRA_MOVIE, screen.movie)
+                    )
                 }
+
                 is NavigationViewModel.Screen.GenreDetail -> {
                     context.startActivity(
                         Intent(context, GenreDetailActivity::class.java)

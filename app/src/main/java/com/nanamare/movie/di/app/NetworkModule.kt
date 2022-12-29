@@ -33,12 +33,15 @@ class NetworkModule {
         .readTimeout(TIME_OUT, TimeUnit.SECONDS)
         .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
 
+    @OptIn(ExperimentalSerializationApi::class)
     @Provides
     @Named("kotlinx")
     fun provideKotlinxSerializationJson() = Json {
-        isLenient = false
+        isLenient = true
         ignoreUnknownKeys = true
         coerceInputValues = true
+        prettyPrint = true
+        explicitNulls = false
     }
 
     @OptIn(ExperimentalSerializationApi::class)

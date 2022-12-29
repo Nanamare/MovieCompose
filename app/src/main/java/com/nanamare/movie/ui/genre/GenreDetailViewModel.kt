@@ -16,23 +16,28 @@ import com.nanamare.movie.ui.base.NavigationViewModel
 import com.nanamare.movie.ui.base.NavigationViewModelImpl
 import com.nanamare.movie.ui.genre.GenreDetailActivity.Companion.EXTRA_GENRE_KEY
 import com.nanamare.movie.ui.paging.inmemory.GenreMoviePagingSource
-import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.stateIn
 import timber.log.Timber
-import javax.inject.Inject
 
 interface GenreDetailViewModel : NavigationViewModel {
     val genreMovie: StateFlow<PagingData<Movie>>
     val selectedGenre: Genre
+
+    @AssistedFactory
+    interface Factory {
+        fun create(handle: SavedStateHandle): GenreDetailViewModelImpl
+    }
 }
 
-@HiltViewModel
-class GenreDetailViewModelImpl @Inject constructor(
+class GenreDetailViewModelImpl @AssistedInject constructor(
     private val genreMoviePagingSource: GenreMoviePagingSource,
-    savedStateHandle: SavedStateHandle
+    @Assisted savedStateHandle: SavedStateHandle
 ) : NavigationViewModelImpl(), GenreDetailViewModel {
 
     override val selectedGenre: Genre =
@@ -51,11 +56,9 @@ class GenreDetailViewModelImpl @Inject constructor(
 }
 
 class GenreDetailViewModelFactory(
+    private val factory: GenreDetailViewModel.Factory,
     owner: SavedStateRegistryOwner,
-    private val genreMoviePagingSource: GenreMoviePagingSource,
     defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
-    override fun <T : ViewModel> create(
-        key: String, modelClass: Class<T>, handle: SavedStateHandle
-    ): T = GenreDetailViewModelImpl(genreMoviePagingSource, handle) as T
+    override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T = factory.create(handle) as T
 }

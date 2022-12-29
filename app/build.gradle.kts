@@ -17,4 +17,6 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicator)
 }
