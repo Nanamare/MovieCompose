@@ -39,7 +39,7 @@ mockitoInline = "3.2.4"
 androidxTestingCore = "1.4.0"
 androidxTestEspresso = "3.4.0"
 androidxComposeUiTestJunit = "1.3.2"
-androidxComposeUiTestManifest = "1.3.1"
+androidxComposeUiTestManifest = "1.3.2"
 androidDesugarJdkLibs = "1.2.0"
 accompanistPager = "0.28.0"
 
