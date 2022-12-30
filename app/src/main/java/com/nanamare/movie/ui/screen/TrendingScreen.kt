@@ -3,7 +3,15 @@ package com.nanamare.movie.ui.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -58,9 +66,12 @@ fun TrendingList(
         movies.apply {
             when {
                 // using remote mediator
-                loadState.mediator?.refresh is LoadState.Loading -> item { LoadingView(Modifier.fillParentMaxSize()) }
-                loadState.refresh is LoadState.Loading -> item { LoadingView(Modifier.fillParentMaxSize()) }
                 loadState.append is LoadState.Loading -> item { LoadingItem() }
+
+                loadState.mediator?.refresh is LoadState.Loading -> item { LoadingView(Modifier.fillParentMaxSize()) }
+
+                loadState.refresh is LoadState.Loading -> item { LoadingView(Modifier.fillParentMaxSize()) }
+
                 loadState.refresh is LoadState.Error -> {
                     val error = movies.loadState.refresh as LoadState.Error
                     item {
@@ -71,6 +82,7 @@ fun TrendingList(
                         )
                     }
                 }
+
                 loadState.append is LoadState.Error -> {
                     val error = movies.loadState.append as LoadState.Error
                     item {
