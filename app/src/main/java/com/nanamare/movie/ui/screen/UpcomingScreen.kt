@@ -154,6 +154,11 @@ private fun UpcomingMovieList(
             }
 
             when {
+                loadState.append is LoadState.Loading -> {
+                    item { LoadingItem() }
+                    item { LoadingItem() }
+                }
+
                 loadState.refresh is LoadState.NotLoading && loadState.prepend.endOfPaginationReached -> {
                     loadingFinish()
                 }
@@ -162,11 +167,6 @@ private fun UpcomingMovieList(
                     item(span = { GridItemSpan(2) }) {
                         LoadingView(Modifier.fillMaxSize())
                     }
-                }
-
-                loadState.append is LoadState.Loading -> {
-                    item { LoadingItem() }
-                    item { LoadingItem() }
                 }
 
                 loadState.refresh is LoadState.Error -> {
@@ -210,6 +210,8 @@ private fun SearchMovieList(
 
         movies.apply {
             when {
+                loadState.append is LoadState.Loading -> item { LoadingItem() }
+
                 loadState.append is LoadState.NotLoading && loadState.append.endOfPaginationReached && itemCount == 0 && isNotEmptyQuery() -> {
                     item {
                         EmptySnackBar(scaffoldState)
@@ -222,8 +224,6 @@ private fun SearchMovieList(
                         LoadingView(Modifier.fillParentMaxSize())
                     }
                 }
-
-                loadState.append is LoadState.Loading -> item { LoadingItem() }
 
                 loadState.refresh is LoadState.Error -> {
                     val error = movies.loadState.refresh as LoadState.Error
