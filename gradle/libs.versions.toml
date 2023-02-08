@@ -6,7 +6,7 @@ androidMinSdkVersion = "21"
 androidTargetSdkVersions = "33"
 
 androidxCore = "1.9.0"
-androidxCompat = "1.6.0"
+androidxCompat = "1.6.1"
 androidxCompose = "1.3.2"
 androidxComposeMaterial = "1.3.1"
 androidxComposeFoundation = "1.3.1"
