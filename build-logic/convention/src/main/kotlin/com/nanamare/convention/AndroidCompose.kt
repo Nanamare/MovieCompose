@@ -21,7 +21,7 @@ internal fun Project.configureAndroidCompose(
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion = libs.findVersion("androidxCompose").get().toString()
+            kotlinCompilerExtensionVersion = libs.findVersion("kotlinCompilerExtension").get().toString()
         }
 
         kotlinOptions {
@@ -29,6 +29,7 @@ internal fun Project.configureAndroidCompose(
         }
 
         dependencies {
+            add("implementation", platform(libs.findLibrary("androidx.compose.bom").get()))
             add("implementation", libs.findBundle("compose").get())
             add("implementation", libs.findLibrary("lottie.compose").get())
             add("implementation", libs.findLibrary("accompanist.swiperefresh").get())
