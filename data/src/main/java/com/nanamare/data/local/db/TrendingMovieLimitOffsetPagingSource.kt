@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.database.Cursor
 import androidx.room.RoomSQLiteQuery
 import androidx.room.paging.LimitOffsetPagingSource
-import androidx.room.util.CursorUtil
+import androidx.room.util.getColumnIndexOrThrow
 import com.nanamare.data.model.mapper.toDomainModel
 import com.nanamare.domain.model.MovieModel
 import javax.inject.Inject
@@ -23,22 +23,21 @@ class TrendingMovieLimitOffsetPagingSource @Inject constructor(movieDatabase: Mo
     private val converter by lazy { ListConverter() }
 
     override fun convertRows(cursor: Cursor): List<MovieModel> {
-        val _cursorIndexOfPrimaryKey = CursorUtil.getColumnIndexOrThrow(cursor, "primaryKey")
-        val _cursorIndexOfAdult = CursorUtil.getColumnIndexOrThrow(cursor, "adult")
-        val _cursorIndexOfBackdropPath = CursorUtil.getColumnIndexOrThrow(cursor, "backdropPath")
-        val _cursorIndexOfGenreIds = CursorUtil.getColumnIndexOrThrow(cursor, "genreIds")
-        val _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(cursor, "id")
-        val _cursorIndexOfOriginalLanguage =
-            CursorUtil.getColumnIndexOrThrow(cursor, "originalLanguage")
-        val _cursorIndexOfOriginalTitle = CursorUtil.getColumnIndexOrThrow(cursor, "originalTitle")
-        val _cursorIndexOfOverview = CursorUtil.getColumnIndexOrThrow(cursor, "overview")
-        val _cursorIndexOfPopularity = CursorUtil.getColumnIndexOrThrow(cursor, "popularity")
-        val _cursorIndexOfPosterPath = CursorUtil.getColumnIndexOrThrow(cursor, "posterPath")
-        val _cursorIndexOfReleaseDate = CursorUtil.getColumnIndexOrThrow(cursor, "releaseDate")
-        val _cursorIndexOfTitle = CursorUtil.getColumnIndexOrThrow(cursor, "title")
-        val _cursorIndexOfVideo = CursorUtil.getColumnIndexOrThrow(cursor, "video")
-        val _cursorIndexOfVoteAverage = CursorUtil.getColumnIndexOrThrow(cursor, "voteAverage")
-        val _cursorIndexOfVoteCount = CursorUtil.getColumnIndexOrThrow(cursor, "voteCount")
+        val _cursorIndexOfPrimaryKey = getColumnIndexOrThrow(cursor, "primaryKey")
+        val _cursorIndexOfAdult = getColumnIndexOrThrow(cursor, "adult")
+        val _cursorIndexOfBackdropPath = getColumnIndexOrThrow(cursor, "backdropPath")
+        val _cursorIndexOfGenreIds = getColumnIndexOrThrow(cursor, "genreIds")
+        val _cursorIndexOfId = getColumnIndexOrThrow(cursor, "id")
+        val _cursorIndexOfOriginalLanguage = getColumnIndexOrThrow(cursor, "originalLanguage")
+        val _cursorIndexOfOriginalTitle = getColumnIndexOrThrow(cursor, "originalTitle")
+        val _cursorIndexOfOverview = getColumnIndexOrThrow(cursor, "overview")
+        val _cursorIndexOfPopularity = getColumnIndexOrThrow(cursor, "popularity")
+        val _cursorIndexOfPosterPath = getColumnIndexOrThrow(cursor, "posterPath")
+        val _cursorIndexOfReleaseDate = getColumnIndexOrThrow(cursor, "releaseDate")
+        val _cursorIndexOfTitle = getColumnIndexOrThrow(cursor, "title")
+        val _cursorIndexOfVideo = getColumnIndexOrThrow(cursor, "video")
+        val _cursorIndexOfVoteAverage = getColumnIndexOrThrow(cursor, "voteAverage")
+        val _cursorIndexOfVoteCount = getColumnIndexOrThrow(cursor, "voteCount")
         val _result: MutableList<MovieEntity> = ArrayList(cursor.count)
         while (cursor.moveToNext()) {
             val _item: MovieEntity
