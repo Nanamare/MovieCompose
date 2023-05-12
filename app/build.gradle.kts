@@ -19,4 +19,5 @@ dependencies {
     kapt(libs.room.compiler)
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicator)
+    implementation(libs.startup)
 }
