@@ -1,7 +1,7 @@
 package com.nanamare.data.api
 
 import com.google.common.truth.Truth.assertThat
-import com.nanamare.data.remote.MovieApi
+import com.nanamare.data.source.remote.MovieApi
 import com.nanamare.test_shared.BaseApiTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

@@ -1,4 +1,4 @@
-package com.nanamare.data.local.db
+package com.nanamare.data.source.local.db
 
 import com.nanamare.data.model.mapper.toDomainModel
 import com.nanamare.data.model.mapper.toEntity

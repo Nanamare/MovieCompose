@@ -1,4 +1,4 @@
-package com.nanamare.data.remote
+package com.nanamare.data.source.remote
 
 import android.annotation.SuppressLint
 import com.nanamare.data.model.GenreListDto

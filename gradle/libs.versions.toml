@@ -46,6 +46,7 @@ androidxComposeUiTestJunit = "1.3.3"
 androidxComposeUiTestManifest = "1.3.3"
 androidDesugarJdkLibs = "1.2.2"
 accompanistPager = "0.28.0"
+flipper = "0.190.0"
 
 [libraries]
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -120,6 +121,13 @@ accompanist-pager-indicator = { module = "com.google.accompanist:accompanist-pag
 
 startup = "androidx.startup:startup-runtime:1.1.1"
 
+# Flipper
+soloader = "com.facebook.soloader:soloader:0.10.5"
+leakcanary = "com.squareup.leakcanary:leakcanary-android:2.10"
+flipper = { module = "com.facebook.flipper:flipper", version.ref = "flipper" }
+flipper-network-plugin = { module = "com.facebook.flipper:flipper-network-plugin", version.ref = "flipper" }
+flipper-leakcanary-plugin = { module = "com.facebook.flipper:flipper-leakcanary-plugin", version.ref = "flipper" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
@@ -169,3 +177,10 @@ compose = ["androidx-compose-activity",
     "androidx-lifecycle-viewmodel",
     "androidx-navigation-compose"
 ]
+debugging = ["flipper",
+    "flipper-network-plugin",
+    "flipper-leakcanary-plugin",
+    "soloader",
+    "leakcanary"
+]
+

@@ -5,7 +5,7 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.nanamare.data.local.db.MovieDatabase
+import com.nanamare.data.source.local.db.MovieDatabase
 import com.nanamare.domain.model.MovieModel
 import com.nanamare.domain.model.MovieRemoteKeyModel
 import com.nanamare.domain.repository.MovieLocalRepository

@@ -1,7 +1,7 @@
 package com.nanamare.data.model.mapper
 
-import com.nanamare.data.local.db.MovieEntity
-import com.nanamare.data.local.db.MovieRemoteKeyEntity
+import com.nanamare.data.source.local.db.MovieEntity
+import com.nanamare.data.source.local.db.MovieRemoteKeyEntity
 import com.nanamare.data.model.BackdropDto
 import com.nanamare.data.model.DatesDto
 import com.nanamare.data.model.MovieDto

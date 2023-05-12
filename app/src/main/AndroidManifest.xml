@@ -22,6 +22,9 @@
             <meta-data
                 android:name="com.nanamare.movie.initializer.TimberInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.nanamare.movie.initializer.FlipperInitializer"
+                android:value="androidx.startup" />
         </provider>
         <activity
             android:name=".ui.MainActivity"

@@ -1,4 +1,4 @@
-package com.nanamare.data.remote.interceptor
+package com.nanamare.data.source.remote.interceptor
 
 import com.nanamare.data.utils.Cacheable
 import okhttp3.CacheControl

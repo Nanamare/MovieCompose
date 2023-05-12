@@ -2,11 +2,12 @@ package com.nanamare.movie.di.app
 
 import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.nanamare.base.debug.Flipper
 import com.nanamare.base.util.NetworkConnection
 import com.nanamare.base.util.NetworkConnectionImpl
 import com.nanamare.data.BuildConfig
-import com.nanamare.data.remote.interceptor.AuthenticationInterceptor
-import com.nanamare.data.remote.interceptor.CacheInterceptor
+import com.nanamare.data.source.remote.interceptor.AuthenticationInterceptor
+import com.nanamare.data.source.remote.interceptor.CacheInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +33,7 @@ class NetworkModule {
         .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
         .readTimeout(TIME_OUT, TimeUnit.SECONDS)
         .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
+        .also(Flipper::initOkHttpClient)
 
     @OptIn(ExperimentalSerializationApi::class)
     @Provides

@@ -2,8 +2,8 @@ package com.nanamare.data.model
 
 import com.google.common.truth.Truth.assertThat
 import com.nanamare.data.TestData
-import com.nanamare.data.local.db.MovieEntity
-import com.nanamare.data.local.db.MovieRemoteKeyEntity
+import com.nanamare.data.source.local.db.MovieEntity
+import com.nanamare.data.source.local.db.MovieRemoteKeyEntity
 import com.nanamare.data.model.mapper.toDomainModel
 import com.nanamare.data.model.mapper.toEntity
 import com.nanamare.domain.model.DatesModel

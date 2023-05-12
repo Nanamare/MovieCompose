@@ -2,7 +2,7 @@ package com.nanamare.movie.di
 
 import android.content.Context
 import androidx.room.Room
-import com.nanamare.data.local.db.MovieDatabase
+import com.nanamare.data.source.local.db.MovieDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

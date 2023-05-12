@@ -1,7 +1,7 @@
 package com.nanamare.data
 
 import com.google.common.truth.Truth.assertThat
-import com.nanamare.data.local.db.ListConverter
+import com.nanamare.data.source.local.db.ListConverter
 import org.junit.Test
 
 class ConverterTest {

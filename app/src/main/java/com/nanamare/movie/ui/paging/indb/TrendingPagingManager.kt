@@ -1,7 +1,7 @@
 package com.nanamare.movie.ui.paging.indb
 
 import androidx.paging.*
-import com.nanamare.data.local.db.TrendingMovieLimitOffsetPagingSource
+import com.nanamare.data.source.local.db.TrendingMovieLimitOffsetPagingSource
 import com.nanamare.domain.model.MovieModel
 import com.nanamare.movie.model.Movie
 import com.nanamare.movie.model.mapper.toVo

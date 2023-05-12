@@ -1,7 +1,7 @@
 package com.nanamare.data
 
-import com.nanamare.data.local.db.MovieEntity
-import com.nanamare.data.local.db.MovieRemoteKeyEntity
+import com.nanamare.data.source.local.db.MovieEntity
+import com.nanamare.data.source.local.db.MovieRemoteKeyEntity
 import com.nanamare.data.model.*
 import com.nanamare.domain.model.MovieModel
 import com.nanamare.domain.model.MovieRemoteKeyModel

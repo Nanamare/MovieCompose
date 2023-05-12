@@ -2,7 +2,7 @@ package com.nanamare.data
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.nanamare.data.BuildConfig.BASE_URL
-import com.nanamare.data.remote.MovieApi
+import com.nanamare.data.source.remote.MovieApi
 import com.nanamare.data.utils.Cacheable
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor

@@ -1,7 +1,7 @@
-package com.nanamare.data.remote.impl
+package com.nanamare.data.source.remote.impl
 
 import com.nanamare.data.model.mapper.toDomainModel
-import com.nanamare.data.remote.MovieApi
+import com.nanamare.data.source.remote.MovieApi
 import com.nanamare.domain.model.GenreListModel
 import com.nanamare.domain.model.MovieImagesModel
 import com.nanamare.domain.model.MovieResponseModel

@@ -1,4 +1,4 @@
-package com.nanamare.data.local.db
+package com.nanamare.data.source.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

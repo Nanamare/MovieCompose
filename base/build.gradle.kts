@@ -13,4 +13,5 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)
+    debugImplementation(libs.bundles.debugging)
 }
