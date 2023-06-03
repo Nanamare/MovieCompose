@@ -2,7 +2,6 @@ package com.nanamare.movie.ui.screen
 
 import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberAsyncImagePainter
 import com.nanamare.base.ui.compose.SimpleTopBar
+import com.nanamare.base.ui.compose.throttleSingleClick
 import com.nanamare.base.util.rememberFlowWithLifecycle
 import com.nanamare.data.BuildConfig
 import com.nanamare.movie.model.Movie
@@ -115,7 +115,7 @@ fun GenreCard(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .clickable(
+                .throttleSingleClick(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(bounded = false),
                     onClick = { block(NavigationViewModel.Screen.DetailMovie(movie)) }

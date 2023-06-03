@@ -11,7 +11,9 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.bundles.hilt)
+    implementation(libs.timber)
     kapt(libs.hilt.compiler)
     debugImplementation(libs.bundles.debugging)
 }
