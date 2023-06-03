@@ -2,7 +2,6 @@ package com.nanamare.movie.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,6 +35,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.nanamare.base.ui.compose.ErrorItem
 import com.nanamare.base.ui.compose.LoadingItem
 import com.nanamare.base.ui.compose.LoadingView
+import com.nanamare.base.ui.compose.throttleSingleClick
 import com.nanamare.data.BuildConfig
 import com.nanamare.movie.R
 import com.nanamare.movie.model.Movie
@@ -101,7 +101,7 @@ fun TrendingList(
 fun TrendingCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit) {
     Row(
         modifier = Modifier
-            .clickable { block(NavigationViewModel.Screen.DetailMovie(movie)) }
+            .throttleSingleClick { block(NavigationViewModel.Screen.DetailMovie(movie)) }
             .fillMaxWidth()
             .height(200.dp),
         verticalAlignment = Alignment.CenterVertically

@@ -3,7 +3,6 @@ package com.nanamare.movie.ui.screen
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -277,7 +276,7 @@ private fun MovieCard(movie: Movie, block: (NavigationViewModel.Screen) -> Unit)
         modifier = Modifier
             .aspectRatio(imageRatio)
             .fillMaxWidth()
-            .clickable(
+            .throttleSingleClick(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = rememberRipple(bounded = false),
                 onClick = { block(NavigationViewModel.Screen.DetailMovie(movie)) }
@@ -427,7 +426,7 @@ private fun MovieThumbnail(
                 .aspectRatio(moviePosterRatio)
                 .fillMaxWidth()
                 .align(Alignment.Center)
-                .clickable(
+                .throttleSingleClick(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(bounded = false),
                     onClick = { block(NavigationViewModel.Screen.DetailMovie(movie)) }

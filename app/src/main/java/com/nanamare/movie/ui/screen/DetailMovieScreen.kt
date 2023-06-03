@@ -2,7 +2,6 @@ package com.nanamare.movie.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,6 +39,7 @@ import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.nanamare.base.ui.compose.ErrorItem
 import com.nanamare.base.ui.compose.LoadingView
+import com.nanamare.base.ui.compose.throttleSingleClick
 import com.nanamare.base.util.UiState
 import com.nanamare.data.BuildConfig
 import com.nanamare.domain.model.MovieImagesModel
@@ -128,7 +128,7 @@ private fun DetailMovieSection(movieImageModel: MovieImagesModel) {
                     .clip(CircleShape)
                     .alpha(0.5f)
                     .background(color = Color.Gray)
-                    .clickable {
+                    .throttleSingleClick {
                         scope.launch {
                             currentPage += -1
                             pagerState.scrollToPage(currentPage)
@@ -148,7 +148,7 @@ private fun DetailMovieSection(movieImageModel: MovieImagesModel) {
                     .clip(CircleShape)
                     .alpha(0.5f)
                     .background(color = Color.Gray)
-                    .clickable {
+                    .throttleSingleClick {
                         scope.launch {
                             currentPage += 1
                             pagerState.scrollToPage(currentPage)
