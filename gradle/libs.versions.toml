@@ -178,7 +178,8 @@ compose = ["androidx-compose-activity",
     "androidx-constraintlayout-compose",
     "androidx-paging-compose",
     "androidx-lifecycle-viewmodel",
-    "androidx-navigation-compose"
+    "androidx-navigation-compose",
+    "kotlinx-immutable"
 ]
 debugging = ["flipper",
     "flipper-network-plugin",

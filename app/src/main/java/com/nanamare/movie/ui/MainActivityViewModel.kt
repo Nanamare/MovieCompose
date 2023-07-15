@@ -18,6 +18,8 @@ import com.nanamare.movie.ui.paging.inmemory.SearchMoviePagingSource
 import com.nanamare.movie.ui.paging.inmemory.UpcomingMoviePagingSource
 import com.nanamare.movie.ui.screen.Mode
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
@@ -46,7 +48,7 @@ interface MainActivityViewModel : NavigationViewModel {
     val upcomingMovie: Flow<PagingData<Movie>>
     val trendingMovie: Flow<PagingData<Movie>>
     val searchMovie: StateFlow<PagingData<Movie>>
-    val genreListUiState: StateFlow<UiState<List<GenreModel>>>
+    val genreListUiState: StateFlow<UiState<ImmutableList<GenreModel>>>
     val isRefresh: StateFlow<Boolean>
     val keyboardTrigger: SharedFlow<Long>
     val error: SharedFlow<Unit>
@@ -131,7 +133,7 @@ class MainActivityViewModelImpl @Inject constructor(
             )
 
     override val genreListUiState = flow {
-        emit(getGenreListUseCase().toUiState())
+        emit(getGenreListUseCase().mapCatching { it.toImmutableList() }.toUiState())
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(STOP_TIME_OUT_MILLS),
