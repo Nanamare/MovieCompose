@@ -31,6 +31,7 @@ import com.nanamare.movie.R
 import com.nanamare.movie.ui.MainActivityViewModel
 import com.nanamare.movie.ui.base.NavigationViewModel
 import com.nanamare.movie.ui.base.getActivityViewModel
+import kotlinx.collections.immutable.ImmutableList
 
 @Composable
 fun GenreScreen(
@@ -64,7 +65,7 @@ fun GenreScreen(
 @Composable
 fun GenreList(
     modifier: Modifier,
-    genreList: List<GenreModel>,
+    genreList: ImmutableList<GenreModel>,
     block: (NavigationViewModel.Screen) -> Unit
 ) {
     LazyColumn(modifier.padding(horizontal = 12.dp)) {
