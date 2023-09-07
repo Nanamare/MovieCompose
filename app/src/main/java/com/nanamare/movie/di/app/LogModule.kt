@@ -15,5 +15,4 @@ interface LogModule {
     @Binds
     @Singleton
     fun provideLog(logImpl: LogImpl): Log
-
 }
