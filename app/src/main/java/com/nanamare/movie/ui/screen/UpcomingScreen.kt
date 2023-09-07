@@ -4,20 +4,42 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells.Fixed
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -39,13 +61,19 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.nanamare.base.ui.compose.*
+import com.nanamare.base.ui.compose.EmptyPlaceHolder
+import com.nanamare.base.ui.compose.EmptySnackBar
+import com.nanamare.base.ui.compose.ErrorItem
+import com.nanamare.base.ui.compose.LoadingItem
+import com.nanamare.base.ui.compose.LoadingView
+import com.nanamare.base.ui.compose.SimpleTopBar
+import com.nanamare.base.ui.compose.itemsIndexed
+import com.nanamare.base.ui.compose.throttleSingleClick
 import com.nanamare.base.util.rememberFlowWithLifecycle
 import com.nanamare.base.util.toast
 import com.nanamare.data.BuildConfig
@@ -206,7 +234,6 @@ private fun SearchMovieList(
     val scaffoldState = LocalScaffoldState.current
 
     LazyColumn(modifier = modifier) {
-
         movies.apply {
             when {
                 loadState.append is LoadState.Loading -> item { LoadingItem() }
@@ -248,10 +275,9 @@ private fun SearchMovieList(
                 }
             }
         }
-
-        items(movies, Movie::id) { movie ->
-            if (movie == null) return@items
-            MovieCard(movie, block)
+        items(movies.itemCount) {
+            val item = movies[it] ?: return@items
+            MovieCard(item, block)
         }
     }
 

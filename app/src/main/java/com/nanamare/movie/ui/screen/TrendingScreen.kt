@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
 import com.nanamare.base.ui.compose.ErrorItem
@@ -59,9 +58,9 @@ fun TrendingList(
     block: (NavigationViewModel.Screen) -> Unit
 ) {
     LazyColumn(modifier) {
-        items(movies /* key = Movie::id */) { movie ->
-            if (movie == null) return@items
-            TrendingCard(movie, block)
+        items(count = movies.itemCount) {
+            val item = movies[it] ?: return@items
+            TrendingCard(item, block)
         }
         movies.apply {
             when {

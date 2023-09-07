@@ -6,6 +6,7 @@ android {
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
+    namespace = "com.nanamare.test_shared"
 }
 
 dependencies {

@@ -4,6 +4,10 @@ plugins {
     id("movie.android.hilt")
 }
 
+android {
+    namespace = "com.nanamare.movie"
+}
+
 dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
