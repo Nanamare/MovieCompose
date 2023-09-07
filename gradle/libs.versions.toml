@@ -1,39 +1,39 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sec:importing-catalog-from-file 참고
 [versions]
 # Config
-androidCompileSdkVersion = "33"
+androidCompileSdkVersion = "34"
 androidMinSdkVersion = "21"
-androidTargetSdkVersions = "33"
-kotlinCompilerExtension = "1.4.3"
-androidxCore = "1.10.1"
+androidTargetSdkVersions = "34"
+kotlinCompilerExtension = "1.5.3"
+androidxCore = "1.12.0"
 androidxCompat = "1.6.1"
-androidxComposeBom = "2023.06.00"
+androidxComposeBom = "2023.09.00"
 androidxComposeMaterial = "1.4.3"
 androidxComposeFoundation = "1.4.3"
 androidxActivityCompose = "1.7.2"
 okhttp = "4.11.0"
 retrofit = "2.9.0"
-kotlinxSerializationJson = "1.5.1"
+kotlinxSerializationJson = "1.6.0"
 kotlinxCollectionsImmutable = "0.3.5"
 retrofitKotlinxSerializationJson = "1.0.0"
-kotlin = "1.8.10"
-androidGradlePlugin = "7.3.1"
+kotlin = "1.9.10"
+androidGradlePlugin = "8.1.1"
 material = "1.9.0"
 constraintLayout = "2.1.4"
-daggerHilt = "2.46.1"
+daggerHilt = "2.48"
 hiltNavigationCompose = "1.0.0"
 timber = "5.0.1"
 androidxConstraintlayoutCompose = "1.0.1"
-androidxPagingCompose = "1.0.0-alpha20"
-androidxLifecycleViewmodel = "2.6.1"
-androidxNavigationCompose = "2.6.0"
-accompanistSystemuicontroller = "0.30.1"
+androidxPagingCompose = "3.2.1"
+androidxLifecycleViewmodel = "2.6.2"
+androidxNavigationCompose = "2.7.2"
+accompanistSystemuicontroller = "0.32.0"
 coroutine = "1.7.3"
 coilCompose = "2.4.0"
-lottieCompose = "6.0.1"
+lottieCompose = "6.1.0"
 accompanistSwiperefresh = "0.30.1"
-lifecycleRuntimeKtx = "2.6.1"
-room = "2.5.1"
+lifecycleRuntimeKtx = "2.6.2"
+room = "2.5.2"
 junit = "4.13.2"
 truth = "1.1.5"
 okhttp-mock = "4.11.0"
@@ -43,11 +43,11 @@ mockitoInline = "5.2.0"
 androidxTestingCore = "1.5.0"
 androidxTestingRunner = "1.5.2"
 androidxTestEspresso = "3.5.1"
-androidxComposeUiTestJunit = "1.4.3"
-androidxComposeUiTestManifest = "1.4.3"
-androidDesugarJdkLibs = "1.2.2"
+androidxComposeUiTestJunit = "1.5.1"
+androidxComposeUiTestManifest = "1.5.1"
+androidDesugarJdkLibs = "2.0.3"
 accompanistPager = "0.28.0"
-flipper = "0.190.0"
+flipper = "0.215.1"
 
 [libraries]
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -71,10 +71,10 @@ androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name =
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-compose-foundation-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "androidxComposeFoundation" }
-androidx-compose-foundation-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidxComposeFoundation" }
+androidx-compose-foundation-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
+androidx-compose-foundation-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
-androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "androidxComposeMaterial" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material" }
 androidx-compose-ui-viewbinding = { group = "androidx.compose.ui", name = "ui-viewbinding" }
 androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidxConstraintlayoutCompose" }
 androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidxPagingCompose" }
@@ -141,14 +141,16 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 
 
 [bundles]
-android-unittest = ["androidx-test-core",
+android-unittest = [
+    "androidx-test-core",
     "androidx-test-runner",
     "androidx-test-espresso",
     "hilt-android-test",
     "androidx-compose-ui-test-junit",
     "androidx-compose-ui-test-manifest"
 ]
-unittest = ["junit",
+unittest = [
+    "junit",
     "coroutine-test",
     "truth",
     "okhttp-mock",
@@ -157,14 +159,16 @@ unittest = ["junit",
     "mockito-inline"
 ]
 room = ["room-core", "room-runtime", "room-paging"]
-retrofit = ["retrofit-core",
+retrofit = [
+    "retrofit-core",
     "retrofit-kotlin-serialization",
     "kotlinx-serialization-json",
     "okhttp-core",
     "okhttp-logging"
 ]
 hilt = ["hilt-android", "hilt-navigation-compose"]
-compose = ["androidx-compose-activity",
+compose = [
+    "androidx-compose-activity",
     "androidx-compose-runtime",
     "androidx-compose-runtime-livedata",
     "androidx-compose-ui",
@@ -181,7 +185,8 @@ compose = ["androidx-compose-activity",
     "androidx-navigation-compose",
     "kotlinx-immutable"
 ]
-debugging = ["flipper",
+debugging = [
+    "flipper",
     "flipper-network-plugin",
     "flipper-leakcanary-plugin",
     "soloader",

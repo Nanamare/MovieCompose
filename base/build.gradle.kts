@@ -3,6 +3,10 @@ plugins {
     id("movie.android.library.compose")
 }
 
+android {
+    namespace = "com.nanamare.base"
+}
+
 dependencies {
     implementation(project(":test-shared"))
     implementation(libs.androidx.core)

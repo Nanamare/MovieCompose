@@ -11,6 +11,7 @@ android {
         buildConfigField("String", "API_KEY", "\"73f6ff111acbb24ea793d4aa0e1271a1\"")
         buildConfigField("String", "LANGUAGE", "\"en\"")
     }
+    namespace = "com.nanamare.data"
 }
 
 dependencies {
