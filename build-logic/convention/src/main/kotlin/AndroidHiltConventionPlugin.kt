@@ -10,14 +10,14 @@ class AndroidHiltConventionPlugin : Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
             with(pluginManager) {
-                apply("org.jetbrains.kotlin.kapt")
+                apply("com.google.devtools.ksp")
                 apply("dagger.hilt.android.plugin")
             }
 
             dependencies {
                 "implementation"(libs.findBundle("hilt").get())
-                "kapt"(libs.findLibrary("hilt.compiler").get())
-                "kaptAndroidTest"(libs.findLibrary("hilt.compiler").get())
+                "ksp"(libs.findLibrary("hilt.compiler").get())
+                "kspAndroidTest"(libs.findLibrary("hilt.compiler").get())
             }
 
         }

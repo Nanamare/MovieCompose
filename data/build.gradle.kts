@@ -20,5 +20,5 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.coroutine)
     implementation(libs.bundles.room)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
 }

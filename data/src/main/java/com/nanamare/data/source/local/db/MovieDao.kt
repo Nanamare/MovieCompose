@@ -21,5 +21,4 @@ interface MovieDao {
 
     @Query("DELETE FROM movie")
     suspend fun deleteAll()
-
 }
