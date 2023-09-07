@@ -11,9 +11,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @InstallIn(ViewModelComponent::class)
 @Module
 interface ViewModelModule {
-
+    @Binds
     @ViewModelScoped
-    @get:[Binds]
-    val NavigationViewModelImpl.bindNavigationViewModelImpl: NavigationViewModel
-
+    fun bindNavigationViewModelImpl(viewModelImpl: NavigationViewModelImpl): NavigationViewModel
 }

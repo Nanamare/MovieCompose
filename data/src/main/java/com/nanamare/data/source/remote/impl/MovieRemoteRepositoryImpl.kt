@@ -11,8 +11,9 @@ import com.nanamare.domain.usecase.SearchQuery
 import retrofit2.await
 import javax.inject.Inject
 
-class MovieRemoteRepositoryImpl @Inject constructor(private val movieApi: MovieApi) :
-    MovieRemoteRepository {
+class MovieRemoteRepositoryImpl @Inject constructor(
+    private val movieApi: MovieApi
+) : MovieRemoteRepository {
 
     override suspend fun getUpcomingMovie(page: Int): MovieResponseModel =
         movieApi.getUpcomingMovie(page).await().toDomainModel()

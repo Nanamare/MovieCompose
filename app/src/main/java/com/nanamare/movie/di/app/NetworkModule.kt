@@ -8,6 +8,7 @@ import com.nanamare.base.util.NetworkConnectionImpl
 import com.nanamare.data.BuildConfig
 import com.nanamare.data.source.remote.interceptor.AuthenticationInterceptor
 import com.nanamare.data.source.remote.interceptor.CacheInterceptor
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,6 +30,7 @@ import javax.inject.Singleton
 class NetworkModule {
 
     @Provides
+    @Singleton
     fun provideHttpClientBuilder() = OkHttpClient.Builder()
         .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
         .readTimeout(TIME_OUT, TimeUnit.SECONDS)
@@ -76,10 +78,14 @@ class NetworkModule {
             .build()
     }
 
-    @Singleton
-    @Provides
-    fun provideNetworkConnection(@ApplicationContext context: Context): NetworkConnection =
-        NetworkConnectionImpl(context)
+
+    @InstallIn(SingletonComponent::class)
+    @Module
+    interface Binder {
+        @Binds
+        @Singleton
+        fun bindNetworkConnection(connection: NetworkConnectionImpl): NetworkConnection
+    }
 
     companion object {
         private const val TIME_OUT = 30L

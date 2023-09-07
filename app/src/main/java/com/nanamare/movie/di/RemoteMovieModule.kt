@@ -3,6 +3,7 @@ package com.nanamare.movie.di
 import com.nanamare.data.source.remote.MovieApi
 import com.nanamare.data.source.remote.impl.MovieRemoteRepositoryImpl
 import com.nanamare.domain.repository.MovieRemoteRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,9 +21,13 @@ class RemoteMovieModule {
     @Provides
     fun provideMovieApi(@Named("retrofit_tmdb") retrofit: Retrofit): MovieApi = retrofit.create()
 
-    @Singleton
-    @Provides
-    fun provideUpcomingMovieRepository(movieRemoteRepositoryImpl: MovieRemoteRepositoryImpl): MovieRemoteRepository =
-        movieRemoteRepositoryImpl
-
+    @InstallIn(SingletonComponent::class)
+    @Module
+    interface Binder {
+        @Singleton
+        @Binds
+        fun provideUpcomingMovieRepository(
+            movieRemoteRepositoryImpl: MovieRemoteRepositoryImpl
+        ): MovieRemoteRepository
+    }
 }
