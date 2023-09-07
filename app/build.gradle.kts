@@ -20,7 +20,7 @@ dependencies {
     implementation(libs.bundles.retrofit)
     implementation(libs.timber)
     implementation(libs.bundles.room)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicator)
     implementation(libs.startup)

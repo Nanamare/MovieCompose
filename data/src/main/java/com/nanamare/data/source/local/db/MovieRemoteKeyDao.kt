@@ -7,7 +7,6 @@ import androidx.room.Query
 
 @Dao
 interface MovieRemoteKeyDao {
-
     @Query("SELECT * FROM movie_remote_key WHERE id = :id")
     suspend fun getRemoteKey(id: Long): MovieRemoteKeyEntity?
 
@@ -19,5 +18,4 @@ interface MovieRemoteKeyDao {
 
     @Query("DELETE FROM movie_remote_key")
     suspend fun deleteAll()
-
 }

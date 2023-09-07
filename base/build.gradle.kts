@@ -18,6 +18,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.bundles.hilt)
     implementation(libs.timber)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
     debugImplementation(libs.bundles.debugging)
 }
