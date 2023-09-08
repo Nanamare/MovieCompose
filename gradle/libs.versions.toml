@@ -45,7 +45,7 @@ androidxTestingRunner = "1.5.2"
 androidxTestEspresso = "3.5.1"
 androidxComposeUiTestJunit = "1.4.3"
 androidxComposeUiTestManifest = "1.4.3"
-androidDesugarJdkLibs = "1.2.2"
+androidDesugarJdkLibs = "2.0.3"
 accompanistPager = "0.28.0"
 flipper = "0.190.0"
 
