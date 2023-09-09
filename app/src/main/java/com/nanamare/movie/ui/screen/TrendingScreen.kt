@@ -59,8 +59,8 @@ fun TrendingList(
 ) {
     LazyColumn(modifier) {
         items(count = movies.itemCount) {
-            val item = movies[it] ?: return@items
-            TrendingCard(item, block)
+            val movie = movies[it] ?: return@items
+            TrendingCard(movie, block)
         }
         movies.apply {
             when {
