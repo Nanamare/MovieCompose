@@ -276,8 +276,8 @@ private fun SearchMovieList(
             }
         }
         items(movies.itemCount) {
-            val item = movies[it] ?: return@items
-            MovieCard(item, block)
+            val movie = movies[it] ?: return@items
+            MovieCard(movie, block)
         }
     }
 
