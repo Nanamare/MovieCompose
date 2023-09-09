@@ -127,7 +127,7 @@ startup = "androidx.startup:startup-runtime:1.1.1"
 
 # Flipper
 soloader = "com.facebook.soloader:soloader:0.10.5"
-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.11"
+leakcanary = "com.squareup.leakcanary:leakcanary-android:2.12"
 flipper = { module = "com.facebook.flipper:flipper", version.ref = "flipper" }
 flipper-network-plugin = { module = "com.facebook.flipper:flipper-network-plugin", version.ref = "flipper" }
 flipper-leakcanary-plugin = { module = "com.facebook.flipper:flipper-leakcanary-plugin", version.ref = "flipper" }
