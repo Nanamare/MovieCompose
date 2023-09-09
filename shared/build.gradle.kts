@@ -28,7 +28,7 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -45,8 +45,9 @@ kotlin {
 
 android {
     namespace = "com.nanamare.movie.shared"
-    compileSdk = 33
-    defaultConfig {
-        minSdk = 21
+    compileSdk = 34
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
