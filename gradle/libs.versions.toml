@@ -47,7 +47,7 @@ androidxTestEspresso = "3.5.1"
 androidxComposeUiTestJunit = "1.5.1"
 androidxComposeUiTestManifest = "1.5.1"
 androidDesugarJdkLibs = "2.0.3"
-accompanistPager = "0.28.0"
+accompanistPager = "0.32.0"
 flipper = "0.216.0"
 
 [libraries]
