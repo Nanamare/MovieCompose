@@ -48,7 +48,7 @@ androidxComposeUiTestJunit = "1.5.1"
 androidxComposeUiTestManifest = "1.5.1"
 androidDesugarJdkLibs = "2.0.3"
 accompanistPager = "0.32.0"
-flipper = "0.216.0"
+flipper = "0.218.0"
 
 [libraries]
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
