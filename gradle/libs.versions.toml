@@ -49,6 +49,7 @@ androidxComposeUiTestManifest = "1.5.2"
 androidDesugarJdkLibs = "2.0.3"
 accompanistPager = "0.32.0"
 flipper = "0.222.0"
+kmmBridge = "0.3.7"
 
 [libraries]
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
@@ -140,6 +141,7 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kmm-bridge = { id = "co.touchlab.faktory.kmmbridge", version.ref = "kmmBridge" }
 
 
 [bundles]
