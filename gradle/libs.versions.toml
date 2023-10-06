@@ -48,7 +48,7 @@ androidxComposeUiTestJunit = "1.5.3"
 androidxComposeUiTestManifest = "1.5.2"
 androidDesugarJdkLibs = "2.0.3"
 accompanistPager = "0.32.0"
-flipper = "0.223.0"
+flipper = "0.225.0"
 kmmBridge = "0.3.7"
 
 [libraries]
